@@ -94,7 +94,7 @@ public class NodeConverterFactory implements IExtensionChangeHandler
     @SuppressWarnings("unchecked")
     private <T> INodeConverter<? super T> getNodeConverter2(Class<T> clasz)
     {
-        Class<? super T>[] interfaces = clasz.getInterfaces();
+        Class<? super T>[] interfaces = (Class<? super T>[]) clasz.getInterfaces();
         if(!Common.isEmptyArray(interfaces)) {
             for (int i = 0; i < interfaces.length; i++) {
                 INodeConverter<? super T> nodeConverter = getNodeConverter(interfaces[i]);

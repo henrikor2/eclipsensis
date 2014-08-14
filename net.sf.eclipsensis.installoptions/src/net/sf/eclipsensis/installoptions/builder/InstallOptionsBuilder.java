@@ -346,7 +346,7 @@ public class InstallOptionsBuilder extends IncrementalProjectBuilder implements 
         file.deleteMarkers(IInstallOptionsConstants.INSTALLOPTIONS_PROBLEM_MARKER_ID, false, IResource.DEPTH_ZERO);
     }
 
-    public static void buildProject(final IProject project, final int kind, final Map<?,?> args)
+    public static void buildProject(final IProject project, final int kind, final Map<String, String> args)
     {
         cJobScheduler.scheduleJob(new ProjectJobFamily(project),
                                  InstallOptionsPlugin.getResourceString("full.build.job.name"), //$NON-NLS-1$
@@ -358,7 +358,7 @@ public class InstallOptionsBuilder extends IncrementalProjectBuilder implements 
                                 });
     }
 
-    private static IStatus internalBuildProject(final IProject project, final int kind, final Map<?,?> args, IProgressMonitor monitor)
+    private static IStatus internalBuildProject(final IProject project, final int kind, final Map<String, String> args, IProgressMonitor monitor)
     {
         try {
             project.build(kind,INSTALLOPTIONS_BUILDER_ID,args,monitor);
