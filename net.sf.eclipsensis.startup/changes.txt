@@ -1,0 +1,24 @@
+Revision History
+================
+
+0.9.8 (04/28/2010)
+    * Added 64-bit support.
+
+0.9.7.3 (03/26/2010)
+    * Upgraded to Java 5.
+    * Upgraded to Eclipse 3.5 - no longer compliant with Eclipse 3.4.
+
+0.9.7 (09/29/2008)
+    * Upgraded to Eclipse 3.4 - no longer compliant with Eclipse 3.3.
+
+0.9.6.1 (01/02/2008)
+    * Updated copyright notice.
+
+0.9.6 (08/13/2007)
+    * Upgraded to Eclipse 3.3
+
+0.9.5.1 (03/15/2007)
+    * Minor bugfix.
+
+0.9.5 (02/01/2007)
+    * First public release of EclipseNSIS Startup plugin.

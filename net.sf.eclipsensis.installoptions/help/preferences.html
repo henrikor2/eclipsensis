@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<!--
+###############################################################################
+ # Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+ --><title>EclipseNSIS InstallOptions Editor - Preferences</title>
+
+<link rel="stylesheet" href="book.css" charset="ISO-8859-1" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<script type="text/javascript" language="javascript" src="help.js">
+</script>
+<script type="text/javascript" language="javascript" src="redirect.js">
+</script>
+</head>
+<body onLoad="checkHighlight();"><div id="main">
+<a href="wizard.html">Previous</a>
+| <a href="overview.html#contents">Contents</a>
+| <a href="license.html">Next</a>
+<hr><h1><a name="Preferences"></a>Preferences</h1><p>The
+EclipseNSIS InstallOptions Preference
+pages can be accessed by opening the <span style="font-style: italic;"><span style="text-decoration: underline;">W</span>indow&rarr;<span style="text-decoration: underline; font-style: italic;">P</span>references</span><span style="font-style: italic;">&rarr;<span style="text-decoration: underline; font-style: italic;"></span></span>
+menu item and
+navigating to the <span style="font-style: italic;">EclipseNSIS</span><span style="font-style: italic;"></span><span style="font-style: italic;">&rarr;InstallOptions</span>
+item in the Preferences dialog.</p>
+<p style="text-align: center;"><img src="images/navprefs.gif" alt="Navigate to EclipseNSIS Preferences" style="border: 0px solid ; width: 141; height: 83px;"></p>
+<p>Preferences may
+be set for the <a href="#designeditor">Design Editor</a>
+and the <a href="#sourceeditor">Source Editor</a>.</p>
+<h2><a name="designeditor"></a>Design Editor</h2>
+<p>These preferences are used to customize the settings of the
+<a href="designeditor.html">design editor</a>.<br>
+These settings are applied the first time an InstallOptions script is
+opened using the design editor.</p>
+<p style="text-align: center;"><img alt="Design Editor Preferences" src="images/preferences1.gif" ismap="ismap" style="border: medium none ; width: 425px; height: 508px;" usemap="#preferences1"></p>
+<a name="a_display"></a><dl id="id_display"><dt>Display</dt>
+<dd>These settings are can be used to control whether design
+editor drawing tools are shown or hidden by default.
+The drawing tools currently supported for show/hide are:<br><br>
+<ul><li><a href="designeditor.html#a_rulers">Rulers</a></li>
+<li><a href="designeditor.html#a_grid">Grid</a></li>
+<li><a href="designeditor.html#a_guides">Guides</a></li>
+<li><a href="designeditor.html#a_dialogsize">Dialog
+size outline</a></li></ul>
+<a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+</dd></dl><a name="a_dialogsize"></a><dl id="id_dialogsize"><dt>Dialog Sizes</dt>
+<dd>This is used to customize the InstallOptions <a href="designeditor.html#a_dialogsize">dialog sizes</a>.
+By default, the EclipseNSIS InstallOptions Editor comes configured with
+the sizes of the dialogs for standard and MUI installers.
+It is recommended that the dialog sizes for these defaults not be modified unless they have been changed in the
+associated UI executables using a resource editing tool, e.g., <a href="http://www.angusj.com/resourcehacker/">Resource Hacker</a>.<br>
+However, this preferences area allows creation and editing of new dialog sizes to support any additional
+custom UI executables which may be used for NSIS installer creation.<br>
+The checked entry is the default and will be applied to an InstallOptions script
+the first time it is opened using the design editor. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_snapglue"></a><dl id="id_snapglue"><dt>Snap
+&amp; Glue</dt>
+<dd>These settings configure the types of <a href="designeditor.html#a_snap">snap</a> and <a href="designeditor.html#a_glue">glue</a> operations
+which are enabled by default. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_grid"></a><dl id="id_grid"><dt>Grid</dt>
+<dd>Specify the spacing, origin and style of the design editor <a href="designeditor.html#a_grid">grid</a>. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_check_assoc"></a><dl id="id_check_assoc"><dt>On startup, check InstallOptions editor INI file association</dt>
+<dd>On plugin startup check if INI files are associated by default with an InstallOptions editor.
+If they are not, the user is prompted whether to create the association. If the "EclipseNSIS Startup" plugin is activated for startup in
+the <a href="javascript:redirectEclipse('/org.eclipse.platform.doc.user/reference/ref-startup.htm');">Startup and Shutdown</a> preferences page, then the check is performed upon workbench startup, otherwise it is performed the first time
+an InstallOptions editor is opened. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_autosave"></a><dl id="id_autosave"><dt>Automatically save InstallOptions script before preview</dt>
+<dd>If this option is selected, modified InstallOptions scripts are automatically saved before being previewed. Otherwise the user is prompted before saving. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<h2><a name="sourceeditor"></a>Source Editor</h2>
+<p>These preferences are used to customize the look and feel of
+the
+<a href="sourceeditor.html">source editor</a>.<br>
+<strong>Please note that the source editor inherits preferences
+from the <a href="javascript:redirectEclipse('/org.eclipse.platform.doc.user/reference/ref-texteditorprefs.htm');">Text
+Editor</a>.</strong></p>
+<p style="text-align: center;"><img alt="Source Editor Preferences" src="images/preferences2.gif" ismap="ismap" style="border: 0px solid ; width: 425px; height: 508px;" usemap="#preferences2"></p>
+<a name="a_syntaxstyles"></a>
+<dl id="id_syntaxstyles"><dt>Syntax
+style options</dt>
+<dd>Syntax styles specify how InstallOptions source code is
+rendered. The
+available syntax elements are listed below. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+<dl><dt>Comments</dt>
+<dd>Comments.</dd>
+<dt>Section</dt>
+<dd>INI section headers, e.g., [Settings], [Field 1], etc..</dd>
+<dt>Key name</dt>
+<dd>INI key names, e.g., ListItems, VerifyText, etc.</dd>
+<dt>Key name/value delimiter</dt>
+<dd>The separator between INI key names and key values. Current
+only the equals sign ("=") is supported.</dd><dt>Numbers</dt>
+<dd>Numbers in decimal, octal
+and hex format.</dd>
+</dl></dl><a name="a_syntaxpreview"></a><dl id="id_syntaxpreview"><dt>Preview</dt>
+<dd>Displays the preview of InstallOptions
+source code using the current
+colors and styles. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<br><hr><a href="wizard.html">Previous</a>
+| <a href="overview.html#contents">Contents</a>
+| <a href="license.html">Next</a>
+<br><br><p><strong><small>Copyright
+&copy; 2004-2010 Sunil Kamath
+(IcemanK).</small></strong></p>
+</div>
+<MAP NAME="preferences1">
+     <AREA ID="check_assoc" SHAPE="RECT" HREF="#a_check_assoc" ALT="Check INI file association" OnClick="highlightDef('id_check_assoc');" COORDS="12,439,382,452">
+     <AREA ID="grid" SHAPE="RECT" HREF="#a_grid" ALT="Grid" OnClick="highlightDef('id_grid');" COORDS="140,266,413,428">
+     <AREA ID="snapglue" SHAPE="RECT" HREF="#a_snapglue" ALT="Snap & Glue" OnClick="highlightDef('id_snapglue');" COORDS="18,266,135,427">
+     <AREA ID="dialogsize" SHAPE="RECT" HREF="#a_dialogsize" ALT="Dialog Sizes" OnClick="highlightDef('id_dialogsize');" COORDS="139,80,414,259">
+     <AREA ID="display" SHAPE="RECT" HREF="#a_display" ALT="Display" OnClick="highlightDef('id_display');" COORDS="18,80,137,259">
+	 <area ID="autosave" shape="rect" href="#a_autosave" ALT="Autosave before preview" OnClick="highlightDef('id_autosave');" coords="12,460,295,473">
+</MAP>
+<MAP NAME="preferences2">
+	 <area ID="autosave2" shape="rect" href="#a_autosave" ALT="Autosave before preview" OnClick="highlightDef('id_autosave');" coords="12,460,295,473">
+     <AREA ID="check_assoc2" SHAPE="RECT" HREF="#a_check_assoc" ALT="Check INI file association" OnClick="highlightDef('id_check_assoc');" COORDS="12,439,381,452">
+     <AREA ID="syntaxpreview" SHAPE="RECT" HREF="#a_syntaxpreview" ALT="Preview" OnClick="highlightDef('id_syntaxpreview');" COORDS="19,226,412,424">
+     <AREA ID="syntaxstyles" SHAPE="RECT" HREF="#a_syntaxstyles" ALT="Syntax style options" OnClick="highlightDef('id_syntaxstyles');" COORDS="20,80,346,221">
+</MAP>
+</body></html>

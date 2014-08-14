@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+#     Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+<html>
+<head>
+<title>EclipseNSIS Update Site</title>
+<style>@import url("web/site.css");</style>
+<script type="text/javascript">
+	var returnval = 0;
+	var stylesheet, xmlFile, cache, doc;
+	function init(){
+		// NSCP 7.1+ / Mozilla 1.4.1+ / Safari
+		// Use the standard DOM Level 2 technique, if it is supported
+		if (document.implementation && document.implementation.createDocument) {
+			xmlFile = document.implementation.createDocument("", "", null);
+			stylesheet = document.implementation.createDocument("", "", null);
+			if (xmlFile.load){
+				xmlFile.load("site.xml");
+				stylesheet.load("web/site.xsl");
+			} else {
+				alert("Document could not be loaded by browser.");
+			}
+			xmlFile.addEventListener("load", transform, false);
+			stylesheet.addEventListener("load", transform, false);
+		}
+		//IE 6.0+ solution
+		else if (window.ActiveXObject) {
+			xmlFile = new ActiveXObject("msxml2.DOMDocument.3.0");
+			xmlFile.async = false;
+			xmlFile.load("site.xml");
+			stylesheet = new ActiveXObject("msxml2.FreeThreadedDOMDocument.3.0");
+			stylesheet.async = false;
+			stylesheet.load("web/site.xsl");
+			cache = new ActiveXObject("msxml2.XSLTemplate.3.0");
+			cache.stylesheet = stylesheet;
+			transformData();
+		}
+	}
+	// separate transformation function for IE 6.0+
+	function transformData(){
+		var processor = cache.createProcessor();
+		processor.input = xmlFile;
+		processor.transform();
+		data.innerHTML = processor.output;
+	}
+	// separate transformation function for NSCP 7.1+ and Mozilla 1.4.1+
+	function transform(){
+		returnval+=1;
+		if (returnval==2){
+			var processor = new XSLTProcessor();
+			processor.importStylesheet(stylesheet);
+			doc = processor.transformToDocument(xmlFile);
+			document.getElementById("data").innerHTML = doc.documentElement.innerHTML;
+		}
+	}
+</script>
+</head>
+<body onload="init();">
+<!--[insert static HTML here]-->
+<div id="data"><!-- this is where the transformed data goes --></div>
+<div id="sflogo">
+<a href="http://sourceforge.net"><img src="http://sourceforge.net/sflogo.php?group_id=1&amp;type=1" width="88" height="31" border="0" alt="SourceForge.net Logo" /></a>
+</div>
+</body>
+</html>

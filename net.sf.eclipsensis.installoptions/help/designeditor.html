@@ -1,0 +1,564 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+  <title>EclipseNSIS InstallOptions Editor - Design Editor</title>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="book.css" charset="ISO-8859-1"
+ type="text/css">
+  <script type="text/javascript" language="javascript" src="help.js">
+  </script>
+  <script language="javascript" type="text/javascript" src="nsiscontrib.js"></script>
+  <script type="text/javascript" language="javascript" src="redirect.js">
+  </script>
+</head>
+<body>
+<div id="main"><a href="editing.html">Previous</a>| <a
+ href="overview.html#contents">Contents</a> | <a
+ href="designeditor2.html">Next</a>
+<hr>
+<h1>Design Editor</h1>
+<p>The Design Editor provides a
+visual environment for editing InstallOptions dialog scripts. It is
+registered to be the default editor for INI files. A core attribute of
+the design editor is that it preserves the general formatting of a
+loaded INI file, i.e., it does not
+change the file structure: it preserves comments, blank lines as
+well as the order of sections and lines. However, the design editor has
+the restriction that a script with errors must first be corrected using
+the <a href="sourceeditor.html">Source Editor</a>
+before it can be opened using the design editor.<br>
+The design editor offers the following features: </p>
+<ol>
+  <li><a href="#gui">Graphical User Interface</a></li>
+  <li><a href="#editing_commands">Graphical Editing
+Commands</a></li>
+  <li><a href="designeditor2.html#controls">Creating
+and Modifying InstallOptions Controls</a></li>
+  <li><a href="designeditor2.html#outline">Outline and
+Overview</a></li>
+</ol>
+<a name="gui"></a>
+<h2>Graphical
+User Interface</h2>
+<p style="text-align: center;"><img
+ style="border: 0px solid ; width: 630px; height: 476px;"
+ usemap="#designeditor" ismap="ismap" alt="Design Editor"
+ title="Design Editor" src="images/designeditor.gif"></p>
+<a name="a_canvas"></a>
+<dl id="id_canvas">
+  <dt>Canvas</dt>
+  <dd>The canvas provides the visual
+representation of the InstallOptions dialog. Controls can be added or
+removed directly on it, displaying what the overall design looks like
+as it evolves. <a href="javascript:history.go(-1)">&#8592;&nbsp;Back</a> </dd>
+</dl>
+<br>
+<a name="a_palette"></a>
+<dl id="id_palette">
+  <dt>Palette</dt>
+  <dd>The design editor includes a
+palette of controls, templates and selection tools.
+By default, the palette displays to the right of the canvas, but can be
+moved to the left of the canvas by simply dragging it there. The
+palette can be
+also resized or collapsed as needed. If desired the palette can be
+configured to be collapsed by default.<br>
+<a name="a_selection_tools"></a><dl id="id_selection_tools">
+  <dt>Selection Tools Group </dt>
+<dd>The palette includes the following selection tools:
+      <ul>
+        <li><span style="font-weight: bold;">Selection</span>
+  - the default
+  cursor tool, used for selecting existing controls in the canvas.
+  Multiple controls can be selected by holding down the Ctrl
+  key.</li>
+        <li><span style="font-weight: bold;">Marquee</span>
+  - a selection tool
+  that can be used to drag a rectangular selection area. All components
+  that lie completely within the selection rectangle are
+  selected.</li>
+      </ul>
+</dd></dl>
+<a name="a_controls_drawer"></a><dl id="id_controls_drawer">
+        <dt>Control Creation Tools Drawer</dt>
+        <dd>The Controls drawer contains creation tools for all controls supported by the InstallOptions plugin
+		included in the version of NSIS configured in EclipseNSIS. In order to&nbsp; determine what controls are supported,
+		please consult the <a
+ href="javascript:redirectNSISContrib('InstallOptions/Readme.html');">InstallOptions Readme</a> file. In addition to these prebuilt controls, the EclipseNSIS InstallOptions editor provides an &quot;Unknown&quot; control type. This can be used to work with custom controls, e.g., in a modified version of InstallOptions. However, for &quot;Unknown&quot; controls, the EclipseNSIS InstallOptions editor only allows editing of the common attributes of all InstallOptions controls as defined in the <a href="javascript:redirectNSISContrib('InstallOptions/Readme.html');">InstallOptions Readme</a> file. </dd>
+ </dl><br>
+<a name="a_templates_drawer"></a><dl id="id_templates_drawer">
+        <dt>Templated Creation Tools Drawer</dt>
+        <dd>The Templates drawer contains creation tools which use templates. A  template consists of one or more
+		controls combined together into a reusable group. In order to create a template, simply select the controls to be
+		grouped on the canvas and either select the <span style="font-style: italic;">Create Template...</span>
+		icon (<img src="images/newtemplate.gif" width="16" height="16">) on the toolbar or right click with the mouse
+		and select the <span style="font-style: italic;">Create Template...</span> item on the resulting popup menu. This will
+		display a template creation dialog which can be used to specify a name and description for the template, as well as to indicate whether
+		the template is to be enabled. A template which is not enabled will not be available in the Templates Drawer.<br>
+		<a name="templatedialog"></a><p style="text-align: center;"><img style="border: 0px solid ; width: 336px; height: 234px;" alt="Create Template Dialog" src="images/templatedialog.gif"></p>
+		</dd>
+      </dl><br>
+	  <a name="palette_templates_settings"></a><strong>Palette & Templates Settings</strong><br>
+  To customize the  design palette or manage templates, right click on
+      the palette and select the <span style="font-style: italic;">Settings...</span>
+      in the popup context menu. This will open the <a href="#palettesettings">Palette</a> &amp; <a href="#templatesettings">Templates</a> Settings dialog:<br>
+      <br>
+      <div style="text-align: center;"><table style="text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="text-align: center;"><img src="images/palettesettings.gif" alt="Palette Settings" border="0" usemap="#palettesettings" style="width: 322px; height: 394px;" title="Palette Settings"><br>
+Palette Settings</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: center;"><img src="images/templatesettings.gif" alt="Templates Settings" border="0" usemap="#templatesettings" style="width: 322px; height: 394px;" title="Templates Settings"><br>
+Templates Settings</td>
+</tr>
+</tbody>
+</table></div>
+<div><strong><a name="palettesettings"></a>Palette Settings</strong>
+<p>The Palette settings page is used to customize the behavior of the design editor palette.</p>
+<a name="a_palette_font"></a><dl id="id_palette_font">
+  <dt>Font</dt>
+  <dd>Customize the font used to display palette components. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd>
+</dl>
+<a name="a_palette_layout"></a><dl id="id_palette_layout">
+  <dt>Layout</dt>
+  <dd>Customize the layout used to display palette components. For the list layout, large icons for palette components can be optionally displayed, if available <a href="javascript:history.go(-1)">&larr;
+Back</a></dd>
+</dl>
+<a name="a_palette_drawer"></a><dl id="id_palette_drawer">
+  <dt>Drawer Options </dt>
+  <dd>Customize the collapse behavior of palette drawers. The default behavior is to close all drawers other than the currently selected drawers if there is not enough space on the palette to completely display all palette drawers. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd>
+</dl>
+<a name="a_palette_creation"></a><dl id="id_palette_creation">
+  <dt>Creation Tool Options </dt>
+  <dd>Customize the behavior of creation tools. The default behavior of a creation tool, when using the select and click method of creating controls, is to immediately unload upon control creation- i.e., to create another control, the creation tool must once more be selected before clicking on the canvas. If this option is deselected, the tool remains active until either the escape key is pressed or another tool is selected. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd>
+</dl>
+</div><br>
+<div><strong><a name="templatesettings"></a>Templates Settings</strong>
+<p>The Templates settings page is used to manage templates. A  template consists of one or more
+		controls combined together into a reusable group.
+Template creation is described <a href="#a_templates_drawer" onClick="highlightDef('id_templates_drawer');">above</a>. There are three types of  templates:</p>
+<ul>
+<li><span style="font-weight: bold;">Built-in</span>:
+Templates which
+are prepackaged along with the plugin.</li>
+<li><span style="font-weight: bold;">Custom</span>:
+Built-in
+templates which have been modified by the user.</li>
+<li><span style="font-weight: bold;">User-defined</span>:
+Templates
+which have been created by the user.</li>
+</ul>
+<a name="a_templates2"></a><dl id="id_templates2"><dt>Templates</dt>
+<dd>Displays the list of templates. Only checked templates will be displayed in the <a href="#a_palette" onClick="highlightDef('id_palette');">palette </a>.
+To disable/enable a template uncheck/check the
+checkbox associated with it The following buttons allow manipulation
+and configuration of  templates. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd>
+</dl>
+<dl>
+<a name="a_edit5"></a><dl id="id_edit5"><dt>Edit</dt>
+<dd> Opens a <a href="#templatedialog">dialog</a>
+to edit the
+currently selected template. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd></dl>
+<a name="a_remove2"></a><dl id="id_remove2"><dt>Remove</dt>
+<dd>Remove all selected
+templates. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a name="a_restore2"></a><dl id="id_restore2"><dt>Restore
+removed</dt>
+<dd>Restore any built-in or custom
+templates that have been removed. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a name="a_revert2"></a><dl id="id_revert2"><dt>Revert
+to default</dt>
+<dd>Revert all selected custom
+templates back to their original
+built-in states. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_import2"></a><dl id="id_import2"><dt>Import</dt>
+<dd> Imports  templates
+from the file system. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a name="a_export2"></a><dl id="id_export2"><dt>Export</dt>
+<dd>Exports all selected
+ templates to the file system. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+</dl>
+<a name="a_description2"></a><dl id="id_description2"><dt>Description</dt>
+<dd>Displays the description of
+the selected script template. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd></dl>
+<a name="a_defaults"></a><dl id="id_defaults"><dt>Restore Defaults</dt>
+<dd>Removes all user and custom templates and replaces with built-in templates. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd></dl></div>
+</dl>
+<br>
+<a name="a_drawing_tools"></a>
+<dl id="id_rulers">
+  <dt>Drawing Tools</dt>
+  <dd>To help draw accurately, the
+design editor has a pair of rulers, a grid, and guide lines, as well as
+the ability to snap and glue. The ruler, grid, snap, and glue settings
+can be changed at any time without affecting objects already placed in
+the drawing. The settings apply to the current InstallOptions
+script. Each InstallOptions script can have different settings for the
+rulers, grid, snap and glue. These settings can be customized using the
+    <a href="#a_grid_snap_glue">Grid, Snap &amp; Glue</a>
+dialog. Finally, the design editor provides an outline of the
+InstallOptions dialog.<br>
+    <br>
+    <ul>
+      <li><a name="a_grid"></a><span style="font-weight: bold;">Grid</span>
+- The grid consists either of horizontal and vertical lines or
+regularly spaced dots on the canvas. It helps line up controls as they
+are added to the canvas.</li>
+    </ul>
+    <table style="vertical-align: top; text-align: left;" border="0"
+ cellpadding="2" cellspacing="2" width="100%">
+      <tbody>
+        <tr>
+          <td style="text-align: center; vertical-align: top;"><img
+ style="border: 0px solid ; width: 60px; height: 50px;" alt="Grid Lines"
+ title="Grid Lines" src="images/gridlines.gif"><br>
+Grid Lines</td>
+          <td style="text-align: center; vertical-align: top;">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; <br>
+          </td>
+          <td style="text-align: center; vertical-align: top;"><img
+ style="border: 0px solid ; width: 60px; height: 50px;" alt="Grid Dots"
+ title="Grid Dots" src="images/griddots.gif"><br>
+Grid Dots</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <a name="a_rulers"></a><li><span style="font-weight: bold;">Rulers</span>
+- The rulers are along the top and left edges of the canvas. They help
+measure distances. The
+rulers' units match the InstallOptions script units.</li>
+      <li><a name="a_guides"></a><span style="font-weight: bold;">Guides</span>
+- Guides are used to align controls. A guide is like a customizable
+grid line. A guide is created by simply clicking on the ruler. It can
+be removed by clicking
+on the guide and dragging it off the ruler. Once a guide has been
+created it can be dragged to any position
+on its ruler.</li>
+      <li><a name="a_snap"></a><span style="font-weight: bold;">Snap</span>
+- Snap is the ability to force objects to line up. Snap makes it easier
+to create an accurate drawing. The design editor supports
+snapping to grid lines, guide lines or to other controls on the canvas.
+A red line appears
+on the canvas as an indication when a control is snapped.</li>
+    </ul>
+    <p style="text-align: center;"><img
+ style="width: 238px; height: 63px;" alt="Snap" title="Snap"
+ src="images/snap.gif"></p>
+    <ul>
+      <li><a name="a_glue"></a><span style="font-weight: bold;">Glue</span>-
+Glue is the ability of a group of controls to stay together when being
+moved. This is accomplished in the design editor via the guides. By
+default, a control is automatically glued to a guide when snapped onto
+it. Then, anytime the guide is moved, all controls glued to it move as
+well.</li>
+    </ul>
+    <p style="text-align: center;"><img
+ style="width: 274px; height: 170px;" alt="Glue" title="Glue"
+ src="images/glue.gif"></p>
+    <ul>
+      <li><a name="a_dialogsize"></a><span style="font-weight: bold;">Dialog
+Size</span>-
+This is an outline of the InstallOptions dialog size. It serves as a
+guide for
+placement of controls on the dialog.</li>
+    </ul>
+    <p style="text-align: center;"><img
+ style="width: 410px; height: 245px;" alt="Dialog Size"
+ title="Dialog Size" src="images/dialogsizeoutline.gif"></p>
+    <a href="javascript:history.go(-1)">&#8592;&nbsp;Back</a> </dd>
+</dl>
+<br>
+<a name="editing_commands"></a>
+<h2>Graphical
+Editing Commands</h2>
+<p>The design editor includes a rich set of graphical editing
+commands for
+simplify and improve the experience of creating and editing
+InstallOptions scripts.</p>
+<p>These can
+be accessed either from the <span style="font-style: italic;">InstallOptions</span>
+menuitem in the main menu
+bar, by right-clicking in the editor to display the editor popup menu
+or by using the editor toolbar. Most
+commands also provide keyboard shortcuts.</p>
+<a name="a_show_hide"></a>
+<dl id="id_show_hide">
+  <dt>Show/Hide
+Drawing Tools</dt>
+  <dd>These menuitems can be used to show or hide <a
+ href="#a_drawing_tools" onClick="highlightDef('id_drawing_tools');">drawing tools</a>.
+The drawing tools currently supported for show/hide are:<br>
+    <br>
+    <ul>
+      <li><img style="width: 16px; height: 16px;" alt="Rulers"
+ title="Rulers" src="images/rulers.gif">&nbsp;Rulers</li>
+      <li><img style="width: 16px; height: 16px;" alt="Grid"
+ title="Grid" src="images/grid.gif">&nbsp;Grid</li>
+      <li><img style="width: 16px; height: 16px;" alt="Guides"
+ title="Guides" src="images/guides.gif">&nbsp;Guides</li>
+      <li><a name="dialogsize"></a><img
+ style="width: 16px; height: 16px;" alt="Dialog Size"
+ title="Dialog Size" src="images/dialogsize.gif">&nbsp;Dialog
+size outline.</li>
+    </ul>
+    <a href="javascript:history.go(-1)">&#8592;&nbsp;Back</a> </dd>
+</dl>
+<br>
+<a name="a_grid_snap_glue"></a>
+<dl id="id_grid_snap_glue">
+  <dt>Grid, Snap &amp; Glue</dt>
+  <dd>Provides a dialog box which
+can be used to custom grid, snap &amp; glue settings for the
+InstallOptions script currently being edited. These settings are
+persisted when the file is closed and restored when it is reopened.
+Please note that any changes to Snap &amp; Glue settings will be
+applied to any future operations to controls on the dialog- e.g., if
+the "Glue to Guides" option is unchecked, any controls currently
+glued to guides will stay glued until they are detached or the
+guides are deleted.<br>
+    <p style="text-align: center;"><img
+ src="images/gridsnapgluedialog.gif"
+ style="border: medium none ; width: 256px; height: 321px;"
+ alt="Grid, Snap &amp; Glue Dialog"></p>
+    <a href="javascript:history.go(-1)">&#8592;&nbsp;Back</a></dd>
+</dl>
+<br>
+<a name="a_align"></a>
+<dl id="id_align">
+  <dt>Align
+Controls</dt>
+  <dd>Aligns selected controls with
+the last selected control (the one that displays black selection
+handles). If the selection or marquee tool was dragged around a group
+of controls to select them, they are aligned with the control with the
+lowest Z-order (also indicated by black selection handles).
+The following alignments are supported:<br>
+    <br>
+    <ul>
+      <li><img style="width: 16px; height: 16px;" alt="Align Left"
+ title="Align Left" src="images/alignleft.gif">&nbsp;Align Left</li>
+      <li><img style="width: 16px; height: 16px;" alt="Align Center"
+ title="Align Center" src="images/aligncenter.gif">&nbsp;Align Center</li>
+      <li><img style="width: 16px; height: 16px;" alt="Align Right"
+ title="Align Right" src="images/alignright.gif">&nbsp;Align Right</li>
+      <li><img style="width: 16px; height: 16px;" alt="Align Top"
+ title="Align Top" src="images/aligntop.gif">&nbsp;Align Top</li>
+      <li><img style="width: 16px; height: 16px;" alt="Align Middle"
+ title="Align Middle" src="images/alignmid.gif">&nbsp;Align Middle</li>
+      <li><img style="width: 16px; height: 16px;"
+ alt="Align Bottom" title="Align Bottom" src="images/alignbottom.gif">&nbsp;Align Bottom</li>
+    </ul>
+    <a href="javascript:history.go(-1)">&#8592;&nbsp;Back</a> </dd>
+</dl>
+<br>
+<a name="a_match_controls"></a>
+<dl id="id_match_controls">
+  <dt>Match Control Sizes</dt>
+  <dd>Matches dimension(s) of the selected controls with
+the last selected control (the one that displays black selection
+handles). If the selection or marquee tool was dragged around a group
+of controls to select them, they are matched with the control at the
+back of the stacking order (also indicated by black selection handles).
+The following size matchings are supported:<br>
+    <br>
+    <ul>
+      <li><img style="width: 16px; height: 16px;" alt="Match Width"
+ title="Match Width" src="images/matchwidth.gif">&nbsp;Match Width</li>
+      <li><img style="width: 16px; height: 16px;" alt="Match Height"
+ title="Match Height" src="images/matchheight.gif">&nbsp;Match Height</li>
+      <li><img src="images/matchsize.gif" alt="Match Height and Width" style="width: 16px; height: 16px;"
+ title="Match Height and Width">&nbsp;Match Height and Width </li>
+    </ul>
+    <a href="javascript:history.go(-1)">&#8592;&nbsp;Back</a> </dd>
+</dl>
+<br>
+<a name="a_distribute_controls"></a>
+<dl id="id_distribute_controls">
+  <dt>Distribute Controls</dt>
+  <dd>Equally distributes the selected controls horizontally or vertically. The following distributions are supported:<br>
+  <br>
+      <ul>
+        <li><img style="width: 16px; height: 16px;" alt="Distribute Horizontal Interstices"
+ title="Distribute Horizontal Interstices" src="images/horizontalbetween.gif">&nbsp;Distribute Horizontal Interstices (space between controls)</li>
+        <li><img style="width: 16px; height: 16px;" alt="Distribute Left Edges"
+ title="Distribute Left Edges" src="images/horizontalleft.gif">&nbsp;Distribute Left Edges</li>
+        <li><img style="width: 16px; height: 16px;" alt="Distribute Horizontal Centers"
+ title="Distribute Horizontal Centers" src="images/horizontalcenter.gif">&nbsp;Distribute Horizontal Centers</li>
+        <li><img style="width: 16px; height: 16px;" alt="Distribute Right Edges"
+ title="Distribute Right Edges" src="images/horizontalright.gif">&nbsp;Distribute Right Edges</li>
+        <li><img style="width: 16px; height: 16px;" alt="Distribute Vertical Interstices"
+ title="Distribute Vertical Interstices" src="images/verticalbetween.gif">&nbsp;Distribute Vertical Interstices (space between controls)</li>
+        <li><img style="width: 16px; height: 16px;" alt="Distribute Top Edges"
+ title="Distribute Top Edges" src="images/verticaltop.gif">&nbsp;Distribute Top Edges</li>
+        <li><img style="width: 16px; height: 16px;" alt="Distribute Vertical Centers"
+ title="Distribute Vertical Centers" src="images/verticalcenter.gif">&nbsp;Distribute Vertical Centers</li>
+        <li><img style="width: 16px; height: 16px;" alt="Distribute Bottom Edges"
+ title="Distribute Bottom Edges" src="images/verticalbottom.gif">&nbsp;Distribute Bottom Edges</li>
+      </ul>
+      <a href="javascript:history.go(-1)">&#8592;&nbsp;Back</a></dd>
+</dl>
+<br>
+<a name="a_arrange_controls"></a>
+<dl id="id_arrange_controls">
+  <dt>Arrange Controls</dt>
+  <dd>Changes the Z-order of the
+selected controls with respect to the unselected controls. The Z-order
+determines which controls are in front of other controls. The top of
+the
+Z-order is the control which is in front of all other controls. The
+following arrangements are supported:<br>
+    <br>
+    <ul>
+      <li><img style="width: 16px; height: 16px;" alt="Send Backward"
+ title="Send Backward" src="images/backward.gif">&nbsp;Send Backward</li>
+      <li><img style="width: 16px; height: 16px;" alt="Send to Back"
+ title="Send to Back" src="images/back.gif">&nbsp;Send to Back</li>
+      <li><img style="width: 16px; height: 16px;" alt="Bring Forward"
+ title="Bring Forward" src="images/forward.gif">&nbsp;Bring Forward</li>
+      <li><img style="width: 16px; height: 16px;" alt="Bring to Front"
+ title="Bring to Front" src="images/front.gif">&nbsp;Bring
+to Front</li>
+    </ul>
+    <a href="javascript:history.go(-1)">&#8592;&nbsp;Back</a></dd>
+</dl>
+<br>
+<a name="a_lock_controls"></a>
+<dl id="id_lock_controls">
+  <dt>Lock/Unlock Controls</dt>
+  <dd>Locks/Unlocks the
+selected control(s). A locked control cannot have its position
+(left, top, right and bottom attributes) modified using the design editor (they can,
+however, be modified using the source editor). This is useful to prevent accidental
+repositioning of controls. A locked control can be distinguished from an unlocked control
+by the difference in the handles drawn when it is selected:<br>
+    <table style="vertical-align: top; text-align: left;" border="0"
+ cellpadding="2" cellspacing="2" width="100%">
+      <tbody>
+        <tr>
+          <td style="text-align: center; vertical-align: top;"><img
+ style="border: 0px solid ; width: 200px; height: 78px;" alt="Unlocked"
+ title="Unlocked" src="images/unlocked.gif"><br>
+Unlocked</td>
+          <td style="text-align: center; vertical-align: top;">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; <br>
+          </td>
+          <td style="text-align: center; vertical-align: top;"><img
+ style="border: 0px solid ; width: 200px; height: 78px;" alt="Locked"
+ title="Locked" src="images/locked.gif"><br>
+Locked</td>
+        </tr>
+      </tbody>
+    </table>
+The following commands are provided:<br>
+    <br>
+    <ul>
+      <li><img style="width: 16px; height: 16px;" alt="Lock"
+ title="Lock" src="images/lock.gif">&nbsp;Lock</li>
+      <li><img style="width: 16px; height: 16px;" alt="Unlock"
+ title="Unlock" src="images/unlock.gif">&nbsp;Unlock</li>
+    </ul>
+    <a href="javascript:history.go(-1)">&#8592;&nbsp;Back</a></dd>
+</dl>
+<br>
+<a name="a_reset_dialog_size"></a>
+<dl id="id_reset_dialog_size">
+  <dt>Reset Dialog Size</dt>
+  <dd>Changes the size of targeted
+InstallOptions dialog UI. The selected size is shown when the <a
+ href="#dialogsize">Dialog
+size outline</a> drawing tool is displayed. The available dialog
+sizes and the default can be configured using the <a
+ href="preferences.html?id=id_dialogsize#a_dialogsize">Preferences</a>
+dialog.</dd>
+  <dt><br>
+  </dt>
+  <dt style="text-align: center;"><img
+ style="width: 271px; height: 43px;" alt="Reset Dialog Size"
+ title="Reset Dialog Size" src="images/resetdialogsize.gif"></dt>
+  <dd>&nbsp;<a href="javascript:history.go(-1)">&#8592;&nbsp;Back</a> </dd>
+</dl>
+<br>
+<a name="a_refresh"></a>
+<dl id="id_refresh">
+  <dt>Refresh</dt>
+  <dd><img style="width: 16px; height: 16px;"
+ alt="Refresh" src="images/refresh.gif"> Refresh the entire InstallOptions dialog design diagram. It is useful
+when the diagram is not painted properly because of UI interference
+with the painting loop.&nbsp;<a href="javascript:history.go(-1)">&#8592;&nbsp;Back</a>
+  </dd>
+</dl>
+<br>
+<a name="a_preview"></a>
+<dl id="id_preview">
+  <dt>Preview</dt>
+  <dd><img style="width: 16px; height: 16px;"
+ alt="Preview" src="images/preview.gif"> Preview the current InstallOptions script using either the Standard (Classic) UI or the Modern UI.
+The preview language may also be selected. &nbsp;<a href="javascript:history.go(-1)">&#8592;&nbsp;Back</a>
+  </dd>
+</dl>
+<br>
+<hr><a href="editing.html">Previous</a>
+| <a href="overview.html#contents">Contents</a> | <a
+ href="designeditor2.html">Next</a> <br>
+<br>
+<p><strong><small>Copyright &copy;
+2004-2010 Sunil Kamath
+(IcemanK).</small></strong></p>
+<map name="designeditor">
+<area id="canvas" shape="RECT" href="#a_canvas" alt="Canvas"
+ onclick="highlightDef('id_canvas');" coords="18,41,491,472">
+<area id="palette" shape="RECT" href="#a_palette" alt="Palette"
+ onclick="highlightDef('id_palette');" coords="496,23,626,40">
+<area id="rulers" shape="POLY" href="#a_rulers" alt="Ruler"
+ onclick="highlightDef('id_rulers');"
+ coords="2,472,17,472,17,40,489,40,489,25,18,25,17,41,2,41,2,472">
+<area id="selection_tools" shape="rect" onclick="highlightDef('id_selection_tools');" coords="496,40,627,80" href="#a_selection_tools" alt="Selection Tools">
+<area id="controls_drawer" shape="rect" onclick="highlightDef('id_controls_drawer');" coords="496,81,628,390" href="#a_controls_drawer" alt="Controls Drawer">
+<area id="templates_drawer" shape="rect" onclick="highlightDef('id_templates_drawer');" coords="496,390,628,473" href="#a_templates_drawer" alt="Templates Drawer">
+</map>
+</div>
+<map name="palettesettings" id="palettesettings">
+  <area id="palette_font" shape="rect" coords="20,37,304,89" href="#a_palette_font" onclick="highlightDef('id_palette_font');" alt="Palette Font">
+  <area id="palette_layout" shape="rect" coords="21,116,306,214" href="#a_palette_layout" onclick="highlightDef('id_palette_layout');" alt="Palette Layout">
+  <area id="palette_drawer" shape="rect" coords="21,239,290,314" href="#a_palette_drawer" onclick="highlightDef('id_palette_drawer');" alt="Palette Drawer">
+  <area id="palette_creation" shape="rect" coords="21,341,249,374" href="#palette_creation" onclick="highlightDef('id_palette_creation_tools');" alt="Palette Creation Tools">
+</map>
+<map name="templatesettings" id="templatesettings">
+  <area id="templates2" shape="rect" coords="8,26,212,238" href="#a_templates2" onclick="highlightDef('id_templates2');" alt="Templates">
+  <area id="edit5" shape="rect" coords="216,28,313,50" href="#a_edit5" onclick="highlightDef('id_edit5');" alt="Edit">
+  <area id="remove2" shape="rect" coords="216,56,313,78" href="#a_remove2" onclick="highlightDef('id_remove2');" alt="Remove ">
+  <area id="restore2" shape="rect" coords="215,93,311,113" href="#a_restore2" onclick="highlightDef('id_restore2');" alt="Restore Removed">
+  <area id="revert2" shape="rect" coords="216,121,311,141" href="#a_revert2" onclick="highlightDef('id_revert2');" alt="Revert to Default">
+  <area id="import2" shape="rect" coords="216,158,313,180" href="#a_import" onclick="highlightDef('id_import2');" alt="Import">
+  <area id="export2" shape="rect" coords="216,186,313,207" href="#a_export" onclick="highlightDef('id_export2');" alt="Export">
+  <area id="defaults" shape="rect" coords="220,362,313,385" href="#a_defaults" onclick="highlightDef('id_defaults');" alt="Restore Defaults">
+  <area id="description2" shape="rect" coords="8,243,316,360" href="#a_description2" onclick="highlightDef('id_description2');" alt="Description">
+</map>
+</body>
+</html>

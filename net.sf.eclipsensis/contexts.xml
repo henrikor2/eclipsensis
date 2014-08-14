@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+#     Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+<contexts>
+    <context id="nsis_editor_context">
+        <description>The EclipseNSIS editor is used to edit NullSoft Installer scripts.</description>
+        <topic label="EclipseNSIS Editor" href="help/editing.html"/>
+    </context>
+    <context id="nsis_console_context">
+        <description>The EclipseNSIS console shows the output of an NSIS script compilation process.</description>
+        <topic label="EclipseNSIS Console" href="help/console.html"/>
+    </context>
+    <context id="nsis_prefs_context">
+        <description>The EclipseNSIS preferences page is used to set global settings for NSIS scripts.</description>
+        <topic label="EclipseNSIS Preferences" href="help/nsisprefs.html"/>
+    </context>
+    <context id="nsis_editorprefs_context">
+        <description>The EclipseNSIS Editor preferences page is used to customize the look and feel of the EclipseNSIS editor.</description>
+        <topic label="Editor Preferences" href="help/editorprefs.html"/>
+    </context>
+    <context id="nsis_templateprefs_context">
+        <description>The EclipseNSIS Templates preferences page is used to work with code templates.</description>
+        <topic label="Templates Preferences" href="help/templateprefs.html"/>
+    </context>
+    <context id="nsis_tasktagprefs_context">
+        <description>The EclipseNSIS Task Tags  preferences page is used to configure task tags.</description>
+        <topic label="Task Tags Preferences" href="help/tasktagprefs.html"/>
+    </context>
+    <context id="nsis_scrtmpltprefs_context">
+        <description>The EclipseNSIS Script Templates preferences page is used to work with script templates.</description>
+        <topic label="Script Templates Preferences" href="help/scrtmpltprefs.html"/>
+    </context>
+    <context id="nsis_templatedlg_context">
+        <description>The EclipseNSIS Template Editor dialog is used to create new and edit existing code templates.</description>
+        <topic label="Template Editor" href="help/templateprefs.html#templateeditor"/>
+    </context>
+    <context id="nsis_scrtmpltdlg_context">
+        <description>The EclipseNSIS Script Template Editor dialog is used to create new and edit existing script templates.</description>
+        <topic label="Script Template Editor" href="help/scrtmpltprefs.html#scripttemplateeditor"/>
+    </context>
+    <context id="nsis_properties_context">
+        <description>The EclipseNSIS Script Properties page is used to set custom NSIS compilation options for a particular script.</description>
+        <topic label="Script Properties" href="help/scriptproperties.html"/>
+    </context>
+    <context id="nsis_assochdrproperties_context">
+        <description>The Associated Headers tab is used to associate NSIS headers (*.nsh) with an NSIS script (*.nsi).</description>
+        <topic label="Associated Headers" href="help/scriptproperties.html#assochdrs"/>
+        <topic label="Header Properties" href="help/headerproperties.html"/>
+    </context>
+    <context id="nsis_hdrproperties_context">
+        <description>The EclipseNSIS Header Properties page is used to associate an NSIS header (*.nsh) with an NSIS script (*.nsi).</description>
+        <topic label="Header Properties" href="help/headerproperties.html"/>
+        <topic label="Associated Headers" href="help/scriptproperties.html#assochdrs"/>
+    </context>
+    <context id="nsis_wizard_context">
+        <description>The NSIS Script Wizard provides a guide through the process of generating an NSIS script.</description>
+    </context>
+    <context id="nsis_wizwelcome_context">
+        <description>The Welcome page provides an introduction to the Script Wizard.</description>
+        <topic label="Script Wizard Welcome Page" href="help/wizwelcome.html"/>
+    </context>
+    <context id="nsis_wizgeneral_context">
+        <description>The General Information page is used to collect some general, mainly required, information about the NSIS script and installer.</description>
+        <topic label="Script Wizard General Information Page" href="help/wizgeneral.html"/>
+    </context>
+    <context id="nsis_wizattrib_context">
+        <description>The Installer Attributes page is used to specify installation locations and languages.</description>
+        <topic label="Script Wizard Installer Attributes Page" href="help/wizattrib.html"/>
+    </context>
+    <context id="nsis_wizpresentation_context">
+        <description>The Installer Attributes page is used to customize how the installer presents itself to the user.</description>
+        <topic label="Script Wizard Installer Presentation Page" href="help/wizpresentation.html"/>
+    </context>
+    <context id="nsis_wizcontents_context">
+        <description>The Installer Contents page is used to manage installer contents.</description>
+        <topic label="Script Wizard Installer Contents Page" href="help/wizcontents.html"/>
+    </context>
+    <context id="nsis_wizcomplete_context">
+        <description>The Wizard Completion page is used to specify some final items before script generation.</description>
+        <topic label="Script Wizard Completion Page" href="help/wizcomplete.html"/>
+    </context>
+    <context id="nsis_filedlg_context">
+        <description>This dialog is used to add or edit information about a file to be included in the installer.</description>
+        <topic label="Add/Edit File Dialog" href="help/wizcontents.html#file"/>
+    </context>
+    <context id="nsis_filesetdlg_context">
+        <description>This dialog is used to add or edit information about a group of files to be included in the installer.</description>
+        <topic label="Add/Edit FileSet Dialog" href="help/wizcontents.html#fileset"/>
+    </context>
+    <context id="nsis_folderdlg_context">
+        <description>This dialog is used to add or edit information about a fiolder to be included in the installer.</description>
+        <topic label="Add/Edit Folder Dialog" href="help/wizcontents.html#folder"/>
+    </context>
+    <context id="nsis_shortcutdlg_context">
+        <description>This dialog is used to add or edit information about a shortcut to be included in the installer.</description>
+        <topic label="Add/Edit Shortcut Dialog" href="help/wizcontents.html#shortcut"/>
+    </context>
+    <context id="nsis_regkeydlg_context">
+        <description>This dialog is used to add or edit information about a registry key to be included in the installer.</description>
+        <topic label="Add/Edit Registry Key Dialog" href="help/wizcontents.html#regkey"/>
+    </context>
+    <context id="nsis_regvaldlg_context">
+        <description>This dialog is used to add or edit information about a registry value to be included in the installer.</description>
+        <topic label="Add/Edit Registry Value Dialog" href="help/wizcontents.html#regval"/>
+    </context>
+    <context id="nsis_sectiondlg_context">
+        <description>This dialog is used to add or edit information about a Section to be included in the installer.</description>
+        <topic label="Add/Edit Section Dialog" href="help/wizcontents.html#rsection"/>
+    </context>
+    <context id="nsis_sectiongrpdlg_context">
+        <description>This dialog is used to add or edit information about a SectionGroup to be included in the installer.</description>
+        <topic label="Add/Edit SectionGroup Dialog" href="help/wizcontents.html#rsectiongrp"/>
+    </context>
+    <context id="nsis_librarydlg_context">
+        <description>This dialog is used to add or edit information about a library to be included in the installer.</description>
+        <topic label="Add/Edit Library Dialog" href="help/wizcontents.html#library"/>
+    </context>
+    <context id="nsis_launchconfig_general_context">
+        <description>This tab is used to edit NSIS options for the current NSIS Script launch configuration.</description>
+        <topic label="General Tab" href="help/compiling.html#config_general"/>
+        <topic label="Launch Configurations" href="help/compiling.html#launch_config"/>
+    </context>
+    <context id="nsis_launchconfig_symbols_context">
+        <description>This tab is used to define NSIS symbols for the current NSIS Script launch configuration.</description>
+        <topic label="Defined Symbols Tab" href="help/compiling.html#config_symbols"/>
+        <topic label="Launch Configurations" href="help/compiling.html#launch_config"/>
+    </context>
+    <context id="nsis_launchconfig_common_context">
+        <description>This tab is used to edit common options for the current NSIS Script launch configuration.</description>
+        <topic label="Common Tab" href="help/compiling.html#config_common"/>
+        <topic label="Launch Configurations" href="help/compiling.html#launch_config"/>
+    </context>
+    <context id="nsis_buildconfig_general_context">
+        <description>This tab is used to edit NSIS options for the current NSIS Script project builder configuration.</description>
+        <topic label="General Tab" href="help/compiling.html#config_general2"/>
+        <topic label="Project Builders" href="help/compiling.html#project_builder"/>
+    </context>
+    <context id="nsis_buildconfig_symbols_context">
+        <description>This tab is used to define NSIS symbols for the current NSIS Script project builder configuration.</description>
+        <topic label="Defined Symbols Tab" href="help/compiling.html#config_symbols2"/>
+        <topic label="Project Builders" href="help/compiling.html#project_builder"/>
+    </context>
+    <context id="nsis_launchconfig_build_context">
+        <description>This tab is used specify build options for the current NSIS Script project builder configuration.</description>
+        <topic label="Build Options Tab" href="help/compiling.html#config_build"/>
+        <topic label="Project Builders" href="help/compiling.html#project_builder"/>
+    </context>
+    <context id="nsis_config_wizard_context">
+        <description>The NSIS Configuration Wizard is used to configure EclipseNSIS with an NSIS installation.</description>
+        <topic label="NSIS Configuration Wizard" href="help/configuration.html"/>
+    </context>
+    <context id="nsis_manualconfig_wizard_context">
+        <description>The NSIS Manual Configuration Wizard is used to configure EclipseNSIS by manually specifying the location of the NSIS installation.</description>
+        <topic label="NSIS Manual Configuration Wizard" href="help/configuration.html#manualcfgwiz"/>
+        <topic label="NSIS Configuration Wizard" href="help/configuration.html"/>
+    </context>
+    <context id="nsis_update_wizard_context">
+        <description>The NSIS Update Wizard is used to configure EclipseNSIS by using NSIS Update to download and install NSIS software.</description>
+        <topic label="NSIS Update Wizard" href="help/update.html#wizard"/>
+        <topic label="NSIS Update" href="help/update.html"/>
+        <topic label="NSIS Configuration Wizard" href="help/configuration.html"/>
+    </context>
+    <context id="nsis_update_prefs_context">
+        <description>The NSIS Update Preference page is used to configure NSIS Update behavior.</description>
+        <topic label="NSIS Update Preference page" href="help/updateprefs.html"/>
+        <topic label="NSIS Update" href="help/update.html"/>
+    </context>
+    <context id="nsis_scheduler_prefs_context">
+        <description>The Automatic NSIS Updates Preference page is used to configure NSIS Update to automatically search for updates to NSIS on a scheduled basis.</description>
+        <topic label="Automatic NSIS Updates Preference page" href="help/schedulerprefs.html"/>
+        <topic label="NSIS Update" href="help/update.html"/>
+    </context>
+    <context id="nsis_outline_context">
+        <description>The NSIS Code Outline view lists structural elements in the NSIS script being currently edited.</description>
+        <topic label="NSIS Code Outline" href="help/editing.html#outline"/>
+        <topic label="EclipseNSIS Editor" href="help/editing.html"/>
+    </context>
+    <context id="nsis_cmdview_context">
+        <description>The NSIS Commands view lists of all available NSIS commands currently supported by the NSIS Command Wizard.</description>
+        <topic label="NSIS Commands View" href="help/cmdwizard.html#commandsview"/>
+    </context>
+    <context id="nsis_cmdwizard_context">
+        <description>The Command Wizard provides a graphical interface for generating syntactically correct NSIS command text in the EclipseNSIS editor.</description>
+        <topic label="NSIS Command Wizard" href="help/cmdwizard.html#commandwizard"/>
+    </context>
+</contexts>

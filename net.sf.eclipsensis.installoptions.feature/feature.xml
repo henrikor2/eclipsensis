@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+
+# Contributors:
+#     Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+<feature
+      id="net.sf.eclipsensis.installoptions"
+      label="%feature.name"
+      version="0.9.8"
+      provider-name="%provider.name"
+      os="win32"
+      ws="win32"
+      arch="x86,x86_64"
+      image="%splash.image">
+   <install-handler/>
+
+   <description url="%description.url">
+      %description.text
+   </description>
+
+   <copyright url="%copyright.url">
+      %copyright.text
+   </copyright>
+
+   <license url="%license.url">
+      %license.text
+   </license>
+
+   <url>
+      <update label="%update.site.name" url="http://eclipsensis.sf.net/update"/>
+      <discovery label="%update.site.name" url="http://eclipsensis.sf.net/update/"/>
+   </url>
+
+   <requires>
+      <import plugin="net.sf.eclipsensis" version="0.9.8" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.runtime" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gef" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.ide" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.editors" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface.text" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.expressions" version="3.4.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.views.properties.tabbed" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="net.sf.eclipsensis.startup" version="0.9.8" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="net.sf.eclipsensis.installoptions"
+         os="win32"
+         ws="win32"
+         download-size="1737"
+         install-size="1737"
+         version="0.9.8"
+         unpack="false"/>
+
+</feature>

@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+  <title>EclipseNSIS - NSIS Update Preferences</title>
+  <link rel="stylesheet" href="book.css" charset="ISO-8859-1"
+ type="text/css">
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <script language="javascript" type="text/javascript" src="help.js"></script>
+</head>
+<body onLoad="checkHighlight();">
+<div id="main">
+<a href="updateprefs.html">Previous</a>
+| <a href="overview.html#contents">Contents</a>
+| <a href="colorsfontsprefs.html">Next</a>
+<hr>
+<h1>Preferences</h1>
+<h2><a name="update"></a>Automatic NSIS Updates</h2>
+<p>These preferences are used to configure <a href="update.html">NSIS Update</a> to automatically search for updates to NSIS on a scheduled basis.</p>
+<p style="font-weight:bold; color: #FF0000">Please see the important <a href="update.html#notes">notes</a> regarding NSIS Update.</p>
+<br>
+<p style="text-align: center;"><img src="images/schedulerpref.gif"
+ alt="NSIS Update Preferences"
+ usemap="#updatepref"
+ ismap="ismap"
+ style="border: medium none ; width: 477px; height: 586px;"></p>
+  <a name="a_autocheck"></a><dl id="id_autocheck"><dt>Automatically check for NSIS updates</dt>
+  <dd>If this option is selected, then NSIS Update will be scheduled to run as per the schedule specified below. <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+  </dl>
+  <a name="a_schedule"></a><dl id="id_schedule"><dt>Update Schedule</dt>
+  <dd>One of the following four scheduling options may be chosen:
+  <ul>
+  <li>Each time the platform is started (the default).</li>
+  <li>Daily, at a specific time.<span style="font-weight: bold;">*</span></li>
+  <li>Weekly, on a specific weekday and time.<span style="font-weight: bold;">*</span></li>
+  <li>Monthly, on a specific day of the month and time. If the specified
+  day is greater than the last day for the next scheduled month, the update
+  will be run on the last day of the month. e.g., if the specified day is 31
+  and the next scheduled month is April, the update will run on April 30th.<span style="font-weight: bold;">*</span></li>
+  </ul>
+<span style="font-weight: bold;">*</span><span style="font-size: smaller;">assuming that the Eclipse platform is active.</span></span><br>
+  <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+  <a name="a_action" id="a_action"></a>
+  <dl id="id_action">
+    <dt>Update Action </dt>
+    <dd>One of the following three actions may be performed when NSIS update is run: <dl>
+  <a name="defaultaction"></a><dt>Check for an update and notify if one is available (the default).</dt><dd>When this option is chosen, the user is notified via a message box that an update is available. Upon acceptance, the update is then interactively downloaded and the NSIS setup is launched.</dd>
+  <dt>Download an update, if available, and notify when it is ready to install.</dt><dd>When this option is chosen, the user is notified via a message box that an update has been downloaded and is ready to install. Upon acceptance,  the NSIS setup is launched. If the user decides not to install the update at the time, the downloaded files are cached and reused the next time NSIS Update is run, unless a newer version is available.</dd>
+  <dt>Download and install an update, if available, and notify when it is installed.</dt><dd>When this option is chosen, NSIS Update downloads and silently installs the update. Note that this will overwrite the NSIS installation in the current defined <a href="nsisprefs.html?id=id_nsishome#a_nsishome">NSIS home</a>. If no NSIS home is currently defined, then NSIS will be installed in its default location. </dd>
+  </dl>
+  If an update is successfully installed, EclipseNSIS will detect the new NSIS installation and update the <a href="nsisprefs.html?id=id_nsishome#a_nsishome">NSIS home</a> to point to it.<br>
+  <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+  <a href="preferences.html">Back
+to Preferences</a><br>
+<hr><a href="updateprefs.html">Previous</a>
+| <a href="overview.html#contents">Contents</a>
+| <a href="colorsfontsprefs.html">Next</a><br>
+<br>
+<p><strong><small>Copyright
+&copy; 2004-2010 Sunil Kamath
+(IcemanK).</small></strong></p>
+<MAP NAME="updatepref">
+     <AREA ID="action" SHAPE="RECT" HREF="#a_action" ALT="Update Action" OnClick="highlightDef('id_action');" COORDS="13,165,323,223">
+     <AREA ID="schedule" SHAPE="RECT" HREF="#a_schedule" ALT="Update Schedule" OnClick="highlightDef('id_schedule');" COORDS="13,41,305,137">
+     <AREA ID="autocheck" SHAPE="RECT" HREF="#a_autocheck" ALT="Automatically Check for NSIS Updates" OnClick="highlightDef('id_autocheck');" COORDS="4,4,203,21">
+</MAP>
+</div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+<title>EclipseNSIS - Console</title>
+  <link rel="stylesheet" href="book.css" charset="ISO-8859-1" type="text/css">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <script language="javascript" type="text/javascript" src="help.js"></script>
+  <script language="javascript" type="text/javascript" src="redirect.js"></script>
+</head>
+<body>
+<div id="main">
+<a href="compiling.html">Previous</a>
+| <a href="overview.html#contents">Contents</a>
+| <a href="cmdwizard.html">Next</a>
+<hr>
+<h1>Console
+</h1>
+<p>The EclipseNSIS console shows
+the output of an NSIS script compilation
+process. The console shows three different kinds of output:
+</p>
+<ul>
+  <li>Information </li>
+  <li>Warnings </li>
+  <li>Errors </li>
+</ul>
+<p>The font and colors for the
+console can be customized on the <a href="colorsfontsprefs.html">Colors
+&amp; Fonts
+preferences page</a>.<br>
+By default, the console is opened automatically, if it is not already
+open, and made visible whenever a script is compiled. This behavior can
+also be modified on the <a href="nsisprefs.html?id=id_autoconsole#a_autoconsole">EclipseNSIS
+preferences page</a>. </p>
+<p>Alternately, the EclipseNSIS console can be opened manually from within the standard Eclipse console view by selecting it from the dropdown menu, as shown below.</p>
+<p style="text-align: center;"><img src="images/console_menu.gif" width="250" height="117"
+style="border: medium none ; width: 250px; height: 117px;"></p>
+<p>If errors or
+  warnings are detected, problem markers are created in the NSIS script
+  file with information about these problems. These problem markers can
+  be viewed either in the EclipseNSIS editor or in the standard Eclipse <a href="javascript:redirectEclipse('/org.eclipse.platform.doc.user/reference/ref-31a.htm');">Problems view</a>.
+  Errors and warning are also marked as hyperlinks in the
+  console. Clicking on a hyperlink will take you to the line associated
+  with the error or warning. If the MakeNSIS compiler does not provide a
+  line number for the error or warning, the problem marker is assigned to
+  the first line of the script file.<br>
+  For detailed help about the console, click on the appropriate part of
+  the console screenshot. </p>
+<p style="text-align: center;">
+<img alt="EclipseNSIS Console" src="images/console.gif" ismap="ismap"
+ usemap="#console"
+ style="border: medium none ; width: 705px; height: 294px;"></p>
+  <a name="a_output"></a><dl id="id_output"><dt>Output</dt>
+  <dd>The output from
+the MakeNSIS
+compilation process.</dd></dl>
+  <a name="a_error"></a><dl id="id_error"><dt>Error</dt>
+  <dd>An example error message.
+Clicking on it will highlight the
+relevant line in the EclipseNSIS
+editor.</dd></dl>
+  <a name="a_warning"></a><dl id="id_warning"><dt>Warning</dt>
+  <dd>An example warning message.
+Clicking on it will highlight the relevant line in the EclipseNSIS
+editor.</dd></dl>
+  <a name="a_close"></a><dl id="id_close"><dt>Close
+Console</dt>
+  <dd>Closes the EclipseNSIS console.</dd></dl>
+  <a name="a_cancel"></a><dl id="id_cancel"><dt>Cancel
+Compilation</dt>
+  <dd>Cancels NSIS script
+compilation. This button is enabled only during compilation.</dd></dl>
+  <a name="a_copy"></a><dl id="id_copy"><dt>Copy</dt>
+  <dd>Copy the selected lines from
+the console. This button is enabled only when some lines are selected.</dd></dl>
+  <a name="a_selectall"></a><dl id="id_selectall"><dt>Select
+All</dt>
+  <dd>Select all the lines in the console.</dd></dl>
+  <a name="a_clear"></a><dl id="id_clear"><dt>Clear</dt>
+  <dd>Clear
+the console of all output. This button is enabled only when the console
+contains some output and is disabled during compilation.</dd></dl>
+  <a name="a_scroll_lock"></a><dl id="id_scroll_lock"><dt>Scroll Lock</dt>
+  <dd>Toggles the Scroll Lock.</dd></dl>
+  <a name="a_pin"></a><dl id="id_pin"><dt>Pin Console</dt>
+  <dd>Forces the Console view to remain on top of other views in the window area.</dd></dl>
+  <a name="a_display_selected"></a><dl id="id_display_selected"><dt>Display Selected Console</dt>
+  <dd>Select a console to display from a list, if multiple consoles are open.</dd></dl>
+<br>
+<br>
+<hr><a href="compiling.html">Previous</a>
+| <a href="overview.html#contents">Contents</a>
+| <a href="cmdwizard.html">Next</a>
+<br>
+<br>
+<p><strong><small>Copyright
+&copy; 2004-2010 Sunil Kamath (IcemanK).</small></strong></p>
+<map name="console">
+<area id="error" shape="RECT" href="#a_error" alt="Error"
+ coords="3,208,682,224" onclick="highlightDef('id_error');">
+<area id="warning" shape="RECT" href="#a_warning" alt="Warning"
+ coords="3,191,219,205" onclick="highlightDef('id_warning');">
+<area id="output" shape="RECT" href="#a_output" alt="Console output"
+ coords="3,50,685,274" onclick="highlightDef('id_output');">
+<area id="clear" shape="RECT" href="#a_clear" alt="Clear"
+ coords="553,27,574,47" onclick="highlightDef('id_clear');">
+<area id="scroll_lock" shape="RECT" href="#a_scroll_lock" alt="Scroll lock"
+ coords="576,27,597,47" onclick="highlightDef('id_scroll_lock');">
+<area id="selectall" shape="RECT" href="#a_selectall" alt="Select all"
+ coords="531,27,551,47" onclick="highlightDef('id_selectall');">
+<area id="copy" shape="RECT" href="#a_copy" alt="Copy"
+ coords="507,27,527,47" onclick="highlightDef('id_copy');">
+<area id="cancel" shape="RECT" href="#a_cancel" alt="Cancel compilation"
+ coords="477,27,497,47" onclick="highlightDef('id_cancel');">
+<area id="close" shape="RECT" href="#a_close" alt="Close console"
+ coords="454,27,474,47" onclick="highlightDef('id_close');">
+<area id="pin" shape="RECT" href="#a_scroll_lock" alt="Pin console"
+ coords="608,27,629,47" onclick="highlightDef('id_pin');">
+<area id="display_selected" shape="RECT" href="#a_display_selected" alt="Display selected console"
+ coords="631,27,652,47" onclick="highlightDef('id_display_selected');">
+</map>
+</div>
+</body>
+</html>

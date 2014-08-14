@@ -1,0 +1,196 @@
+Revision History
+================
+
+0.9.8 (04/28/2010)
+    * Added 64-bit support.
+    * Added filter capability for NSIS Commands view.
+    * Bug Fixes
+        o 2813284
+        o 2943940
+
+0.9.7.3 (03/26/2010)
+    * Upgraded to Java 5.
+    * Upgraded to Eclipse 3.5 - no longer compliant with Eclipse 3.4.
+    * Added support for !searchreplace command.
+    * Added support for registering EXE COM servers in InstallLib macros.
+    * Added experimental support for Java 7.
+    * Added experimental support for Windows 7.
+    * Bug Fixes
+        o 2526120
+        o 2818953
+        o 2845035
+        o 2858469
+
+0.9.7.2 (12/13/2008)
+    * Bug Fixes
+        o 2410938
+
+0.9.7.1 (12/09/2008)
+    * Feature Requests:
+        o 2411044
+    * Bug Fixes
+        o 2410938
+
+0.9.7 (09/29/2008)
+    * Upgraded to Eclipse 3.4 - no longer compliant with Eclipse 3.3.
+    * Added support for new !searchparse command.
+    * Added support for new /file option for !define command.
+    * Added support for !else in outline view.
+    * Wizard now supports MUI2 and Multi-User Install.
+    * Added preview to NSIS Command Wizard.
+    * Added support for unicode version of NSIS.
+    * Feature Requests:
+        o 1902422
+    * Bug Fixes
+        o 1996176
+        o 2050658
+    * Other minor bug fixes.
+
+0.9.6.2 (01/02/2008)
+    * Updated copyright notice.
+    * Bug Fixes
+        o 1787858
+
+0.9.6.1 (08/21/2007)
+    * Bug Fixes
+        o 1777778
+
+0.9.6 (08/13/2007)
+    * Added support for changes in NSIS 2.26:
+        o New variables and constants ($EXEPATH, $EXEFILE, $PROGRAMFILES64,
+          $PROGRAMFILES32, $COMMONFILES64, $COMMONFILES32
+        o New InstallLib options (LIBRARY_IGNORE_VERSION and LIBRARY_X64).
+        o New and changed commands (SetRegView, GetDLLVersionLocal, MessageBox
+          and File)
+        o Fixed support for Windows Vista
+        o Wizard now supports 32-bit or 64-bit target platforms.
+    * Bug Fixes
+        o 1714373
+        o 1733997
+        o 1745754
+        o 1760927
+        o 1770860
+
+0.9.5.1 (03/15/2007)
+    * Added support for new predefines.
+    * Added support for /P compiler option.
+    * Fixed outline view filter.
+    * Added preference for saving file(s) before compilation.
+    * Added functionality for associating headers (*.nsh) with a script (*.nsi).
+
+0.9.5 (2/01/2007)
+    * Upgraded to Eclipse 3.2 - no longer compatible with Eclipse 3.1.
+    * Added Export as HTML command.
+    * Var elements now shown in Outline view.
+    * Added NSIS Command Wizard for adding NSIS commands to script.
+    * Added drag & drop support to NSIS Script Wizard and EclipseNSIS Editor.
+    * Added support for REG_BIN and REG_EXPAND_SZ in NSIS Script Wizard.
+    * Added support for Library installs in NSIS Script Wizard.
+    * NSIS Script Wizard can now save output to filesystem in addition to the
+      workspace.
+    * Added registry key and registry value browsers to NSIS Script Wizard.
+    * Added command to insert registry value into NSIS script.
+    * Added filtering to outline view.
+    * Added startup plugin to check file associations.
+    * Bug Fixes
+        o 1416349
+        o 1443239
+        o 1464413
+        o 1466390
+        o 1474161
+        o 1521533
+        o 1556289
+        o 1587717
+        o 1591254
+        o 1649681
+    * Feature Requests:
+        o 1441231
+        o 1452422
+        o 1587982
+    * Other minor bug fixes.
+
+0.9.4 (01/26/2006)
+    * Java 6.0 (Mustang) can be used as the runtime environment- however it will
+      not be officially supported until it is released.
+    * Refactored EclipseNSIS console to use standard Eclipse console
+      functionality.
+    * Added support for NSIS scripts as External Tool launch configurations.
+    * Added support for NSIS scripts as external builders.
+    * Added NSIS update functionality - manual as well as automated.
+    * EclipseNSIS editor scroll tip now moves with scroll bar.
+    * SubSection/SubSectionEnd supported even when deprecated (NSIS 2.05 and
+      above).
+    * Clicking on a NSIS file link in EclipseNSIS help or NSIS Users Manual
+      view now opens the file in Eclipse instead of an external editor.
+    * Added support for nightly CVS builds.
+    * Added support for SHCTX registry root key in EclipseNSIS Script Wizard.
+    * Added error markers and tooltips in EclipseNSIS Script Wizard Contents
+      page.
+    * Added new command to clear problem markers.
+    * Enhanced F3 hover help- now provides more detail as well as hyperlinks.
+    * Fixed usage of template editor dialog.
+    * Added functions to import registry keys/files into NSIS script.
+    * Bug Fixes
+        o 1387272
+    * Feature Requests:
+        o 1358177
+        o 1358185
+        o 1374835
+        o 1380236
+    * Other minor bug fixes.
+
+0.9.3 (09/29/2005)
+    * External files are now supported- including compiling, testing, code
+      folding and annotations.
+    * Compilation properties can now also be set at the project or folder
+      levels.
+    * Bug fixes:
+        o 1295438
+    * Other minor bug fixes.
+
+0.9.2 (08/23/2005)
+    * Support for Windows 98 and Windows ME reintroduced.
+    * Modified startup check for NSIS home until after Workbench is activated.
+    * Added visual progress feedback during long-running startup or
+      reconfiguration operations.
+    * Added more rigorous checks for OS and JVM.
+    * Added underline and strikethrough syntax styles to editor.
+    * Improved job scheduling mechanism.
+    * Bug fixes:
+          o 1244592
+          o 1246057
+          o 1249913
+          o 1253797
+    * Feature Requests
+          o 1228374
+          o 1252371
+    * Other minor bug fixes.
+
+0.9.1 (07/18/2005)
+    * Bug fixes:
+          o 1239217
+          o 1239326
+
+0.9.0 (07/15/2005)
+    * Upgraded to Eclipse 3.1 - no longer compatible with Eclipse 3.0.
+    * Several minor bug fixes.
+    * Removed support for Windows 98 and Windows ME because of
+      java.lang.Runtime.exec() issues. Support may be added back later.
+
+0.5.0 (04/11/2005)
+    * Script wizard
+    * Support for code templates.
+    * Task tag detection.
+    * Console enhancements.
+    * Editor enhancements.
+    * Integrated help.
+    * Several minor bug fixes.
+    * Support for IBM and BEA JRockit JREs.
+
+0.2.0 (09/16/2004)
+    * Added syntax highlighting editor, including hover help, code outlining and
+      folding and context-sensitive help.
+
+0.0.1 (09/03/2004)
+    * First public release of EclipseNSIS plugin.
+    * Minimal functionality-allows compilation and testing of NSIS scripts.

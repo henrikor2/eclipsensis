@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %plugin.name
+Bundle-SymbolicName: net.sf.eclipsensis.source;singleton:=true
+Bundle-Version: 0.9.8
+Bundle-Vendor: %plugin.vendor
+Bundle-Localization: plugin

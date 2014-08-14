@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+  <title>EclipseNSIS - Editor
+Preferences</title>
+  <link rel="stylesheet" href="book.css" charset="ISO-8859-1"
+ type="text/css">
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <script language="javascript" type="text/javascript" src="help.js"></script>
+  <script language="javascript" type="text/javascript" src="nsiscontrib.js"></script>
+  <script language="javascript" type="text/javascript" src="redirect.js"></script>
+</head>
+<body onLoad="checkHighlight();">
+<div id="main">
+<a href="nsisprefs.html">Previous</a>
+| <a href="overview.html#contents">Contents</a>
+| <a href="templateprefs.html">Next</a>
+<hr>
+<h1>Preferences</h1>
+<h2><a name="editor"></a>Editor</h2>
+<p>These preferences are used to customize the look and feel of the
+EclipseNSIS editor.<br>
+<strong>Please note that the EclipseNSIS editor inherits preferences from the <a href="javascript:redirectEclipse('/org.eclipse.platform.doc.user/reference/ref-texteditorprefs.htm');">Text Editor</a>.</strong></p>
+<p style="text-align: center;"><img src="images/editorpref.gif"
+ alt="Editor Preferences" usemap="#editorpref" ismap="ismap" style="border: medium none ; width: 492px; height: 597px;"></p>
+  <a name="a_showmatch"></a><dl id="id_showmatch"><dt>Show
+matching delimiters</dt>
+  <dd>If enabled, whenever the
+cursor is next to a parenthesis, bracket
+or curly braces, its opening or closing counter part is highlighted. <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+  <a name="a_matchcolor"></a><dl id="id_matchcolor"><dt>Matching delimiters highlight</dt>
+  <dd>Specify the color used to highlight matching delimiters. <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+  <a name="a_syntaxstyles"></a><dl id="id_syntaxstyles"><dt>Syntax
+style options</dt>
+  <dd>Syntax styles specify how
+NSIS source code is rendered. The
+available syntax elements are listed below. <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+  <dl>
+    <dt>Built-in Constants and
+Variables</dt>
+    <dd>e.g., $INSTDIR, $R0, etc.</dd>
+    <dt>Callbacks</dt>
+    <dd>e.g., .onInit,
+.onInstFailed, etc.</dd>
+    <dt>Comments</dt>
+    <dd>Single line and multiline
+comments.</dd>
+    <dt>Compile-time Commands</dt>
+    <dd>e.g., !system, !macro, etc.</dd>
+    <dt>Installer Attributes</dt>
+    <dd>e.g., OutFile, Name, etc.</dd>
+    <dt>Instruction Options</dt>
+    <dd>e.g., /oname, /ifempty,
+etc.</dd>
+    <dt>Instruction Parameters</dt>
+    <dd>e.g., HKLM, MB_OK, etc.</dd>
+    <dt>Instructions</dt>
+    <dd>e.g., ReadRegStr,
+MessageBox, etc.</dd>
+    <dt>Language Strings</dt>
+    <dd>Language variables, i.e.,
+delimited by "$(" and ")".</dd>
+    <dt>Numbers</dt>
+    <dd>Numbers in decimal, octal
+and hex format.</dd>
+    <dt>Plugin Calls</dt>
+    <dd>e.g., splash::show</dd>
+    <dt>Predefined and user-defined symbols</dt><dd>e.g.,
+${NSISDIR} and any other symbols delimited by "${" and "}".</dd>
+    <dt>Section and Function</dt>
+    <dd>Section and Function
+keywords, e.g., Section, SectionEnd, etc.</dd>
+    <dt>Strings</dt>
+    <dd>NSIS strings which are
+delimited by double, single or backward
+single quotes.</dd>
+    <dt>Task Tags</dt>
+    <dd>Task tags defined using
+the <a href="tasktagprefs.html">Task
+Tags</a>
+preference page.</dd>
+    <dt>User-defined Variables</dt>
+    <dd>Any valid NSIS words
+starting with "$".</dd>
+  </dl></dl>
+  <a name="a_syntaxpreview"></a><dl id="id_syntaxpreview"><dt>Preview</dt>
+  <dd>Displays the preview of NSIS
+source code using the current
+colors and styles. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+  <a name="a_dropextfiles"></a><dl id="id_dropextfiles"><dt>When external files are dropped in editor window</dt>
+  <dd>Specifies the action to take when external files are dropped in the EclipseNSIS editor window, e.g., by dragging from Windows Explorer.
+  The alternatives are to:
+  <ul>
+    <li>insert them in the script as NSIS commands (e.g., File or WriteRegStr).</li>
+    <li>open them in the associated editors.</li>
+    <li>ask the user which action to take.</li>
+  </ul>
+    <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a>
+  </dd></dl>
+<a name="a_check_assoc"></a><dl id="id_check_assoc"><dt>On startup, check EclipseNSIS editor NSIS file association</dt>
+<dd>On startup check if NSIS files are associated by default with the EclipseNSIS editor.
+If it is not, the user is prompted whether to create the association. If the "EclipseNSIS Startup" plugin is activated for startup in
+the <a href="javascript:redirectEclipse('/org.eclipse.platform.doc.user/reference/ref-startup.htm');">Startup and Shutdown</a> preferences page, then the check is performed upon workbench startup, otherwise it is performed the first time
+the EclipseNSIS editor is opened.<a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a href="preferences.html">Back
+to Preferences</a><br>
+<hr><a href="nsisprefs.html">Previous</a>
+| <a href="overview.html#contents">Contents</a>
+| <a href="templateprefs.html">Next</a><br>
+<br>
+<p><strong><small>Copyright
+&copy; 2004-2010 Sunil Kamath
+(IcemanK).</small></strong></p>
+<MAP NAME="editorpref">
+     <AREA ID="syntaxpreview" SHAPE="RECT" HREF="#a_syntaxpreview" ALT="Syntax Preview" OnClick="highlightDef('id_syntaxpreview');" COORDS="12,279,479,473">		     <AREA ID="dropextfiles" SHAPE="RECT" HREF="#a_dropextfiles" ALT="Drop External Files Action" OnClick="highlightDef('id_dropextfiles');" COORDS="18,509,473,530">
+	 <AREA ID="check_assoc" SHAPE="RECT" HREF="#a_check_assoc" ALT="Check NSIS File Association" OnClick="highlightDef('id_check_assoc');" COORDS="18,536,383,549">
+     <AREA ID="syntaxstyles" SHAPE="RECT" HREF="#a_syntaxstyles" ALT="Syntax style options" OnClick="highlightDef('id_syntaxstyles');" COORDS="12,136,373,273">
+     <AREA ID="matchcolor" SHAPE="RECT" HREF="#a_matchcolor" ALT="Matching delimiters highlight" OnClick="highlightDef('id_matchcolor');" COORDS="32,80,216,102">
+     <AREA ID="showmatch" SHAPE="RECT" HREF="#a_showmatch" ALT="Show matching delimiters" OnClick="highlightDef('id_showmatch');" COORDS="13,60,149,73">
+</MAP>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+  <title>EclipseNSIS - Script Wizard General Information</title>
+
+  <link rel="stylesheet" href="book.css" charset="ISO-8859-1" type="text/css">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+  <meta http-equiv="Content-Style-Type" content="text/css">
+
+  <script language="javascript" type="text/javascript" src="help.js"></script></head>
+<body>
+<div id="main">
+<a href="wizwelcome.html">Previous</a> | <a href="overview.html#contents">Contents</a> | <a href="wizattrib.html">Next</a>
+<hr>
+<h1>Script Wizard</h1>
+<h2>General Information</h2><p>This page is used to collect some general, mainly required, information about the NSIS script and installer.</p>
+<p style="text-align: center;"><img style="border: 0px solid ; width: 508px; height: 637px;" usemap="#wizardgeneral" ismap="ismap" alt="Script Wizard General Information" src="images/wizardgeneral.gif"></p>
+<a name="a_appname"></a><dl id="id_appname"><dt>Application Name</dt><dd>The name of application that will be installed. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_appver"></a><dl id="id_appver"><dt>Application Version</dt><dd>The version of the application. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_pubname"></a><dl id="id_pubname"><dt>Publisher Name</dt><dd>Name of the application publisher. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_puburl"></a><dl id="id_puburl"><dt>Publisher URL</dt><dd>Optional URL for the publisher. A shortcut to this URL will be created in the application's start menu group. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_target_platform"></a><dl id="id_target_platform"><dt>Target Platform</dt><dd>The target platform for the application. If <span style="font-weight: bold">32-bit (x86)</span> or <span style="font-weight: bold">64-bit (x64)</span> are selected, NSIS path constants will be adjusted accordingly, e.g., $PROGRAMFILES32 and $PROGRAMFILES64 will be substituted as appropriate in all paths in the NSIS script. This option is only available when using NSIS 2.26 or higher. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_instfile"></a><dl id="id_instfile"><dt>Installer File</dt><dd>Name of the output executable file to be generated after script compilation. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_insticon"></a><dl id="id_insticon"><dt>Installer Icon</dt><dd>Name of the icon file to be associated with the installer. If left blank, a default icon will be assigned by NSIS. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_insttype"></a><dl id="id_insttype"><dt>Installer Type</dt><dd>The installer type. There are four installer types, which are described below. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a>
+</dd>
+<dl>
+<dt>Silent</dt>
+<dd>A silent installer runs as a background process with no user interface or interaction.</dd>
+<dt>Classic</dt>
+<dd>A classic installer has the standard built-in NSIS interface.</dd>
+<dt>Modern UI</dt>
+<dd>The Modern UI installer provides a user interface with a style like the wizards of recent Windows versions.</dd>
+<dt>Modern UI 2.0</dt>
+<dd>The Modern UI 2.0 installer is a faster and more extensible version of the Modern UI installer. This option is only available in NSIS version 2.34 and higher.</dd>
+</dl>
+</dl>
+<a name="a_compressor"></a><dl id="id_compressor"><dt>Compressor</dt><dd>Specify the compressor to be used to pack the installer data. Currently NSIS supports ZLIB, BZIP2 and LZMA. The "Solid" checkbox is only available
+if the preferred version of MakeNSIS.exe supports the <strong>SetCompressor /SOLID</strong> option. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_exec_level"></a><dl id="id_exec_level"><dt>Vista Exec Level</dt>
+<dd>The execution level for the installer on Windows Vista. This option is only available when using NSIS 2.26 or higher. In NSIS 2.35 and higher, this option is hidden if the MultiUser installation option is selected. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a name="a_create_uninst"></a><dl id="id_create_uninst"><dt>Create Uninstaller</dt><dd>Option whether to create an uninstaller for the application. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_uninstfile"></a><dl id="id_uninstfile"><dt>Uninstaller File</dt><dd>Name of the uninstaller executable file. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_uninsticon"></a><dl id="id_uninsticon"><dt>Uninstaller Icon</dt><dd>Name of the icon file to be associated with the uninstaller. If left blank, a default icon will be assigned by NSIS. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a href="wizard.html">Back
+to Script Wizard</a><br>
+<hr><a href="wizwelcome.html">Previous</a> | <a href="overview.html#contents">Contents</a> | <a href="wizattrib.html">Next</a>
+<p><strong><small>Copyright &copy; 2004-2010 Sunil Kamath (IcemanK).</small></strong></p>
+<MAP NAME="wizardgeneral">
+     <AREA ID="uninsticon" SHAPE="RECT" HREF="#a_uninsticon" ALT="Uninstaller Icon" OnClick="highlightDef('id_uninsticon');" COORDS="21,476,446,498">
+     <AREA ID="uninstfile" SHAPE="RECT" HREF="#a_uninstfile" ALT="Uninstaller File" OnClick="highlightDef('id_uninstfile');" COORDS="21,446,486,467">
+     <AREA ID="create_uninst" SHAPE="RECT" HREF="#a_create_uninst" ALT="Create Uninstaller" OnClick="highlightDef('id_create_uninst');" COORDS="21,426,124,441">
+     <AREA ID="compressor" SHAPE="RECT" HREF="#a_compressor" ALT="Compressor" OnClick="highlightDef('id_compressor');" COORDS="22,346,261,369">
+     <AREA ID="insttype" SHAPE="RECT" HREF="#a_insttype" ALT="Installer Type" OnClick="highlightDef('id_insttype');" COORDS="22,326,479,342">
+     <AREA ID="insticon" SHAPE="RECT" HREF="#a_insticon" ALT="Installer Icon" OnClick="highlightDef('id_insticon');" COORDS="21,293,446,315">
+     <AREA ID="instfile" SHAPE="RECT" HREF="#a_instfile" ALT="Installer File" OnClick="highlightDef('id_instfile');" COORDS="22,260,485,283">
+     <AREA ID="puburl" SHAPE="RECT" HREF="#a_puburl" ALT="Publisher URL" OnClick="highlightDef('id_puburl');" COORDS="21,183, 487,203">
+     <AREA ID="pubname" SHAPE="RECT" HREF="#a_pubname" ALT="Publisher Name" OnClick="highlightDef('id_pubname');" COORDS="21,160,487,179">
+     <AREA ID="appver" SHAPE="RECT" HREF="#a_appver" ALT="Application Version" OnClick="highlightDef('id_appver');" COORDS="22,136,487,156">
+     <AREA ID="appname" SHAPE="RECT" HREF="#a_appname" ALT="Application Name" OnClick="highlightDef('id_appname');" COORDS="22,112,487,132">
+     <area id="target_platform" shape="rect" coords="21,208,209,230" href="#a_target_platform" alt="Target Platform" OnClick="highlightDef('id_target_platform');">
+     <area id="exec_level" shape="rect" coords="22,374,176,396" href="#a_exec_level" alt="Vista Execution Level" OnClick="highlightDef('id_exec_level');">
+</MAP>
+</div>
+
+</body></html>

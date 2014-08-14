@@ -1,0 +1,138 @@
+<html>
+<head>
+<!--
+###############################################################################
+# Copyright (c) 2006-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+<title>Search Syntax</title>
+<style type="text/css">
+
+/* following font face declarations need to be removed for DBCS */
+
+body, h1, h2, h3, h4, h5, h6, p, table, td, caption, th, ul, ol, dl, li, dd, dt {font-family: Arial, Helvetica, sans-serif; color: #000000}
+
+/* end font face declarations */
+
+/* following font size declarations should be OK for DBCS */
+body, h1, h2, h3, h4, h5, h6, p, table, td, caption, th, ul, ol, dl, li, dd, dt {font-size: 10pt; }
+
+/* end font size declarations */
+
+body	     { background: #FFFFFF}
+h1           { font-size: 18pt; margin-top: 5px; margin-bottom: 1px }
+h2           { font-size: 14pt; margin-top: 25px; margin-bottom: 3px }
+h3           { font-size: 11pt; margin-top: 20px; margin-bottom: 3px }
+h4           { font-size: 10pt; margin-top: 20px; margin-bottom: 3px; font-style: italic }
+p            { margin-top: 10px; margin-bottom: 10px }
+pre	         {
+	display: block;
+	text-align: left;
+	text-indent: 0.00pt;
+	margin-top: 0.000000pt;
+	margin-bottom: 0.000000pt;
+	margin-right: 0.000000pt;
+	margin-left: 15pt;
+	font-size: 10.000000pt;
+	font-weight: normal;
+	font-style: normal;
+	color: #4444CC;
+	background-color: #F0F0F0;
+	text-decoration: none;
+	vertical-align: baseline;
+	text-transform: none;
+	font-family: "Courier New";
+}
+a            { color: #567599; text-decoration: none; }
+a:hover      { background-color: #F4F4F4; color: #303030; text-decoration: underline; }
+ul	     { margin-top: 0; margin-bottom: 10px }
+li	     { margin-top: 0; margin-bottom: 0 }
+li p	     { margin-top: 0; margin-bottom: 0 }
+ol	     { margin-top: 0; margin-bottom: 10px }
+dl	     { margin-top: 0; margin-bottom: 0 }
+dt	     { margin-top: 0; margin-bottom: 0; font-weight: bold }
+dd	     { margin-top: 0; margin-bottom: 0 }
+strong	     { font-weight: bold}
+em	     { font-style: italic}
+var	     { font-style: italic}
+th	     { font-weight: bold }
+</style>
+</head>
+<body>
+<h1 style="text-align:center;">NSIS Users Manual Search Syntax</h1>
+<p>NSIS Users Manual search is implemented using the <a href="http://lucene.apache.org/">Lucene</a> search engine.
+Described below are some of the techniques which can be used for more flexible and powerful searches.</p>
+<h2>Terms</h2>
+<p>A query is broken up into terms and operators. There are two types of terms: Single Terms and Phrases.</p>
+<ul>
+<li>A Single Term is a single word such as &quot;file&quot; or &quot;messagebox&quot;.</li>
+<li>A Phrase is a group of words surrounded by double quotes such as &quot;section group&quot;.</li>
+</ul>
+<h2>Term Modifiers</h2>
+<p>Query terms can be modified to provide a wide range of searching options.</p>
+<h3>Wildcard Searches</h3>
+<p>Single and multiple character wildcard searches are supported.</p>
+<ul>
+<li>To perform a single character wildcard search use the &quot;?&quot; symbol.</li>
+<li>To perform a multiple character wildcard search use the &quot;*&quot; symbol.</li>
+</ul>
+<p>The single character wildcard search looks for terms that match that with the single character replaced. For example, to search for &quot;text&quot; or &quot;test&quot; you can use the search:</p>
+<pre>te?t</pre>
+<p>The multiple character wildcard search looks for 0 or more characters. For example, to search for &quot;test&quot;, &quot;tests&quot; or &quot;tester&quot;, you can use the search: </p>
+<pre>test*</pre>
+<p>You can also use the wildcard searches in the middle of a term.</p>
+<pre>te*t</pre>
+<p>Note: You cannot use a * or ? symbol as the first character of a search.</p>
+<h3>Fuzzy Searches</h3>
+<p>To do a fuzzy search use the tilde, &quot;~&quot;, symbol at the end of a Single word Term. For example to search for a term similar in spelling to &quot;get&quot; use the fuzzy search: </p>
+<pre>get~</pre>
+<p>This search will find terms like &quot;set&quot; and &quot;gets&quot;.</p>
+<h3>Proximity Searches</h3>
+<p>Finding words which are a within a specific distance away from each other is supported. To do a proximity search use the tilde, &quot;~&quot;, symbol at the end of a Phrase. For example to search for a &quot;fixed&quot; and &quot;posix&quot; within 10 words of each other in a document use the search: </p>
+<pre>&quot;fixed posix&quot;~10</pre>
+<h2>Boolean operators</h2>
+<p>Boolean operators allow terms to be combined through logic operators. AND, &quot;+&quot;, OR, NOT and &quot;-&quot;  Boolean operators are supported.</p>
+<p>(Note: Boolean operators must be ALL CAPS).</p>
+<h3>OR</h3>
+<p>The OR operator is the default conjunction operator. This means that if there is no Boolean operator between two terms, the OR operator is used. The OR operator links two terms and finds a matching document if either of the terms exist in a document. This is equivalent to a union using sets. The symbol || can be used in place of the word OR.</p>
+<p>To search for documents that contain either &quot;section group&quot; or just &quot;section&quot; use the query:</p>
+<pre>&quot;section group&quot; section</pre>
+<p>or</p>
+<pre>&quot;section group&quot; OR section</pre>
+<h3>AND</h3>
+<p>The AND operator matches documents where both terms exist anywhere in the text of a single document. The symbol &amp;&amp; can be used in place of the word AND.</p>
+<p>To search for documents that contain &quot;section group &quot; and &quot;uninstall section&quot; use the query: </p>
+<pre>&quot;section group&quot; AND &quot;uninstall section&quot;</pre>
+<h3>+</h3>
+<p>The &quot;+&quot;  operator requires that the term after the &quot;+&quot; symbol exist somewhere in a the field of a single document.</p>
+<p>To search for documents that must contain &quot;section&quot; and may contain &quot;group&quot; use the query:</p>
+<pre>+section group</pre>
+<h3>NOT</h3>
+<p>The NOT operator excludes documents that contain the term after NOT. The symbol ! can be used in place of the word NOT.</p>
+<p>To search for documents that contain &quot;section group&quot; but not &quot;uninstall section&quot; use the query: </p>
+<pre>&quot;section group&quot; NOT &quot;uninstall section&quot;</pre>
+<p>Note: The NOT operator cannot be used with just one term. For example, the following search will return no results:</p>
+<pre>NOT &quot;uninstall section&quot;</pre>
+<h3>-</h3>
+<p>The &quot;-&quot; operator excludes documents that contain the term after the &quot;-&quot; symbol.</p>
+<p>To search for documents that contain &quot;section group&quot; but not &quot;uninstall section&quot; use the query: </p>
+<pre>&quot;section group&quot; -&quot;uninstall section&quot;</pre>
+<h2>Grouping</h2>
+<p>Parentheses should be used to group clauses to form sub queries. This can be very useful if you want to control the boolean logic for a query.</p>
+<p>To search for either &quot;section&quot; or &quot;group&quot; and &quot;uninstall&quot; use the query:</p>
+<pre>(section OR group) AND uninstall</pre>
+<p>This eliminates any confusion and makes sure you that &quot;uninstall&quot; must exist and either term &quot;section&quot; or &quot;group&quot; may exist.</p>
+<h2>Escaping Special Characters</h2>
+<p>Special characters that are part of the query syntax should be escaped if they are part of the search terms. The current list special characters are</p>
+<p>+ - &amp;&amp; || ! ( ) { } [ ] ^ &quot; ~ * ? : \</p>
+<p>To escape these character use the \ before the character. For example to search for (1+1):2 use the query:</p>
+<pre>\(1\+1\)\:2</pre>
+<hr style="color: #CCCCCC;">
+<p style="text-align: center; font-size: xx-small; color: #888888;">Lucene &#169; 1999-2005, The Apache Software Foundation</p>
+</body></html>

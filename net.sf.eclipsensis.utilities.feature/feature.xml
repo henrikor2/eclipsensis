@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+#     Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+<feature
+      id="net.sf.eclipsensis.utilities"
+      label="%feature.name"
+      version="0.9.3"
+      provider-name="%provider.name"
+      image="%splash.image">
+   <install-handler/>
+
+   <description url="%description.url">
+      %description.text
+   </description>
+
+   <copyright url="%copyright.url">
+      %copyright.text
+   </copyright>
+
+   <license url="%license.url">
+      %license.text
+   </license>
+
+   <url>
+      <update label="%update.site.name" url="http://eclipsensis.sf.net/update"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.launching" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.core" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.ide" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.workbench" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.console" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.debug.core" version="3.5.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="net.sf.jarsigner"
+         download-size="63"
+         install-size="63"
+         version="0.9.3"
+         unpack="false"/>
+
+   <plugin
+         id="net.sf.jnigen"
+         download-size="35"
+         install-size="35"
+         version="0.9.3"
+         unpack="false"/>
+
+   <plugin
+         id="net.sf.eclipsensis.utilities"
+         download-size="42"
+         install-size="42"
+         version="0.9.3"
+         unpack="false"/>
+
+</feature>

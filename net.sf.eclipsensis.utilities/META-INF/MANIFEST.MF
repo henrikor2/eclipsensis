@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %plugin.name
+Bundle-SymbolicName: net.sf.eclipsensis.utilities; singleton := true
+Bundle-Version: 0.9.3
+Bundle-Vendor: %plugin.vendor
+Bundle-Activator: net.sf.eclipsensis.utilities.UtilitiesPlugin
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.5.0",
+ org.eclipse.jdt.launching;bundle-version="3.5.0",
+ org.eclipse.jface;bundle-version="3.5.0",
+ org.eclipse.ui.workbench;bundle-version="3.5.0",
+ org.eclipse.ui.console;bundle-version="3.4.0",
+ org.eclipse.debug.core;bundle-version="3.5.0",
+ org.eclipse.core.resources;bundle-version="3.5.0",
+ org.eclipse.jdt.core;bundle-version="3.5.0"
+Eclipse-LazyStart: true
+Export-Package: net.sf.eclipsensis.utilities,
+ net.sf.eclipsensis.utilities.dialogs,
+ net.sf.eclipsensis.utilities.job,
+ net.sf.eclipsensis.utilities.util
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

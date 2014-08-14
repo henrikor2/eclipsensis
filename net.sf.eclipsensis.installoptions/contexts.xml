@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+#     Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+<contexts>
+    <context id="installoptions_designeditor_context">
+        <description>The EclipseNSIS InstallOptions Design Editor provides a visual environment for editing InstallOptions dialog scripts.</description>
+        <topic label="Editing InstallOptions Scripts" href="help/editing.html"/>
+        <topic label="Design Editor" href="help/designeditor.html"/>
+    </context>
+    <context id="installoptions_designoutline_context">
+        <description>The EclipseNSIS InstallOptions Design Outline and Overview view shows either a list of the controls or a thumbnail image of the InstallOptions dialog.</description>
+        <topic label="Design Outline and Overview" href="help/designeditor2.html#outline"/>
+        <topic label="Design Editor" href="help/designeditor.html"/>
+    </context>
+    <context id="installoptions_designproperties_context">
+        <description>The Properties view is used to modify the settings of the controls in the EclipseNSIS InstallOptions Design editor.</description>
+        <topic label="Properties View" href="help/designeditor2.html#properties"/>
+        <topic label="Properties View (Eclipse)" href="../org.eclipse.platform.doc.user/concepts/cpropview.htm"/>
+    </context>
+    <context id="installoptions_sourceeditor_context">
+        <description>The EclipseNSIS InstallOptions Source Editor provides a text-based interface for editing InstallOptions dialog scripts.</description>
+        <topic label="Editing InstallOptions Scripts" href="help/editing.html"/>
+        <topic label="Source Editor" href="help/sourceeditor.html"/>
+    </context>
+    <context id="installoptions_sourceoutline_context">
+        <description>The EclipseNSIS InstallOptions Source Code Outline view shows a list of the controls in the InstallOptions dialog script.</description>
+        <topic label="Source Code Outline" href="help/sourceeditor.html#outline"/>
+        <topic label="Source Editor" href="help/sourceeditor.html"/>
+    </context>
+    <context id="installoptions_preferences_context">
+        <description>The InstallOptions preferences page is used to customize the look and feel of the EclipseNSIS InstallOptions editors.</description>
+        <topic label="InstallOptions Preferences" href="help/preferences.html"/>
+    </context>
+    <context id="installoptions_wizard_context">
+        <description>The InstallOptions script wizard helps create a new InstallOptions script.</description>
+        <topic label="InstallOptions Script Wizard Welcome Page" href="help/wizard.html#welcome"/>
+    </context>
+    <context id="installoptions_wizard_context2">
+        <description>The InstallOptions script wizard helps create a new InstallOptions script.</description>
+        <topic label="InstallOptions Script Wizard Finish Page" href="help/wizard.html#finish"/>
+    </context>
+    <context id="installoptions_widgeteditor_context">
+        <description>The InstallOptions Control Editor dialog is used to create or modify controls in the InstallOptions source editor.</description>
+        <topic label="InstallOptions Control Editor" href="help/sourceeditor.html#a_create_control"/>
+    </context>
+    <context id="installoptions_quickfix_context">
+        <description>The InstallOptions Source Editor offers corrections to problems found while typing.</description>
+        <topic label="InstallOptions Source Editor Quick Fix" href="help/sourceeditor.html#a_quickfix"/>
+        <topic label="Source Editor" href="help/sourceeditor.html"/>
+    </context>
+</contexts>

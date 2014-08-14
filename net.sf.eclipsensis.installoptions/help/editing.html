@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+  <title>EclipseNSIS InstallOptions Editor - Editing InstallOptions Scripts</title>
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+  <meta http-equiv="Content-Style-Type" content="text/css">
+
+  <link rel="stylesheet" href="book.css" charset="ISO-8859-1" type="text/css">
+
+  <script type="text/javascript" language="javascript" src="help.js">
+  </script>
+  <script language="javascript" type="text/javascript" src="nsiscontrib.js"></script>
+  <script type="text/javascript" language="javascript" src="redirect.js">
+  </script></head>
+<body>
+<div id="main">
+<a href="installation.html">Previous</a> | <a href="overview.html#contents">Contents</a> | <a href="designeditor.html">Next</a>
+<hr>
+<h1>Editing InstallOptions Scripts</h1>
+<p>The EclipseNSIS InstallOptions Editor plugin provides two editors for working with InstallOptions scripts:</p>
+<ul>
+<li><a href="designeditor.html">Design Editor</a></li>
+<li><a href="sourceeditor.html">Source Editor</a></li>
+</ul>
+<p>Switching between editors can
+be accomplished using the <img style="width: 16px; height: 16px;" alt="Switch Editor" title="Switch Editor" src="images/switch.gif"> Switch Editor menuitem available in
+the <span style="font-style: italic;">InstallOptions </span>menu on the main menubar, or by pressing the <span style="font-weight: bold;">F12</span> key. Changes made in an editor are reflected in the other editor after a switch.&nbsp;&nbsp;&nbsp; &nbsp;</p><h2>InstallOptions Script File Format</h2>
+
+<p>InstallOptions scripts are in INI file format, hence both editors
+are registered to work with INI files (*.ini extension). The Design
+Editor is designated as the default.The INI file format which is supported by EclipseNSIS is as
+defined in the Microsoft Windows for Workgroups Resource Kit. The primary characteristics of this format is as follows: </p>
+<ol>
+<li>The file consists of
+sections, each containing zero or more keys. Section names and keys
+must be defined on a single line- no line continuations are
+supported.</li>
+<li>Acceptable spacing characters in a line are Space (ASCII code 32) and Tab (ASCII code 9).&nbsp;</li>
+<li>Lines are terminated by a CR (ASCII code 13) or LF (ASCII code 10) character. If
+CR+LF or LF+CR appear consecutively, they count as a single line terminator, generating
+one line, not two lines. A sequence consisting of CR+LF+CR+LF would however result in two
+lines, not one line.</li>
+<li>A Section name is enclosed
+in square brackets, with the opening bracket being the first
+non-spacing character in the line. Any leading or trailing spacing
+characters around the Section name inside the square brackets are
+discarded.</li>
+<li>Keys consist of name and a
+value separated by an equals sign (ASCII code 61) optionally surrounded
+by spacing characters which are discarded. The Key name starts with the
+first non-spacing character in the line.</li>
+<li>Any leading or trailing spacing characters in the Key value are discarded. If they are to be retained
+then the key value should be enclosed using the quote character (ASCII
+code 34). If the entire key value is quoted, then the quote characters
+are stripped from the key value. However, if any non-spacing characters
+exist either before or after the quote character, then the quote
+characters are included in the key value.</li>
+<li>Numerical key values may be specified either in decimal or hexadecimal format. Hexadecimal values should be prefixed with "0x".</li>
+<li>Comments are introduced by a semicolon character (ASCII code 59), which must be the first non-spacing character in a line.
+Comments terminate at the end of the line.</li>
+</ol>
+<p>Additionally, CR, LF, Tab and backslash (ASCII code 92) characters can be specified in key values by escaping them with a
+backslash character, i.e., "\r", "\n", "\t" and "\\", respectively for the following cases:</p>
+<ol>
+<li>Label control type - Text key value</li>
+<li>Text control type - State key value (when MULTILINE flag is set)</li>
+<li>All control types - ValidateText key value</li>
+</ol>
+<hr>
+<a href="installation.html">Previous</a> | <a href="overview.html#contents">Contents</a> | <a href="designeditor.html">Next</a> <br>
+<br>
+<p><strong><small>Copyright &copy; 2004-2010 Sunil Kamath
+(IcemanK).</small></strong></p>
+</div>
+
+</body></html>

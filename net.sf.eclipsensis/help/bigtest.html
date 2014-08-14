@@ -1,0 +1,1077 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+<head>
+<title>c:\program files\NSIS\Examples\bigtest.nsi</title>
+<meta http-equiv="Content-Type" content="text/html; charset=Cp1252">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css">
+body { background-color: #FFFFFF}
+pre { display: inline }
+a { color: #567599; text-decoration: none; }
+a:hover { background-color: #F4F4F4; color: #303030; text-decoration: underline}
+table.expand { float:right; border: 1px solid #567599; font-size: 1px; cursor: pointer; cursor: hand; }
+table.expand td { height: 4px; width: 4px; }
+table.expand td.top { border-bottom: 1px solid #567599; }
+table.expand  td.right { width: 4px; border-left: 1px solid #567599; }
+table.collapse { float:right; border: 1px solid #567599; font-size: 1px; cursor: pointer; cursor: hand; }
+table.collapse td { height: 4px; width: 4px; }
+table.collapse td.top { border-bottom: 1px solid #567599; }
+.hiddenRow { display:none; }
+#lineDiv { font-size: 1px; display: none; position: absolute; color: #567599; border-left: solid 1px; border-bottom: solid 1px; width: 1px; height: 1px; }
+.lineNum { text-align: right; color: #787878 }
+.ruler { background-color: #FFFFFF; text-align: right; border-right: 2px solid #E0DFE3 }
+</style>
+<script type="text/javascript" language="javascript">
+<!--
+document.write("<style type='text/css'>");
+if(navigator.userAgent.toLowerCase().indexOf("netscape6") >= 0) {
+  document.write("table.collapse td.right { width: 4px; }")
+}
+else {
+  document.write("table.collapse td.right { width: 5px; }")
+}
+document.write("</style>");
+if (!String.prototype.endsWith) {
+  String.prototype.endsWith = function(suffix) {
+    var startPos = this.length - suffix.length;
+    if (startPos < 0) {
+      return false;
+    }
+    return (this.lastIndexOf(suffix, startPos) == startPos);
+  };
+}
+function getObject(name)
+{
+  if(document.all) {
+    return document.all[name];
+  }
+  else {
+    return document.getElementById(name);
+  }
+}
+function showLine(trigger,end)
+{
+  if(trigger.className != "expand") {
+    var lineDiv = getObject("lineDiv");
+    var sec = getObject("line"+end);
+    if(sec && lineDiv) {
+      var triggerPos = getElementPosition(trigger);
+      var secPos = getElementPosition(sec);
+      if(secPos && triggerPos) {
+        lineDiv.style.left = triggerPos.left+triggerPos.width/2;
+        lineDiv.style.top = triggerPos.top+triggerPos.height;
+        lineDiv.style.width = triggerPos.width/2;
+        lineDiv.style.height = secPos.top+secPos.height/2-(triggerPos.top+triggerPos.height);
+        lineDiv.style.display = "block";
+      }
+    }
+  }
+}
+function hideLine()
+{
+  var lineDiv = getObject("lineDiv");
+  if(lineDiv) {
+    lineDiv.style.display = "none";
+  }
+}
+function toggle(trigger,start,end) 
+{
+  if(trigger) {
+    var i;
+    var sec;
+    var expand;
+    hideLine();
+    if(trigger.className == "expand") {
+      expand = true;
+      trigger.className = "collapse";
+    }
+    else {
+      expand = false;
+      trigger.className = "expand";
+    }
+    for(i=start; i<= end; i++) {
+      sec = getObject("line"+i);
+      if(sec) {
+        if(expand) {
+          if(sec.className == "hiddenRow") {
+            sec.className = "";
+          }
+          else if(sec.className.endsWith(" hiddenRow")) {
+            sec.className = sec.className.substr(0,sec.className.length-" hiddenRow".length);
+          }
+        }
+        else {
+          if(sec.className == "") {
+            sec.className = "hiddenRow";
+          }
+          else {
+            sec.className = sec.className + " hiddenRow";
+          }
+        }
+      }
+    }
+  }
+}
+function getElementPosition(elem){
+  var offsetLeft = 0;
+  var offsetTop =0;
+  var width = elem.offsetWidth;
+  var height = elem.offsetHeight;
+  while (elem){
+    offsetLeft += elem.offsetLeft;
+    offsetTop += elem.offsetTop;
+    elem = elem.offsetParent;
+  }
+  if (navigator.userAgent.indexOf('Mac') != -1 && typeof(document.body.leftMargin) !='undefined'){
+    offsetLeft += document.body.leftMargin;
+    offsetTop += document.body.topMargin;
+  }
+  return {left:offsetLeft,top:offsetTop, width:width, height: height};
+}
+//-->
+</script>
+</head>
+<body><div style="font-family: 'Courier New';font-size: 10pt;color: #000000;background-color: #FFFFFF;">
+<table cellpadding="0" cellspacing="0" border="0">
+<tr id="line1">
+<td class="lineNum"><pre>1</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">bigtest.nsi</span></pre></td>
+</tr>
+<tr id="line2">
+<td class="lineNum"><pre>2</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-style: italic;color: #7F9FBF;">;</span></pre></td>
+</tr>
+<tr id="line3">
+<td class="lineNum"><pre>3</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">This</span> <span style="font-style: italic;color: #7F9FBF;">script</span> <span style="font-style: italic;color: #7F9FBF;">attempts</span> <span style="font-style: italic;color: #7F9FBF;">to</span> <span style="font-style: italic;color: #7F9FBF;">test</span> <span style="font-style: italic;color: #7F9FBF;">most</span> <span style="font-style: italic;color: #7F9FBF;">of</span> <span style="font-style: italic;color: #7F9FBF;">the</span> <span style="font-style: italic;color: #7F9FBF;">functionality</span> <span style="font-style: italic;color: #7F9FBF;">of</span> <span style="font-style: italic;color: #7F9FBF;">the</span> <span style="font-style: italic;color: #7F9FBF;">NSIS</span> <span style="font-style: italic;color: #7F9FBF;">exehead.</span></pre></td>
+</tr>
+<tr id="line4">
+<td class="lineNum"><pre>4</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line5">
+<td class="lineNum"><pre>5</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-style: italic;color: #7F9FBF;">;--------------------------------</span></pre></td>
+</tr>
+<tr id="line6">
+<td class="lineNum"><pre>6</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line7">
+<td class="lineNum"><pre>7</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,8,9);" onMouseOver="showLine(this,9);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="color: #FF0000;">!ifdef</span> HAVE_UPX</pre></td>
+</tr>
+<tr id="line8">
+<td class="lineNum"><pre>8</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #FF0000;">!packhdr</span> tmp.dat <span style="color: #004242;">"upx\upx</span> <span style="color: #004242;">-9</span> <span style="color: #004242;">tmp.dat"</span></pre></td>
+</tr>
+<tr id="line9">
+<td class="lineNum"><pre>9</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #FF0000;">!endif</span></pre></td>
+</tr>
+<tr id="line10">
+<td class="lineNum"><pre>10</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line11">
+<td class="lineNum"><pre>11</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,12,13);" onMouseOver="showLine(this,13);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="color: #FF0000;">!ifdef</span> NOCOMPRESS</pre></td>
+</tr>
+<tr id="line12">
+<td class="lineNum"><pre>12</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">SetCompress</span> <span style="color: #480770;">off</span></pre></td>
+</tr>
+<tr id="line13">
+<td class="lineNum"><pre>13</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #FF0000;">!endif</span></pre></td>
+</tr>
+<tr id="line14">
+<td class="lineNum"><pre>14</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line15">
+<td class="lineNum"><pre>15</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-style: italic;color: #7F9FBF;">;--------------------------------</span></pre></td>
+</tr>
+<tr id="line16">
+<td class="lineNum"><pre>16</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line17">
+<td class="lineNum"><pre>17</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">Name</span> <span style="color: #004242;">"BigNSISTest"</span></pre></td>
+</tr>
+<tr id="line18">
+<td class="lineNum"><pre>18</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">Caption</span> <span style="color: #004242;">"NSIS</span> <span style="color: #004242;">Big</span> <span style="color: #004242;">Test"</span></pre></td>
+</tr>
+<tr id="line19">
+<td class="lineNum"><pre>19</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">Icon</span> <span style="color: #004242;">"</span><span style="color: #480770;">${NSISDIR}</span><span style="color: #004242;">\Contrib\Graphics\Icons\nsis1-install.ico"</span></pre></td>
+</tr>
+<tr id="line20">
+<td class="lineNum"><pre>20</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">OutFile</span> <span style="color: #004242;">"bigtest.exe"</span></pre></td>
+</tr>
+<tr id="line21">
+<td class="lineNum"><pre>21</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line22">
+<td class="lineNum"><pre>22</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">SetDateSave</span> <span style="color: #480770;">on</span></pre></td>
+</tr>
+<tr id="line23">
+<td class="lineNum"><pre>23</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">SetDatablockOptimize</span> <span style="color: #480770;">on</span></pre></td>
+</tr>
+<tr id="line24">
+<td class="lineNum"><pre>24</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">CRCCheck</span> <span style="color: #480770;">on</span></pre></td>
+</tr>
+<tr id="line25">
+<td class="lineNum"><pre>25</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">SilentInstall</span> <span style="color: #480770;">normal</span></pre></td>
+</tr>
+<tr id="line26">
+<td class="lineNum"><pre>26</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">BGGradient</span> <span style="color: #FF0000;">000000</span> <span style="color: #FF0000;">800000</span> FFFFFF</pre></td>
+</tr>
+<tr id="line27">
+<td class="lineNum"><pre>27</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">InstallColors</span> FF8080 <span style="color: #FF0000;">000030</span></pre></td>
+</tr>
+<tr id="line28">
+<td class="lineNum"><pre>28</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">XPStyle</span> <span style="color: #480770;">on</span></pre></td>
+</tr>
+<tr id="line29">
+<td class="lineNum"><pre>29</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line30">
+<td class="lineNum"><pre>30</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">InstallDir</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$PROGRAMFILES</span><span style="color: #004242;">\NSISTest\BigNSISTest"</span></pre></td>
+</tr>
+<tr id="line31">
+<td class="lineNum"><pre>31</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">InstallDirRegKey</span> <span style="color: #480770;">HKLM</span> <span style="color: #004242;">"Software\NSISTest\BigNSISTest"</span> <span style="color: #004242;">""</span></pre></td>
+</tr>
+<tr id="line32">
+<td class="lineNum"><pre>32</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line33">
+<td class="lineNum"><pre>33</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">CheckBitmap</span> <span style="color: #004242;">"</span><span style="color: #480770;">${NSISDIR}</span><span style="color: #004242;">\Contrib\Graphics\Checks\classic-cross.bmp"</span></pre></td>
+</tr>
+<tr id="line34">
+<td class="lineNum"><pre>34</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line35">
+<td class="lineNum"><pre>35</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">LicenseText</span> <span style="color: #004242;">"A</span> <span style="color: #004242;">test</span> <span style="color: #004242;">text,</span> <span style="color: #004242;">make</span> <span style="color: #004242;">sure</span> <span style="color: #004242;">it's</span> <span style="color: #004242;">all</span> <span style="color: #004242;">there"</span></pre></td>
+</tr>
+<tr id="line36">
+<td class="lineNum"><pre>36</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">LicenseData</span> <span style="color: #004242;">"bigtest.nsi"</span></pre></td>
+</tr>
+<tr id="line37">
+<td class="lineNum"><pre>37</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line38">
+<td class="lineNum"><pre>38</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-style: italic;color: #7F9FBF;">;--------------------------------</span></pre></td>
+</tr>
+<tr id="line39">
+<td class="lineNum"><pre>39</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line40">
+<td class="lineNum"><pre>40</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">Page</span> <span style="color: #480770;">license</span></pre></td>
+</tr>
+<tr id="line41">
+<td class="lineNum"><pre>41</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">Page</span> <span style="color: #480770;">components</span></pre></td>
+</tr>
+<tr id="line42">
+<td class="lineNum"><pre>42</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">Page</span> <span style="color: #480770;">directory</span></pre></td>
+</tr>
+<tr id="line43">
+<td class="lineNum"><pre>43</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">Page</span> <span style="color: #480770;">instfiles</span></pre></td>
+</tr>
+<tr id="line44">
+<td class="lineNum"><pre>44</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line45">
+<td class="lineNum"><pre>45</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">UninstPage</span> <span style="color: #480770;">uninstConfirm</span></pre></td>
+</tr>
+<tr id="line46">
+<td class="lineNum"><pre>46</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">UninstPage</span> <span style="color: #480770;">instfiles</span></pre></td>
+</tr>
+<tr id="line47">
+<td class="lineNum"><pre>47</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line48">
+<td class="lineNum"><pre>48</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-style: italic;color: #7F9FBF;">;--------------------------------</span></pre></td>
+</tr>
+<tr id="line49">
+<td class="lineNum"><pre>49</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line50">
+<td class="lineNum"><pre>50</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,51,57);" onMouseOver="showLine(this,57);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="color: #FF0000;">!ifndef</span> NOINSTTYPES <span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">only</span> <span style="font-style: italic;color: #7F9FBF;">if</span> <span style="font-style: italic;color: #7F9FBF;">not</span> <span style="font-style: italic;color: #7F9FBF;">defined</span></pre></td>
+</tr>
+<tr id="line51">
+<td class="lineNum"><pre>51</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #800000;">InstType</span> <span style="color: #004242;">"Most"</span></pre></td>
+</tr>
+<tr id="line52">
+<td class="lineNum"><pre>52</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #800000;">InstType</span> <span style="color: #004242;">"Full"</span></pre></td>
+</tr>
+<tr id="line53">
+<td class="lineNum"><pre>53</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #800000;">InstType</span> <span style="color: #004242;">"More"</span></pre></td>
+</tr>
+<tr id="line54">
+<td class="lineNum"><pre>54</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #800000;">InstType</span> <span style="color: #004242;">"Base"</span></pre></td>
+</tr>
+<tr id="line55">
+<td class="lineNum"><pre>55</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="font-style: italic;color: #7F9FBF;">;InstType</span> <span style="font-style: italic;color: #7F9FBF;">/NOCUSTOM</span></pre></td>
+</tr>
+<tr id="line56">
+<td class="lineNum"><pre>56</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="font-style: italic;color: #7F9FBF;">;InstType</span> <span style="font-style: italic;color: #7F9FBF;">/COMPONENTSONLYONCUSTOM</span></pre></td>
+</tr>
+<tr id="line57">
+<td class="lineNum"><pre>57</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #FF0000;">!endif</span></pre></td>
+</tr>
+<tr id="line58">
+<td class="lineNum"><pre>58</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line59">
+<td class="lineNum"><pre>59</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">AutoCloseWindow</span> <span style="color: #480770;">false</span></pre></td>
+</tr>
+<tr id="line60">
+<td class="lineNum"><pre>60</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">ShowInstDetails</span> <span style="color: #480770;">show</span></pre></td>
+</tr>
+<tr id="line61">
+<td class="lineNum"><pre>61</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line62">
+<td class="lineNum"><pre>62</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-style: italic;color: #7F9FBF;">;--------------------------------</span></pre></td>
+</tr>
+<tr id="line63">
+<td class="lineNum"><pre>63</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line64">
+<td class="lineNum"><pre>64</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,65,82);" onMouseOver="showLine(this,82);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="font-weight: bold;color: #643200;">Section</span> <span style="color: #004242;">""</span> <span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">empty</span> <span style="font-style: italic;color: #7F9FBF;">string</span> <span style="font-style: italic;color: #7F9FBF;">makes</span> <span style="font-style: italic;color: #7F9FBF;">it</span> <span style="font-style: italic;color: #7F9FBF;">hidden,</span> <span style="font-style: italic;color: #7F9FBF;">so</span> <span style="font-style: italic;color: #7F9FBF;">would</span> <span style="font-style: italic;color: #7F9FBF;">starting</span> <span style="font-style: italic;color: #7F9FBF;">with</span> <span style="font-style: italic;color: #7F9FBF;">-</span></pre></td>
+</tr>
+<tr id="line65">
+<td class="lineNum"><pre>65</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line66">
+<td class="lineNum"><pre>66</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">write</span> <span style="font-style: italic;color: #7F9FBF;">reg</span> <span style="font-style: italic;color: #7F9FBF;">info</span></pre></td>
+</tr>
+<tr id="line67">
+<td class="lineNum"><pre>67</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">StrCpy</span> <span style="color: #8000FF;">$1</span> <span style="color: #004242;">"POOOOOOOOOOOP"</span></pre></td>
+</tr>
+<tr id="line68">
+<td class="lineNum"><pre>68</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">DetailPrint</span> <span style="color: #004242;">"I</span> <span style="color: #004242;">like</span> <span style="color: #004242;">to</span> <span style="color: #004242;">be</span> <span style="color: #004242;">able</span> <span style="color: #004242;">to</span> <span style="color: #004242;">see</span> <span style="color: #004242;">what</span> <span style="color: #004242;">is</span> <span style="color: #004242;">going</span> <span style="color: #004242;">on</span> <span style="color: #004242;">(debug)</span> <span style="color: #8000FF;">$1</span><span style="color: #004242;">"</span></pre></td>
+</tr>
+<tr id="line69">
+<td class="lineNum"><pre>69</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">WriteRegStr</span> <span style="color: #480770;">HKLM</span> SOFTWARE\NSISTest\BigNSISTest <span style="color: #004242;">"Install_Dir"</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">"</span></pre></td>
+</tr>
+<tr id="line70">
+<td class="lineNum"><pre>70</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line71">
+<td class="lineNum"><pre>71</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">write</span> <span style="font-style: italic;color: #7F9FBF;">uninstall</span> <span style="font-style: italic;color: #7F9FBF;">strings</span></pre></td>
+</tr>
+<tr id="line72">
+<td class="lineNum"><pre>72</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">WriteRegStr</span> <span style="color: #480770;">HKLM</span> <span style="color: #004242;">"Software\Microsoft\Windows\CurrentVersion\Uninstall\BigNSISTest"</span> <span style="color: #004242;">"DisplayName"</span> <span style="color: #004242;">"BigNSISTest</span> <span style="color: #004242;">(remove</span> <span style="color: #004242;">only)"</span></pre></td>
+</tr>
+<tr id="line73">
+<td class="lineNum"><pre>73</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">WriteRegStr</span> <span style="color: #480770;">HKLM</span> <span style="color: #004242;">"Software\Microsoft\Windows\CurrentVersion\Uninstall\BigNSISTest"</span> <span style="color: #004242;">"UninstallString"</span> <span style="color: #004242;">'"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\bt-uninst.exe"'</span></pre></td>
+</tr>
+<tr id="line74">
+<td class="lineNum"><pre>74</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line75">
+<td class="lineNum"><pre>75</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">SetOutPath</span> <span style="color: #8000FF;">$INSTDIR</span></pre></td>
+</tr>
+<tr id="line76">
+<td class="lineNum"><pre>76</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">File</span> <span style="color: #535300;">/a</span> <span style="color: #004242;">"silent.nsi"</span></pre></td>
+</tr>
+<tr id="line77">
+<td class="lineNum"><pre>77</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">CreateDirectory</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\MyProjectFamily\MyProject"</span> <span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">2</span> <span style="font-style: italic;color: #7F9FBF;">recursively</span> <span style="font-style: italic;color: #7F9FBF;">create</span> <span style="font-style: italic;color: #7F9FBF;">a</span> <span style="font-style: italic;color: #7F9FBF;">directory</span> <span style="font-style: italic;color: #7F9FBF;">for</span> <span style="font-style: italic;color: #7F9FBF;">fun.</span></pre></td>
+</tr>
+<tr id="line78">
+<td class="lineNum"><pre>78</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">WriteUninstaller</span> <span style="color: #004242;">"bt-uninst.exe"</span></pre></td>
+</tr>
+<tr id="line79">
+<td class="lineNum"><pre>79</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  </pre></td>
+</tr>
+<tr id="line80">
+<td class="lineNum"><pre>80</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  Nop <span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">for</span> <span style="font-style: italic;color: #7F9FBF;">fun</span></pre></td>
+</tr>
+<tr id="line81">
+<td class="lineNum"><pre>81</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line82">
+<td class="lineNum"><pre>82</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">SectionEnd</span></pre></td>
+</tr>
+<tr id="line83">
+<td class="lineNum"><pre>83</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line84">
+<td class="lineNum"><pre>84</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,85,99);" onMouseOver="showLine(this,99);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="font-weight: bold;color: #643200;">Section</span> <span style="color: #004242;">"TempTest"</span></pre></td>
+</tr>
+<tr id="line85">
+<td class="lineNum"><pre>85</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line86">
+<td class="lineNum"><pre>86</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">SectionIn</span> <span style="color: #FF0000;">1</span> <span style="color: #FF0000;">2</span> <span style="color: #FF0000;">3</span></pre></td>
+</tr>
+<tr id="line87">
+<td class="lineNum"><pre>87</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  Start: <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_OK</span> <span style="color: #004242;">"Start:"</span></pre></td>
+</tr>
+<tr id="line88">
+<td class="lineNum"><pre>88</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line89">
+<td class="lineNum"><pre>89</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_YESNO</span> <span style="color: #004242;">"Goto</span> <span style="color: #004242;">MyLabel"</span> <span style="color: #480770;">IDYES</span> MyLabel</pre></td>
+</tr>
+<tr id="line90">
+<td class="lineNum"><pre>90</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line91">
+<td class="lineNum"><pre>91</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_OK</span> <span style="color: #004242;">"Right</span> <span style="color: #004242;">before</span> <span style="color: #004242;">MyLabel:"</span></pre></td>
+</tr>
+<tr id="line92">
+<td class="lineNum"><pre>92</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line93">
+<td class="lineNum"><pre>93</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  MyLabel: <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_OK</span> <span style="color: #004242;">"MyLabel:"</span></pre></td>
+</tr>
+<tr id="line94">
+<td class="lineNum"><pre>94</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  </pre></td>
+</tr>
+<tr id="line95">
+<td class="lineNum"><pre>95</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_OK</span> <span style="color: #004242;">"Right</span> <span style="color: #004242;">after</span> <span style="color: #004242;">MyLabel:"</span></pre></td>
+</tr>
+<tr id="line96">
+<td class="lineNum"><pre>96</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line97">
+<td class="lineNum"><pre>97</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_YESNO</span> <span style="color: #004242;">"Goto</span> <span style="color: #004242;">Start:?"</span> <span style="color: #480770;">IDYES</span> Start</pre></td>
+</tr>
+<tr id="line98">
+<td class="lineNum"><pre>98</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line99">
+<td class="lineNum"><pre>99</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">SectionEnd</span></pre></td>
+</tr>
+<tr id="line100">
+<td class="lineNum"><pre>100</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line101">
+<td class="lineNum"><pre>101</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,102,206);" onMouseOver="showLine(this,206);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="font-weight: bold;color: #643200;">SectionGroup</span> <span style="color: #535300;">/e</span> SectionGroup1</pre></td>
+</tr>
+<tr id="line102">
+<td class="lineNum"><pre>102</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line103">
+<td class="lineNum"><pre>103</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,104,137);" onMouseOver="showLine(this,137);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="font-weight: bold;color: #643200;">Section</span> <span style="color: #004242;">"Test</span> <span style="color: #004242;">Registry/INI</span> <span style="color: #004242;">functions"</span></pre></td>
+</tr>
+<tr id="line104">
+<td class="lineNum"><pre>104</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line105">
+<td class="lineNum"><pre>105</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">SectionIn</span> <span style="color: #FF0000;">1</span> <span style="color: #FF0000;">4</span> <span style="color: #FF0000;">3</span></pre></td>
+</tr>
+<tr id="line106">
+<td class="lineNum"><pre>106</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line107">
+<td class="lineNum"><pre>107</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">WriteRegStr</span> <span style="color: #480770;">HKLM</span> SOFTWARE\NSISTest\BigNSISTest <span style="color: #004242;">"StrTest_INSTDIR"</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">"</span></pre></td>
+</tr>
+<tr id="line108">
+<td class="lineNum"><pre>108</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">WriteRegDword</span> <span style="color: #480770;">HKLM</span> SOFTWARE\NSISTest\BigNSISTest <span style="color: #004242;">"DwordTest_0xDEADBEEF"</span> <span style="color: #FF0000;">0xdeadbeef</span></pre></td>
+</tr>
+<tr id="line109">
+<td class="lineNum"><pre>109</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">WriteRegDword</span> <span style="color: #480770;">HKLM</span> SOFTWARE\NSISTest\BigNSISTest <span style="color: #004242;">"DwordTest_123456"</span> <span style="color: #FF0000;">123456</span></pre></td>
+</tr>
+<tr id="line110">
+<td class="lineNum"><pre>110</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">WriteRegDword</span> <span style="color: #480770;">HKLM</span> SOFTWARE\NSISTest\BigNSISTest <span style="color: #004242;">"DwordTest_0123"</span> <span style="color: #FF0000;">0123</span></pre></td>
+</tr>
+<tr id="line111">
+<td class="lineNum"><pre>111</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">WriteRegBin</span> <span style="color: #480770;">HKLM</span> SOFTWARE\NSISTest\BigNSISTest <span style="color: #004242;">"BinTest_deadbeef01f00dbeef"</span> <span style="color: #004242;">"DEADBEEF01F00DBEEF"</span></pre></td>
+</tr>
+<tr id="line112">
+<td class="lineNum"><pre>112</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">StrCpy</span> <span style="color: #8000FF;">$8</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$SYSDIR</span><span style="color: #004242;">\IniTest"</span></pre></td>
+</tr>
+<tr id="line113">
+<td class="lineNum"><pre>113</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">WriteINIStr</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\test.ini"</span>  <span style="color: #004242;">"MySection"</span> <span style="color: #004242;">"Value1"</span> <span style="color: #8000FF;">$8</span></pre></td>
+</tr>
+<tr id="line114">
+<td class="lineNum"><pre>114</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">WriteINIStr</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\test.ini"</span>  <span style="color: #004242;">"MySectionIni"</span> <span style="color: #004242;">"Value1"</span> <span style="color: #8000FF;">$8</span></pre></td>
+</tr>
+<tr id="line115">
+<td class="lineNum"><pre>115</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">WriteINIStr</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\test.ini"</span>  <span style="color: #004242;">"MySectionIni"</span> <span style="color: #004242;">"Value2"</span> <span style="color: #8000FF;">$8</span></pre></td>
+</tr>
+<tr id="line116">
+<td class="lineNum"><pre>116</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">WriteINIStr</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\test.ini"</span>  <span style="color: #004242;">"IniOn"</span> <span style="color: #004242;">"Value1"</span> <span style="color: #8000FF;">$8</span></pre></td>
+</tr>
+<tr id="line117">
+<td class="lineNum"><pre>117</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line118">
+<td class="lineNum"><pre>118</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">Call</span> MyFunctionTest</pre></td>
+</tr>
+<tr id="line119">
+<td class="lineNum"><pre>119</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line120">
+<td class="lineNum"><pre>120</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">DeleteINIStr</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\test.ini"</span> <span style="color: #004242;">"IniOn"</span> <span style="color: #004242;">"Value1"</span></pre></td>
+</tr>
+<tr id="line121">
+<td class="lineNum"><pre>121</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">DeleteINISec</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\test.ini"</span> <span style="color: #004242;">"MySectionIni"</span></pre></td>
+</tr>
+<tr id="line122">
+<td class="lineNum"><pre>122</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line123">
+<td class="lineNum"><pre>123</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">ReadINIStr</span> <span style="color: #8000FF;">$1</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\test.ini"</span> <span style="color: #004242;">"MySectionIni"</span> <span style="color: #004242;">"Value1"</span></pre></td>
+</tr>
+<tr id="line124">
+<td class="lineNum"><pre>124</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">StrCmp</span> <span style="color: #8000FF;">$1</span> <span style="color: #004242;">""</span> INIDelSuccess</pre></td>
+</tr>
+<tr id="line125">
+<td class="lineNum"><pre>125</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_OK</span> <span style="color: #004242;">"DeleteINISec</span> <span style="color: #004242;">failed"</span></pre></td>
+</tr>
+<tr id="line126">
+<td class="lineNum"><pre>126</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  INIDelSuccess:</pre></td>
+</tr>
+<tr id="line127">
+<td class="lineNum"><pre>127</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line128">
+<td class="lineNum"><pre>128</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">ClearErrors</span></pre></td>
+</tr>
+<tr id="line129">
+<td class="lineNum"><pre>129</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">ReadRegStr</span> <span style="color: #8000FF;">$1</span> <span style="color: #480770;">HKCR</span> <span style="color: #004242;">"software\microsoft"</span> xyz_¢¢_does_not_exist</pre></td>
+</tr>
+<tr id="line130">
+<td class="lineNum"><pre>130</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">IfErrors</span> <span style="color: #FF0000;">0</span> NoError</pre></td>
+</tr>
+<tr id="line131">
+<td class="lineNum"><pre>131</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_OK</span> <span style="color: #004242;">"could</span> <span style="color: #004242;">not</span> <span style="color: #004242;">read</span> <span style="color: #004242;">from</span> <span style="color: #004242;">HKCR\software\microsoft\xyz_¢¢_does_not_exist"</span></pre></td>
+</tr>
+<tr id="line132">
+<td class="lineNum"><pre>132</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">Goto</span> ErrorYay</pre></td>
+</tr>
+<tr id="line133">
+<td class="lineNum"><pre>133</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  NoError:</pre></td>
+</tr>
+<tr id="line134">
+<td class="lineNum"><pre>134</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_OK</span> <span style="color: #004242;">"read</span> <span style="color: #004242;">'</span><span style="color: #8000FF;">$1</span><span style="color: #004242;">'</span> <span style="color: #004242;">from</span> <span style="color: #004242;">HKCR\software\microsoft\xyz_¢¢_does_not_exist"</span></pre></td>
+</tr>
+<tr id="line135">
+<td class="lineNum"><pre>135</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  ErrorYay:</pre></td>
+</tr>
+<tr id="line136">
+<td class="lineNum"><pre>136</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  </pre></td>
+</tr>
+<tr id="line137">
+<td class="lineNum"><pre>137</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">SectionEnd</span></pre></td>
+</tr>
+<tr id="line138">
+<td class="lineNum"><pre>138</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line139">
+<td class="lineNum"><pre>139</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,140,145);" onMouseOver="showLine(this,145);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="font-weight: bold;color: #643200;">Section</span> <span style="color: #004242;">"Test</span> <span style="color: #004242;">CreateShortCut"</span></pre></td>
+</tr>
+<tr id="line140">
+<td class="lineNum"><pre>140</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line141">
+<td class="lineNum"><pre>141</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="font-weight: bold;color: #643200;">SectionIn</span> <span style="color: #FF0000;">1</span> <span style="color: #FF0000;">2</span> <span style="color: #FF0000;">3</span></pre></td>
+</tr>
+<tr id="line142">
+<td class="lineNum"><pre>142</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line143">
+<td class="lineNum"><pre>143</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">Call</span> CSCTest</pre></td>
+</tr>
+<tr id="line144">
+<td class="lineNum"><pre>144</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line145">
+<td class="lineNum"><pre>145</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">SectionEnd</span></pre></td>
+</tr>
+<tr id="line146">
+<td class="lineNum"><pre>146</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line147">
+<td class="lineNum"><pre>147</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,148,195);" onMouseOver="showLine(this,195);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="font-weight: bold;color: #643200;">SectionGroup</span> Group2</pre></td>
+</tr>
+<tr id="line148">
+<td class="lineNum"><pre>148</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line149">
+<td class="lineNum"><pre>149</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,150,193);" onMouseOver="showLine(this,193);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="font-weight: bold;color: #643200;">Section</span> <span style="color: #004242;">"Test</span> <span style="color: #004242;">Branching"</span> </pre></td>
+</tr>
+<tr id="line150">
+<td class="lineNum"><pre>150</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  </pre></td>
+</tr>
+<tr id="line151">
+<td class="lineNum"><pre>151</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  BeginTestSection:</pre></td>
+</tr>
+<tr id="line152">
+<td class="lineNum"><pre>152</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="font-weight: bold;color: #643200;">SectionIn</span> <span style="color: #FF0000;">1</span> <span style="color: #FF0000;">2</span> <span style="color: #FF0000;">3</span></pre></td>
+</tr>
+<tr id="line153">
+<td class="lineNum"><pre>153</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre> </pre></td>
+</tr>
+<tr id="line154">
+<td class="lineNum"><pre>154</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">SetOutPath</span> <span style="color: #8000FF;">$INSTDIR</span></pre></td>
+</tr>
+<tr id="line155">
+<td class="lineNum"><pre>155</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line156">
+<td class="lineNum"><pre>156</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">IfFileExists</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\LogicLib.nsi"</span> <span style="color: #FF0000;">0</span> BranchTest69</pre></td>
+</tr>
+<tr id="line157">
+<td class="lineNum"><pre>157</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    </pre></td>
+</tr>
+<tr id="line158">
+<td class="lineNum"><pre>158</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_YESNO</span>|<span style="color: #480770;">MB_ICONQUESTION</span> <span style="color: #004242;">"Would</span> <span style="color: #004242;">you</span> <span style="color: #004242;">like</span> <span style="color: #004242;">to</span> <span style="color: #004242;">overwrite</span> <span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\LogicLib.nsi?"</span> <span style="color: #480770;">IDNO</span> NoOverwrite <span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">skipped</span> <span style="font-style: italic;color: #7F9FBF;">if</span> <span style="font-style: italic;color: #7F9FBF;">file</span> <span style="font-style: italic;color: #7F9FBF;">doesn't</span> <span style="font-style: italic;color: #7F9FBF;">exist</span></pre></td>
+</tr>
+<tr id="line159">
+<td class="lineNum"><pre>159</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line160">
+<td class="lineNum"><pre>160</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    BranchTest69:</pre></td>
+</tr>
+<tr id="line161">
+<td class="lineNum"><pre>161</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  </pre></td>
+</tr>
+<tr id="line162">
+<td class="lineNum"><pre>162</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #800000;">SetOverwrite</span> <span style="color: #480770;">ifnewer</span> <span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">NOT</span> <span style="font-style: italic;color: #7F9FBF;">AN</span> <span style="font-style: italic;color: #7F9FBF;">INSTRUCTION,</span> <span style="font-style: italic;color: #7F9FBF;">NOT</span> <span style="font-style: italic;color: #7F9FBF;">COUNTED</span> <span style="font-style: italic;color: #7F9FBF;">IN</span> <span style="font-style: italic;color: #7F9FBF;">SKIPPINGS</span></pre></td>
+</tr>
+<tr id="line163">
+<td class="lineNum"><pre>163</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line164">
+<td class="lineNum"><pre>164</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  NoOverwrite:</pre></td>
+</tr>
+<tr id="line165">
+<td class="lineNum"><pre>165</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line166">
+<td class="lineNum"><pre>166</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">File</span> <span style="color: #004242;">"LogicLib.nsi"</span> <span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">skipped</span> <span style="font-style: italic;color: #7F9FBF;">if</span> <span style="font-style: italic;color: #7F9FBF;">answered</span> <span style="font-style: italic;color: #7F9FBF;">no</span></pre></td>
+</tr>
+<tr id="line167">
+<td class="lineNum"><pre>167</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #800000;">SetOverwrite</span> <span style="color: #480770;">try</span> <span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">NOT</span> <span style="font-style: italic;color: #7F9FBF;">AN</span> <span style="font-style: italic;color: #7F9FBF;">INSTRUCTION,</span> <span style="font-style: italic;color: #7F9FBF;">NOT</span> <span style="font-style: italic;color: #7F9FBF;">COUNTED</span> <span style="font-style: italic;color: #7F9FBF;">IN</span> <span style="font-style: italic;color: #7F9FBF;">SKIPPINGS</span></pre></td>
+</tr>
+<tr id="line168">
+<td class="lineNum"><pre>168</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line169">
+<td class="lineNum"><pre>169</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_YESNO</span>|<span style="color: #480770;">MB_ICONQUESTION</span> <span style="color: #004242;">"Would</span> <span style="color: #004242;">you</span> <span style="color: #004242;">like</span> <span style="color: #004242;">to</span> <span style="color: #004242;">skip</span> <span style="color: #004242;">the</span> <span style="color: #004242;">rest</span> <span style="color: #004242;">of</span> <span style="color: #004242;">this</span> <span style="color: #004242;">section?"</span> <span style="color: #480770;">IDYES</span> EndTestBranch</pre></td>
+</tr>
+<tr id="line170">
+<td class="lineNum"><pre>170</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_YESNO</span>|<span style="color: #480770;">MB_ICONQUESTION</span> <span style="color: #004242;">"Would</span> <span style="color: #004242;">you</span> <span style="color: #004242;">like</span> <span style="color: #004242;">to</span> <span style="color: #004242;">go</span> <span style="color: #004242;">back</span> <span style="color: #004242;">to</span> <span style="color: #004242;">the</span> <span style="color: #004242;">beginning</span> <span style="color: #004242;">of</span> <span style="color: #004242;">this</span> <span style="color: #004242;">section?"</span> <span style="color: #480770;">IDYES</span> BeginTestSection</pre></td>
+</tr>
+<tr id="line171">
+<td class="lineNum"><pre>171</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_YESNO</span>|<span style="color: #480770;">MB_ICONQUESTION</span> <span style="color: #004242;">"Would</span> <span style="color: #004242;">you</span> <span style="color: #004242;">like</span> <span style="color: #004242;">to</span> <span style="color: #004242;">hide</span> <span style="color: #004242;">the</span> <span style="color: #004242;">installer</span> <span style="color: #004242;">and</span> <span style="color: #004242;">wait</span> <span style="color: #004242;">five</span> <span style="color: #004242;">seconds?"</span> <span style="color: #480770;">IDNO</span> NoHide</pre></td>
+</tr>
+<tr id="line172">
+<td class="lineNum"><pre>172</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line173">
+<td class="lineNum"><pre>173</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">HideWindow</span></pre></td>
+</tr>
+<tr id="line174">
+<td class="lineNum"><pre>174</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">Sleep</span> <span style="color: #FF0000;">5000</span></pre></td>
+</tr>
+<tr id="line175">
+<td class="lineNum"><pre>175</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">BringToFront</span></pre></td>
+</tr>
+<tr id="line176">
+<td class="lineNum"><pre>176</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line177">
+<td class="lineNum"><pre>177</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  NoHide:</pre></td>
+</tr>
+<tr id="line178">
+<td class="lineNum"><pre>178</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line179">
+<td class="lineNum"><pre>179</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_YESNO</span>|<span style="color: #480770;">MB_ICONQUESTION</span> <span style="color: #004242;">"Would</span> <span style="color: #004242;">you</span> <span style="color: #004242;">like</span> <span style="color: #004242;">to</span> <span style="color: #004242;">call</span> <span style="color: #004242;">the</span> <span style="color: #004242;">function</span> <span style="color: #004242;">5</span> <span style="color: #004242;">times?"</span> <span style="color: #480770;">IDNO</span> NoRecurse</pre></td>
+</tr>
+<tr id="line180">
+<td class="lineNum"><pre>180</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line181">
+<td class="lineNum"><pre>181</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">StrCpy</span> <span style="color: #8000FF;">$1</span> <span style="color: #004242;">"x"</span></pre></td>
+</tr>
+<tr id="line182">
+<td class="lineNum"><pre>182</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line183">
+<td class="lineNum"><pre>183</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  LoopTest: </pre></td>
+</tr>
+<tr id="line184">
+<td class="lineNum"><pre>184</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>      </pre></td>
+</tr>
+<tr id="line185">
+<td class="lineNum"><pre>185</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">Call</span> myfunc</pre></td>
+</tr>
+<tr id="line186">
+<td class="lineNum"><pre>186</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">StrCpy</span> <span style="color: #8000FF;">$1</span> <span style="color: #004242;">"x</span><span style="color: #8000FF;">$1</span><span style="color: #004242;">"</span></pre></td>
+</tr>
+<tr id="line187">
+<td class="lineNum"><pre>187</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">StrCmp</span> <span style="color: #8000FF;">$1</span> <span style="color: #004242;">"xxxxxx"</span> <span style="color: #FF0000;">0</span> LoopTest</pre></td>
+</tr>
+<tr id="line188">
+<td class="lineNum"><pre>188</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>      </pre></td>
+</tr>
+<tr id="line189">
+<td class="lineNum"><pre>189</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  NoRecurse:</pre></td>
+</tr>
+<tr id="line190">
+<td class="lineNum"><pre>190</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line191">
+<td class="lineNum"><pre>191</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  EndTestBranch:</pre></td>
+</tr>
+<tr id="line192">
+<td class="lineNum"><pre>192</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line193">
+<td class="lineNum"><pre>193</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">SectionEnd</span></pre></td>
+</tr>
+<tr id="line194">
+<td class="lineNum"><pre>194</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line195">
+<td class="lineNum"><pre>195</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">SectionGroupEnd</span></pre></td>
+</tr>
+<tr id="line196">
+<td class="lineNum"><pre>196</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line197">
+<td class="lineNum"><pre>197</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,198,204);" onMouseOver="showLine(this,204);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="font-weight: bold;color: #643200;">Section</span> <span style="color: #004242;">"Test</span> <span style="color: #004242;">CopyFiles"</span></pre></td>
+</tr>
+<tr id="line198">
+<td class="lineNum"><pre>198</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line199">
+<td class="lineNum"><pre>199</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="font-weight: bold;color: #643200;">SectionIn</span> <span style="color: #FF0000;">1</span> <span style="color: #FF0000;">2</span> <span style="color: #FF0000;">3</span></pre></td>
+</tr>
+<tr id="line200">
+<td class="lineNum"><pre>200</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line201">
+<td class="lineNum"><pre>201</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">SetOutPath</span> <span style="color: #8000FF;">$INSTDIR</span>\cpdest</pre></td>
+</tr>
+<tr id="line202">
+<td class="lineNum"><pre>202</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">CopyFiles</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$WINDIR</span><span style="color: #004242;">\*.ini"</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\cpdest"</span> <span style="color: #FF0000;">0</span></pre></td>
+</tr>
+<tr id="line203">
+<td class="lineNum"><pre>203</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line204">
+<td class="lineNum"><pre>204</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">SectionEnd</span></pre></td>
+</tr>
+<tr id="line205">
+<td class="lineNum"><pre>205</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line206">
+<td class="lineNum"><pre>206</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">SectionGroupEnd</span></pre></td>
+</tr>
+<tr id="line207">
+<td class="lineNum"><pre>207</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line208">
+<td class="lineNum"><pre>208</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,209,220);" onMouseOver="showLine(this,220);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="font-weight: bold;color: #643200;">Section</span> <span style="color: #004242;">"Test</span> <span style="color: #004242;">Exec</span> <span style="color: #004242;">functions"</span> TESTIDX</pre></td>
+</tr>
+<tr id="line209">
+<td class="lineNum"><pre>209</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line210">
+<td class="lineNum"><pre>210</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="font-weight: bold;color: #643200;">SectionIn</span> <span style="color: #FF0000;">1</span> <span style="color: #FF0000;">2</span> <span style="color: #FF0000;">3</span></pre></td>
+</tr>
+<tr id="line211">
+<td class="lineNum"><pre>211</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  </pre></td>
+</tr>
+<tr id="line212">
+<td class="lineNum"><pre>212</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">SearchPath</span> <span style="color: #8000FF;">$1</span> notepad.exe</pre></td>
+</tr>
+<tr id="line213">
+<td class="lineNum"><pre>213</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line214">
+<td class="lineNum"><pre>214</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_OK</span> <span style="color: #004242;">"notepad.exe=</span><span style="color: #8000FF;">$1</span><span style="color: #004242;">"</span></pre></td>
+</tr>
+<tr id="line215">
+<td class="lineNum"><pre>215</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">Exec</span> <span style="color: #004242;">'"</span><span style="color: #8000FF;">$1</span><span style="color: #004242;">"'</span></pre></td>
+</tr>
+<tr id="line216">
+<td class="lineNum"><pre>216</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">ExecShell</span> <span style="color: #004242;">"open"</span> <span style="color: #004242;">'"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">"'</span></pre></td>
+</tr>
+<tr id="line217">
+<td class="lineNum"><pre>217</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">Sleep</span> <span style="color: #FF0000;">500</span></pre></td>
+</tr>
+<tr id="line218">
+<td class="lineNum"><pre>218</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">BringToFront</span></pre></td>
+</tr>
+<tr id="line219">
+<td class="lineNum"><pre>219</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line220">
+<td class="lineNum"><pre>220</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">SectionEnd</span></pre></td>
+</tr>
+<tr id="line221">
+<td class="lineNum"><pre>221</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line222">
+<td class="lineNum"><pre>222</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,223,231);" onMouseOver="showLine(this,231);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="font-weight: bold;color: #643200;">Section</span> <span style="color: #004242;">"Test</span> <span style="color: #004242;">ActiveX</span> <span style="color: #004242;">control</span> <span style="color: #004242;">registration"</span></pre></td>
+</tr>
+<tr id="line223">
+<td class="lineNum"><pre>223</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line224">
+<td class="lineNum"><pre>224</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="font-weight: bold;color: #643200;">SectionIn</span> <span style="color: #FF0000;">2</span></pre></td>
+</tr>
+<tr id="line225">
+<td class="lineNum"><pre>225</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line226">
+<td class="lineNum"><pre>226</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">UnRegDLL</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$SYSDIR</span><span style="color: #004242;">\spin32.ocx"</span></pre></td>
+</tr>
+<tr id="line227">
+<td class="lineNum"><pre>227</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">Sleep</span> <span style="color: #FF0000;">1000</span></pre></td>
+</tr>
+<tr id="line228">
+<td class="lineNum"><pre>228</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">RegDLL</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$SYSDIR</span><span style="color: #004242;">\spin32.ocx"</span></pre></td>
+</tr>
+<tr id="line229">
+<td class="lineNum"><pre>229</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">Sleep</span> <span style="color: #FF0000;">1000</span></pre></td>
+</tr>
+<tr id="line230">
+<td class="lineNum"><pre>230</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  </pre></td>
+</tr>
+<tr id="line231">
+<td class="lineNum"><pre>231</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">SectionEnd</span></pre></td>
+</tr>
+<tr id="line232">
+<td class="lineNum"><pre>232</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line233">
+<td class="lineNum"><pre>233</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-style: italic;color: #7F9FBF;">;--------------------------------</span></pre></td>
+</tr>
+<tr id="line234">
+<td class="lineNum"><pre>234</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line235">
+<td class="lineNum"><pre>235</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,236,244);" onMouseOver="showLine(this,244);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="font-weight: bold;color: #643200;">Function</span> <span style="color: #004242;">"CSCTest"</span></pre></td>
+</tr>
+<tr id="line236">
+<td class="lineNum"><pre>236</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  </pre></td>
+</tr>
+<tr id="line237">
+<td class="lineNum"><pre>237</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">CreateDirectory</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$SMPROGRAMS</span><span style="color: #004242;">\Big</span> <span style="color: #004242;">NSIS</span> <span style="color: #004242;">Test"</span></pre></td>
+</tr>
+<tr id="line238">
+<td class="lineNum"><pre>238</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">SetOutPath</span> <span style="color: #8000FF;">$INSTDIR</span> <span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">for</span> <span style="font-style: italic;color: #7F9FBF;">working</span> <span style="font-style: italic;color: #7F9FBF;">directory</span></pre></td>
+</tr>
+<tr id="line239">
+<td class="lineNum"><pre>239</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">CreateShortCut</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$SMPROGRAMS</span><span style="color: #004242;">\Big</span> <span style="color: #004242;">NSIS</span> <span style="color: #004242;">Test\Uninstall</span> <span style="color: #004242;">BIG</span> <span style="color: #004242;">NSIS</span> <span style="color: #004242;">Test.lnk"</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\bt-uninst.exe"</span> <span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">use</span> <span style="font-style: italic;color: #7F9FBF;">defaults</span> <span style="font-style: italic;color: #7F9FBF;">for</span> <span style="font-style: italic;color: #7F9FBF;">parameters,</span> <span style="font-style: italic;color: #7F9FBF;">icon,</span> <span style="font-style: italic;color: #7F9FBF;">etc.</span></pre></td>
+</tr>
+<tr id="line240">
+<td class="lineNum"><pre>240</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">this</span> <span style="font-style: italic;color: #7F9FBF;">one</span> <span style="font-style: italic;color: #7F9FBF;">will</span> <span style="font-style: italic;color: #7F9FBF;">use</span> <span style="font-style: italic;color: #7F9FBF;">notepad's</span> <span style="font-style: italic;color: #7F9FBF;">icon,</span> <span style="font-style: italic;color: #7F9FBF;">start</span> <span style="font-style: italic;color: #7F9FBF;">it</span> <span style="font-style: italic;color: #7F9FBF;">minimized,</span> <span style="font-style: italic;color: #7F9FBF;">and</span> <span style="font-style: italic;color: #7F9FBF;">give</span> <span style="font-style: italic;color: #7F9FBF;">it</span> <span style="font-style: italic;color: #7F9FBF;">a</span> <span style="font-style: italic;color: #7F9FBF;">hotkey</span> <span style="font-style: italic;color: #7F9FBF;">(of</span> <span style="font-style: italic;color: #7F9FBF;">Ctrl+Shift+Q)</span></pre></td>
+</tr>
+<tr id="line241">
+<td class="lineNum"><pre>241</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">CreateShortCut</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$SMPROGRAMS</span><span style="color: #004242;">\Big</span> <span style="color: #004242;">NSIS</span> <span style="color: #004242;">Test\silent.nsi.lnk"</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\silent.nsi"</span> <span style="color: #004242;">""</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$WINDIR</span><span style="color: #004242;">\notepad.exe"</span> <span style="color: #FF0000;">0</span> <span style="color: #480770;">SW_SHOWMINIMIZED</span> CONTROL|SHIFT|Q</pre></td>
+</tr>
+<tr id="line242">
+<td class="lineNum"><pre>242</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">CreateShortCut</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$SMPROGRAMS</span><span style="color: #004242;">\Big</span> <span style="color: #004242;">NSIS</span> <span style="color: #004242;">Test\TheDir.lnk"</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\"</span> <span style="color: #004242;">""</span> <span style="color: #004242;">""</span> <span style="color: #FF0000;">0</span> <span style="color: #480770;">SW_SHOWMAXIMIZED</span> CONTROL|SHIFT|Z</pre></td>
+</tr>
+<tr id="line243">
+<td class="lineNum"><pre>243</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line244">
+<td class="lineNum"><pre>244</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">FunctionEnd</span></pre></td>
+</tr>
+<tr id="line245">
+<td class="lineNum"><pre>245</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line246">
+<td class="lineNum"><pre>246</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,247,251);" onMouseOver="showLine(this,251);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="font-weight: bold;color: #643200;">Function</span> myfunc</pre></td>
+</tr>
+<tr id="line247">
+<td class="lineNum"><pre>247</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line248">
+<td class="lineNum"><pre>248</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">StrCpy</span> <span style="color: #8000FF;">$2</span> <span style="color: #004242;">"MyTestVar=</span><span style="color: #8000FF;">$1</span><span style="color: #004242;">"</span></pre></td>
+</tr>
+<tr id="line249">
+<td class="lineNum"><pre>249</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_OK</span> <span style="color: #004242;">"myfunc:</span> <span style="color: #8000FF;">$2</span><span style="color: #004242;">"</span></pre></td>
+</tr>
+<tr id="line250">
+<td class="lineNum"><pre>250</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line251">
+<td class="lineNum"><pre>251</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">FunctionEnd</span></pre></td>
+</tr>
+<tr id="line252">
+<td class="lineNum"><pre>252</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line253">
+<td class="lineNum"><pre>253</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,254,261);" onMouseOver="showLine(this,261);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="font-weight: bold;color: #643200;">Function</span> MyFunctionTest</pre></td>
+</tr>
+<tr id="line254">
+<td class="lineNum"><pre>254</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line255">
+<td class="lineNum"><pre>255</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">ReadINIStr</span> <span style="color: #8000FF;">$1</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\test.ini"</span> <span style="color: #004242;">"MySectionIni"</span> <span style="color: #004242;">"Value1"</span></pre></td>
+</tr>
+<tr id="line256">
+<td class="lineNum"><pre>256</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">StrCmp</span> <span style="color: #8000FF;">$1</span> <span style="color: #8000FF;">$8</span> NoFailedMsg</pre></td>
+</tr>
+<tr id="line257">
+<td class="lineNum"><pre>257</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_OK</span> <span style="color: #004242;">"WriteINIStr</span> <span style="color: #004242;">failed"</span></pre></td>
+</tr>
+<tr id="line258">
+<td class="lineNum"><pre>258</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  </pre></td>
+</tr>
+<tr id="line259">
+<td class="lineNum"><pre>259</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  NoFailedMsg:</pre></td>
+</tr>
+<tr id="line260">
+<td class="lineNum"><pre>260</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line261">
+<td class="lineNum"><pre>261</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">FunctionEnd</span></pre></td>
+</tr>
+<tr id="line262">
+<td class="lineNum"><pre>262</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line263">
+<td class="lineNum"><pre>263</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,264,273);" onMouseOver="showLine(this,273);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="font-weight: bold;color: #643200;">Function</span> <span style="color: #000080;">.onSelChange</span></pre></td>
+</tr>
+<tr id="line264">
+<td class="lineNum"><pre>264</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line265">
+<td class="lineNum"><pre>265</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">SectionGetText</span> <span style="color: #480770;">${TESTIDX}</span> <span style="color: #8000FF;">$0</span></pre></td>
+</tr>
+<tr id="line266">
+<td class="lineNum"><pre>266</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">StrCmp</span> <span style="color: #8000FF;">$0</span> <span style="color: #004242;">""</span> e</pre></td>
+</tr>
+<tr id="line267">
+<td class="lineNum"><pre>267</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">SectionSetText</span> <span style="color: #480770;">${TESTIDX}</span> <span style="color: #004242;">""</span></pre></td>
+</tr>
+<tr id="line268">
+<td class="lineNum"><pre>268</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">Goto</span> e2</pre></td>
+</tr>
+<tr id="line269">
+<td class="lineNum"><pre>269</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>e:</pre></td>
+</tr>
+<tr id="line270">
+<td class="lineNum"><pre>270</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">SectionSetText</span> <span style="color: #480770;">${TESTIDX}</span> <span style="color: #004242;">"TextInSection"</span></pre></td>
+</tr>
+<tr id="line271">
+<td class="lineNum"><pre>271</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>e2:</pre></td>
+</tr>
+<tr id="line272">
+<td class="lineNum"><pre>272</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line273">
+<td class="lineNum"><pre>273</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">FunctionEnd</span></pre></td>
+</tr>
+<tr id="line274">
+<td class="lineNum"><pre>274</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line275">
+<td class="lineNum"><pre>275</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-style: italic;color: #7F9FBF;">;--------------------------------</span></pre></td>
+</tr>
+<tr id="line276">
+<td class="lineNum"><pre>276</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line277">
+<td class="lineNum"><pre>277</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">Uninstaller</span></pre></td>
+</tr>
+<tr id="line278">
+<td class="lineNum"><pre>278</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line279">
+<td class="lineNum"><pre>279</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">UninstallText</span> <span style="color: #004242;">"This</span> <span style="color: #004242;">will</span> <span style="color: #004242;">uninstall</span> <span style="color: #004242;">example2.</span> <span style="color: #004242;">Hit</span> <span style="color: #004242;">next</span> <span style="color: #004242;">to</span> <span style="color: #004242;">continue."</span></pre></td>
+</tr>
+<tr id="line280">
+<td class="lineNum"><pre>280</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="color: #800000;">UninstallIcon</span> <span style="color: #004242;">"</span><span style="color: #480770;">${NSISDIR}</span><span style="color: #004242;">\Contrib\Graphics\Icons\nsis1-uninstall.ico"</span></pre></td>
+</tr>
+<tr id="line281">
+<td class="lineNum"><pre>281</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line282">
+<td class="lineNum"><pre>282</pre></td><td class="ruler"><table cellpadding="0" cellspacing="0" border="0" class="collapse" onClick="toggle(this,283,306);" onMouseOver="showLine(this,306);" onMouseOut="hideLine();"><tr><td class="top">&nbsp;</td><td class="top right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="right">&nbsp;</td></tr></table></td><td><pre><span style="font-weight: bold;color: #643200;">Section</span> <span style="color: #004242;">"Uninstall"</span></pre></td>
+</tr>
+<tr id="line283">
+<td class="lineNum"><pre>283</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line284">
+<td class="lineNum"><pre>284</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">DeleteRegKey</span> <span style="color: #480770;">HKLM</span> <span style="color: #004242;">"Software\Microsoft\Windows\CurrentVersion\Uninstall\BigNSISTest"</span></pre></td>
+</tr>
+<tr id="line285">
+<td class="lineNum"><pre>285</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">DeleteRegKey</span> <span style="color: #480770;">HKLM</span> <span style="color: #004242;">"SOFTWARE\NSISTest\BigNSISTest"</span></pre></td>
+</tr>
+<tr id="line286">
+<td class="lineNum"><pre>286</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">Delete</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\silent.nsi"</span></pre></td>
+</tr>
+<tr id="line287">
+<td class="lineNum"><pre>287</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">Delete</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\LogicLib.nsi"</span></pre></td>
+</tr>
+<tr id="line288">
+<td class="lineNum"><pre>288</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">Delete</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\bt-uninst.exe"</span></pre></td>
+</tr>
+<tr id="line289">
+<td class="lineNum"><pre>289</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">Delete</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\test.ini"</span></pre></td>
+</tr>
+<tr id="line290">
+<td class="lineNum"><pre>290</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">Delete</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$SMPROGRAMS</span><span style="color: #004242;">\Big</span> <span style="color: #004242;">NSIS</span> <span style="color: #004242;">Test\*.*"</span></pre></td>
+</tr>
+<tr id="line291">
+<td class="lineNum"><pre>291</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">RMDir</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$SMPROGRAMS</span><span style="color: #004242;">\BiG</span> <span style="color: #004242;">NSIS</span> <span style="color: #004242;">Test"</span></pre></td>
+</tr>
+<tr id="line292">
+<td class="lineNum"><pre>292</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  </pre></td>
+</tr>
+<tr id="line293">
+<td class="lineNum"><pre>293</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_YESNO</span>|<span style="color: #480770;">MB_ICONQUESTION</span> <span style="color: #004242;">"Would</span> <span style="color: #004242;">you</span> <span style="color: #004242;">like</span> <span style="color: #004242;">to</span> <span style="color: #004242;">remove</span> <span style="color: #004242;">the</span> <span style="color: #004242;">directory</span> <span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\cpdest?"</span> <span style="color: #480770;">IDNO</span> NoDelete</pre></td>
+</tr>
+<tr id="line294">
+<td class="lineNum"><pre>294</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">Delete</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\cpdest\*.*"</span></pre></td>
+</tr>
+<tr id="line295">
+<td class="lineNum"><pre>295</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">RMDir</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\cpdest"</span> <span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">skipped</span> <span style="font-style: italic;color: #7F9FBF;">if</span> <span style="font-style: italic;color: #7F9FBF;">no</span></pre></td>
+</tr>
+<tr id="line296">
+<td class="lineNum"><pre>296</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  NoDelete:</pre></td>
+</tr>
+<tr id="line297">
+<td class="lineNum"><pre>297</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  </pre></td>
+</tr>
+<tr id="line298">
+<td class="lineNum"><pre>298</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">RMDir</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\MyProjectFamily\MyProject"</span></pre></td>
+</tr>
+<tr id="line299">
+<td class="lineNum"><pre>299</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">RMDir</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">\MyProjectFamily"</span></pre></td>
+</tr>
+<tr id="line300">
+<td class="lineNum"><pre>300</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">RMDir</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">"</span></pre></td>
+</tr>
+<tr id="line301">
+<td class="lineNum"><pre>301</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line302">
+<td class="lineNum"><pre>302</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  <span style="color: #8C0046;">IfFileExists</span> <span style="color: #004242;">"</span><span style="color: #8000FF;">$INSTDIR</span><span style="color: #004242;">"</span> <span style="color: #FF0000;">0</span> NoErrorMsg</pre></td>
+</tr>
+<tr id="line303">
+<td class="lineNum"><pre>303</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>    <span style="color: #8C0046;">MessageBox</span> <span style="color: #480770;">MB_OK</span> <span style="color: #004242;">"Note:</span> <span style="color: #8000FF;">$INSTDIR</span> <span style="color: #004242;">could</span> <span style="color: #004242;">not</span> <span style="color: #004242;">be</span> <span style="color: #004242;">removed!"</span> <span style="color: #480770;">IDOK</span> <span style="color: #FF0000;">0</span> <span style="font-style: italic;color: #7F9FBF;">;</span> <span style="font-style: italic;color: #7F9FBF;">skipped</span> <span style="font-style: italic;color: #7F9FBF;">if</span> <span style="font-style: italic;color: #7F9FBF;">file</span> <span style="font-style: italic;color: #7F9FBF;">doesn't</span> <span style="font-style: italic;color: #7F9FBF;">exist</span></pre></td>
+</tr>
+<tr id="line304">
+<td class="lineNum"><pre>304</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre>  NoErrorMsg:</pre></td>
+</tr>
+<tr id="line305">
+<td class="lineNum"><pre>305</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr id="line306">
+<td class="lineNum"><pre>306</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre><span style="font-weight: bold;color: #643200;">SectionEnd</span></pre></td>
+</tr>
+<tr id="line307">
+<td class="lineNum"><pre>307</pre></td><td class="ruler"><pre>&nbsp;</pre></td><td><pre></pre></td>
+</tr>
+<tr><td><pre>&nbsp;&nbsp;&nbsp;</pre></td><td><pre>&nbsp;&nbsp;</pre></td><td></td></tr>
+</table>
+</div>
+<div id="lineDiv"></div>
+<div style="text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 8pt; font-weight: bold;"><hr>
+Exported as HTML from EclipseNSIS (<a href="http://eclipsensis.sf.net">http://eclipsensis.sf.net</a>)<br>
+Copyright &copy; 2004-2010 Sunil Kamath (IcemanK). All rights reserved.
+</div>
+</body>
+</html>

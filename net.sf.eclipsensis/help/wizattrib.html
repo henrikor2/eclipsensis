@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+  <title>EclipseNSIS - Script Wizard Installer Attributes</title>
+
+
+  <link rel="stylesheet" href="book.css" charset="ISO-8859-1" type="text/css">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+  <meta http-equiv="Content-Style-Type" content="text/css">
+
+  <script language="javascript" type="text/javascript" src="help.js"></script>
+</head>
+<body>
+<div id="main">
+<a href="wizgeneral.html">Previous</a> | <a href="overview.html#contents">Contents</a> | <a href="wizpresentation.html">Next</a>
+<hr>
+<h1>Script Wizard</h1>
+<h2>Installer Attributes</h2>
+<p>This page is used to specify installer attributes.</p>
+<p style="text-align: center;"><img style="border: 0px solid ; width: 508px; height: 696px;" usemap="#wizardattrib" ismap="ismap" alt="Script Wizard Installer Attributes" src="images/wizardattrib.gif"></p>
+<a name="a_instdir"></a><dl id="id_instdir"><dt>Directory Name</dt><dd>The installation directory for the application. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_changedir"></a><dl id="id_changedir"><dt>Allow Directory Change</dt><dd>Option
+to allow the user to choose the installation directory. If this option
+is selected, the user is prompted with an installer page to specify the
+installation location, otherwise the application
+always installs in the location specified above. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_create_smgrp"></a><dl id="id_create_smgrp"><dt>Create Start Menu Group</dt><dd>Option to create a Start Menu group with application related shortcuts. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_smgrp_name"></a><dl id="id_smgrp_name"><dt>Group Name</dt><dd>The Start Menu group name for the application. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_change_smgrp"></a><dl id="id_change_smgrp"><dt>Allow User to Change Group</dt><dd>Option
+to allow the user to change the Start Menu group. If this option is
+selected, the user is prompted with an installer page to specify the
+Start Menu group name, otherwise the installer
+always creates the group name specified above.
+<a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_disable_shortcut"></a><dl id="id_disable_shortcut"><dt>Allow User to Disable Start Menu Group Shortcut Creation</dt>
+<dd>Option
+to allow the user to disable the creation of a Start Menu group shortcut. If this option is
+selected, the user will be prompted with a checkbox labeled &quot;Do not create shortcuts&quot; when specifying the Start Menu group location.
+<a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a name="a_enable_multiuser"></a><dl id="id_enable_multiuser">
+  <dt>Enable MultiUser Installation </dt>
+  <dd>Option to create an  installer for multiple user Windows environments. This option and other multiuser options, as described below, are only available in NSIS version 2.35 and higher. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a name="a_multiuser_execlevel"></a><dl id="id_multiuser_execlevel">
+  <dt>MultiUser Installation Execution Level</dt>
+  <dd>The execution level for the multiuser installer. The following execution levels are supported: <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+<dl>
+<dt>Admin</dt>
+<dd>Administrator privileges are required.</dd>
+<dt>Power</dt>
+<dd>Power User privileges are required. (Power Users no longer exist in Windows Vista. For Vista this is equivalent to Admin)</dd>
+<dt>Highest</dt>
+<dd>Request the highest possible execution level for the current user.</dd>
+<dt>Standard</dt>
+<dd>No special rights required.</dd>
+</dl>
+</dl>
+<a name="a_multiuser_instmode"></a><dl id="id_multiuser_instmode">
+  <dt>MultiUser Installation Mode</dt>
+  <dd>The installation mode for the multiuser installer. Installation mode options are only available when the execution level is higher than Standard. The installation mode can be one of the following: <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+<dl>
+<dt>All Users</dt>
+<dd>The application will be installed for all users.</dd>
+<dt>Current User</dt>
+<dd>The application will only be installed for the current user.</dd>
+</dl>
+</dl>
+<a name="a_multiuser_remember"></a><dl id="id_multiuser_remember"><dt>Remember Installation Mode</dt><dd>Remember the previously selected installation mode in subsequent installer executions. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_multiuser_ask"></a><dl id="id_multiuser_ask"><dt>Ask User For Installation Mode</dt>
+<dd>Ask the user which installation mode is to be used. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+
+<a name="a_langsupp"></a><dl id="id_langsupp"><dt>Enable Language Support</dt><dd>Option to create a multilingual installer. If this option is not selected, the installer
+is created using the default NSIS language (currently U.S. English). <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_avail_langgrp"></a><dl id="id_avail_langgrp"><dt>Available Languages</dt><dd>List of languages currently supported by NSIS. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_sel_langgrp"></a><dl id="id_sel_langgrp"><dt>Selected Languages</dt><dd>List of languages selected for the installer. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_sellang"></a><dl id="id_sellang"><dt>Allow User to Select Language.</dt><dd>Option
+to allow user to select the language of the installer. If this option
+is selected, the
+user is prompted to select a language for installation, otherwise the
+installer attempts to automatically determine the language to be used
+from the user's locale settings. If the user's locale specifies
+a language not selected for the installer, the first language in the
+selected languages list is used. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_allang_right"></a><dl id="id_alllang_right"><dt>Add All</dt><dd>Add all supported language to the Selected Languages list. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_sellang_right"></a><dl id="id_sellang_right"><dt>Add Highlighted</dt><dd>Add highlighted language(s) to the Selected Languages list. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_sellang_left"></a><dl id="id_sellang_left"><dt>Remove Highlighted</dt><dd>Remove highlighted language(s) from the Selected Languages list. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_alllang_left"></a><dl id="id_alllang_left"><dt>Remove All</dt><dd>Remove all languages from the Selected Languages list. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_langup"></a><dl id="id_langup"><dt>Move Up</dt><dd>Move highlighted language(s) up in priority. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="a_langdown"></a><dl id="id_langdown"><dt>Move Down</dt><dd>Move highlighted language(s) down in priority. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a href="wizard.html">Back
+to Script Wizard</a><br>
+<hr><a href="wizgeneral.html">Previous</a> | <a href="overview.html#contents">Contents</a> | <a href="wizpresentation.html">Next</a>
+<p><strong><small>Copyright &copy; 2004-2010 Sunil Kamath (IcemanK).</small></strong></p>
+<map name="wizardattrib">
+  <area id="langup" shape="RECT" href="#a_langup" alt="Move Up" onClick="highlightDef('id_langup');" coords="457,450,485,474">
+  <area id="langdown" shape="RECT" href="#a_langdown" alt="Move Down" onClick="highlightDef('id_langdown');" coords="457,480,485,504">
+  <area id="allang_left" shape="RECT" href="#a_alllang_left" alt="Remove All" onClick="highlightDef('id_alllang_left');" coords="224,511,250,536">
+  <area id="selllang_left" shape="RECT" href="#a_sellang_left" alt="Remove Highlighted" onClick="highlightDef('id_sellang_left');" coords="224,480,250,505">
+  <area id="selllang_right" shape="RECT" href="#a_sellang_right" alt="Add Highlighted" onClick="highlightDef('id_sellang_right');" coords="224,448,250,473">
+  <area id="alllang_right" shape="RECT" href="#a_allang_right" alt="Add All" onClick="highlightDef('id_alllang_right');" coords="224,418,250,443">
+  <area id="langsupp" shape="RECT" href="#a_langsupp" alt="Enable Language Support" onClick="highlightDef('id_langsupp');" coords="21,375,161,391">
+  <area id="sel_langgrp" shape="RECT" href="#a_sel_langgrp" alt="Selected Languages" onClick="highlightDef('id_sel_langgrp');" coords="255,397,452,539">
+  <area id="avail_langgrp" shape="RECT" href="#a_avail_langgrp" alt="Available Languages" onClick="highlightDef('id_avail_langgrp');" coords="21,397,218,539">
+  <area id="sellang" shape="RECT" href="#a_sellang" alt="Allow User to Select Language." onClick="highlightDef('id_sellang');" coords="21,543,184,558">
+  <area id="disable_shortcut" shape="RECT" href="#a_disable_shortcut" alt="Allow User to Disable Start Menu Group Shortcut Creation" onClick="highlightDef('id_disable_shortcut');" coords="183,230,443,245">
+  <area id="change_smrgrp" shape="RECT" href="#a_change_smgrp" alt="Allow User to Change Group" onClick="highlightDef('id_change_smgrp');" coords="22,230,178,245">
+  <area id="smgrp_name" shape="RECT" href="#a_smgrp_name" alt="Group Name" onClick="highlightDef('id_smgrp_name');" coords="21,205,488,227">
+  <area id="create_smgrp" shape="RECT" href="#a_create_smgrp" alt="Create Start Menu Group" onClick="highlightDef('id_create_smgrp');" coords="21,185,163,199">
+  <area id="changedir" shape="RECT" href="#a_changedir" alt="Allow User to Change Directory" onClick="highlightDef('id_changedir');" coords="21,138,191,153">
+  <area id="instdir" shape="RECT" href="#a_instdir" alt="Directory Name" onClick="highlightDef('id_instdir');" coords="20,112,485,134">
+  <area id="enable_multiuser" shape="RECT" href="#a_enable_multiuser" alt="Enable MultiUser Installation" onClick="highlightDef('id_enable_multiuser');" coords="22,278,177,292">
+  <area id="multiuser_execlevel" shape="RECT" href="#a_multiuser_execlevel" alt="MultiUser Execution Level" onClick="highlightDef('id_multiuser_execlevel');" coords="22,298,225,320">
+  <area id="multiuser_instmode" shape="RECT" href="#a_multiuser_instmode" alt="MultiUser Installation Mode" onClick="highlightDef('id_multiuser_instmode');" coords="238,295,478,317">
+  <area id="multiuser_remember" shape="RECT" href="#a_multiuser_remember" alt="Remember MultiUser Installation Mode" onClick="highlightDef('id_multiuser_remember');" coords="237,321,335,336">
+  <area id="multiuser_ask" shape="RECT" href="#a_multiuser_ask" alt="Ask User MultiUser Installation Mode" onClick="highlightDef('id_multiuser_ask');" coords="343,321,401,336">
+</map>
+</div>
+
+</body></html>

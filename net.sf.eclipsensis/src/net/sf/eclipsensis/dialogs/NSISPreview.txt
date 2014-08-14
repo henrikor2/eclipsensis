@@ -1,0 +1,40 @@
+; TODO Do something
+; The name of the installer
+!define MYSYMBOL "Some Value"
+Name "$(^Name)"
+
+Var MyVar
+
+; The file to write
+OutFile "mysetup.exe"
+
+; The default installation directory
+InstallDir $PROGRAMFILES\MySetup
+
+; Pages
+Page directory
+Page instfiles
+
+# Installer languages
+LoadLanguageFile "${NSISDIR}\Contrib\Language files\English.nlf"
+
+; Callback function
+Function .onInit
+    splash::show 500 "$PLUGINSDIR\splash.bmp"
+    StrCpy $R0 1
+    StrCpy $R1 ${__FILE__}
+    StrCpy $MyVar ${MYSYMBOL}
+FunctionEnd
+
+; The stuff to install
+Section "" ;No components page, name is not important
+    MessageBox MB_OK "Testing 1 2 3"
+
+    ; Set output path to the installation directory.
+    SetOutPath $INSTDIR
+
+    ; Put file there
+    File /oname=othername.exe somefile.exe
+SectionEnd ; end the section
+
+LangString ^Name ${LANG_ENGLISH} "My Setup"

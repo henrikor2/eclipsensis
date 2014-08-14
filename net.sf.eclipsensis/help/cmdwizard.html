@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+  <title>EclipseNSIS - Command Wizard</title>
+
+  <link rel="stylesheet" href="book.css" charset="ISO-8859-1" type="text/css">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <script language="javascript" type="text/javascript" src="help.js"></script>
+  <script language="javascript" type="text/javascript" src="nsiscontrib.js"></script>
+  <script language="javascript" type="text/javascript" src="redirect.js"></script>
+</head>
+<body>
+<div id="main">
+<a href="console.html">Previous</a> | <a href="overview.html#contents">Contents</a> | <a href="wizard.html">Next</a>
+<hr>
+<h1>Command Wizard</h1>
+<p>The Command Wizard provides a graphical interface for generating syntactically correct NSIS command text in the
+EclipseNSIS editor. It consists of the
+<a href="#commandsview">NSIS Commands view</a> and the <a href="#commandwizard">NSIS Command Wizard dialog</a>.
+For further information on NSIS commands, please consult the
+<a href="javascript:redirectNSIS('Contents.html');">NSIS Users Manual</a>.</p>
+<a name="commandsview"></a><h2>NSIS Commands View</h2>
+<p>The command wizard is accessed through the NSIS Commands view. This view is opened automatically by
+the EclipseNSIS, though it is not necessarily brought to the front. Click on the image below to learn more about the NSIS Commands View. </p>
+<table  border="0" align="center" cellpadding="2" cellspacing="2">
+  <tr>
+    <td><img src="images/commandview1.gif" alt="NSIS Commands View - Hierarchical Layout" ismap="ismap" usemap="#cmdview" style="border: medium none; width: 368px; height: 514px;"></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><img src="images/commandview2.gif" alt="NSIS Commands View - Flat Layout" ismap="ismap" usemap="#cmdview" style="border: medium none; width: 368px; height: 514px;"></td>
+  </tr>
+  <tr>
+    <td><div align="center">Hierarchical Layout</div></td>
+    <td>&nbsp;</td>
+    <td><div align="center">Flat Layout</div></td>
+  </tr>
+  <tr>
+    <td colspan="3"><div align="center">NSIS Commands View </div></td>
+    </tr>
+</table>
+<a name="a_list"></a><dl id="id_list">
+<dt>Commands List</dt>
+<dd>The list of all available NSIS commands currently
+supported by the command wizard. The list is version sensitive- i.e., it will only show commands which are valid for
+the currently installed version of NSIS. The list can be viewed using either a <a href="#a_hierarchical" onClick="highlightDef('id_hierarchical');">hierarchical</a> layout or a
+<a href="#a_flat" onClick="highlightDef('id_flat');">flat</a> layout. Commands can be inserted in three ways into the NSIS script being currently edited using the EclipseNSIS editor:
+<ul>
+<li>Drag a command from the commands view and drop it onto the NSIS script.</li>
+<li>Double-click a command in the commands view.</li>
+<li>Highlight a command in the commands view and press the <em>Enter</em> button.</li>
+</ul>
+In all cases, the command is inserted in a valid location in the NSIS script. A valid location
+is either the beginning of a line or immediately following a multi-line comment. In cases where a command
+does not accept any parameters, it is directly inserted into the script. Otherwise, the <a href="#cmdwizard">NSIS Command Wizard dialog</a> is displayed.</dd>
+</dl>
+<a name="a_hierarchical"></a><dl id="id_hierarchical">
+<dt>Hierarchical Layout</dt>
+<dd>Switch NSIS Commands View to hierarchical layout. The hierarchical layout lists commands organized into categories as defined in the
+<a href="javascript:redirectNSIS('Contents.html');">NSIS Users Manual</a>.</dd></dl>
+<a name="a_flat"></a><dl id="id_flat">
+<dt>Flat Layout</dt>
+<dd>Switch NSIS Commands View to flat layout. The flat layout lists commands sorted
+alphabetically.</dd></dl>
+<a name="a_expand"></a><dl id="id_expand">
+<dt>Expand All</dt>
+<dd>Expand all categories. This is only available for the hierarchical layout.</dd></dl>
+<a name="a_collapse"></a><dl id="id_collapse">
+<dt>Collapse All</dt>
+<dd>Collapse all categories. This is only available for the hierarchical layout.</dd></dl>
+<a name="a_filter"></a><dl id="id_filter">
+<dt>Filter</dt>
+<dd>Filter the displayed list of commands. This supports simple wildcards as well as regular expressions. The supported
+regular expression constructs are documented by the Java <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html#sum">Pattern</a> class.</dd></dl>
+<table  border="0" align="center" cellpadding="2" cellspacing="2">
+  <tr>
+    <td><img src="images/commandfilter.gif" alt="NSIS Commands View - Filter" style="border: medium none; width: 368px; height: 514px;"></td>
+  </tr>
+  <tr>
+    <td><div align="center">Filtered Commands</div></td>
+  </tr>
+</table>
+
+<a name="commandwizard"></a><h2>NSIS Command Wizard Dialog</h2>
+<p>The NSIS Command Wizard dialog provides the actual graphical interface for entering command parameters. Click on the image below to learn more about the NSIS Command Wizard dialog. </p>
+<p align="center"><img src="images/commandwizard.gif" alt="NSIS Command Wizard Dialog" usemap="#cmdwizard" style="border: medium none ; width: 705px; height: 609px;"></p>
+<a name="a_cmdname"></a><dl id="id_cmdname">
+<dt>Command Name</dt>
+<dd>The name of the NSIS Command being created.</dd></dl>
+<a name="a_params"></a><dl id="id_params">
+<dt>Command Parameters</dt>
+<dd>A list of   parameters accepted by the command. Parameters can usually be entered using editable Text
+fields or drop down lists.  Required parameters are prefixed with an asterisk (*). Optional parameters are preceded by a checkbox. Repeatable
+parameters, e.g. in case of <a href="javascript:redirectNSISKeyword('!macro');">!macro</a> parameters,
+include buttons to add or remove parameter instances. When a command has multiple different syntax types,
+e.g. for the <a href="javascript:redirectNSISKeyword('File');">File</a> command, the desired syntax type
+can be chosen using radio buttons.
+<table  align="center" border="0" cellspacing="2" cellpadding="0">
+    <tr align="center" valign="baseline">
+      <td><p><img src="images/optionalparam.gif" style="border: medium none; width: 85px; height: 32px;"></p>
+        <p>Optional Parameter </p></td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      <td><p><img src="images/repeatableparam.gif" style="border: medium none; width: 289px; height: 58px;"></p>
+        <p>Repeatable Parameter </p></td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      <td><p><img src="images/radioparam.gif" style="border: medium none; width: 141px; height: 199px;"></p>
+        <p>Multiple Syntax Types </p></td>
+    </tr>
+</table>
+</dd>
+</dl>
+<a name="a_preview"></a><dl id="id_preview">
+<dt>Preview</dt>
+<dd>Preview of the command that will be generated by the wizard. This will be blank if there is an error in any of the wizard parameters. </dd>
+</dl>
+<a name="a_showhidedesc"></a><dl id="id_showhidedesc">
+<dt>Show/Hide Description</dt>
+<dd>Show the <a href="#a_description" onClick="highlightDef('id_description');">Command Description</a>. If it is already visible, this button has no effect. </dd>
+</dl>
+<a name="a_description"></a><dl id="id_description">
+<dt>Command Description</dt>
+<dd>The description of the NSIS command as documented in the <a href="javascript:redirectNSIS('Contents.html');">NSIS Users Manual</a>.</dd>
+</dl>
+<a name="a_remember"></a><dl id="id_remember">
+<dt>Remember Parameter Values </dt>
+<dd>When checked, the values entered for the command parameters are saved when the Finish button is clicked, and will be restored the next time the wizard is invoked for the current command. This setting is applied on a command-by-command basis. If the checkbox is unchecked, then all remembered values for the current command are lost when the Finish button is clicked. By default, parameter values are <strong>NOT</strong> remembered. </dd>
+</dl>
+<a name="a_revert"></a><dl id="id_revert">
+<dt>Revert</dt>
+<dd>Revert the command parameters to the previously saved values. This button is only enabled if the <a href="#a_remember" onClick="highlightDef('id_remember');">Remember Parameter Values</a> checkbox is checked and there are previously saved values to recall..</dd>
+</dl>
+<a name="a_clear"></a><dl id="id_clear">
+<dt>Clear</dt>
+<dd>Clears all parameter values and restores the wizard to a pristine state .</dd>
+</dl>
+
+<hr><a href="console.html">Previous</a> | <a href="overview.html#contents">Contents</a> | <a href="wizard.html">Next</a><br>
+<br>
+<p><strong><small>Copyright &copy; 2004-2010 Sunil Kamath (IcemanK).</small></strong></p>
+</div>
+
+<map name="cmdwizard" id="cmdwizard">
+	<area shape="rect" coords="13,105,41,121" href="#a_cmdname" alt="Command Name" onClick="highlightDef('id_cmdname');">
+	<area shape="rect" coords="312,104,330,122" href="#a_showhidedesc" alt="Show/Hide Description" onClick="highlightDef('id_showhidedesc');">
+	<area shape="rect" coords="16,130,332,406" href="#a_params" alt="Command Parameters" onClick="highlightDef('id_params');">
+	<area shape="rect" coords="258,487,332,509" href="#a_clear" alt="Clear" onClick="highlightDef('id_clear');">
+	<area shape="rect" coords="177,487,251,508" href="#a_revert" alt="Revert" onClick="highlightDef('id_revert');">
+	<area shape="rect" coords="15,490,171,505" href="#a_remember" alt="Remember Parameter Values" onClick="highlightDef('id_remember');">
+	<area shape="rect" coords="353,50,694,585" href="#a_description" alt="Command Description" onClick="highlightDef('id_description');">
+    <area shape="rect" coords="13,417,334,482" href="#a_preview" alt="Preview" onClick="highlightDef('id_preview');">
+</map>
+<map name="cmdview" id="cmdview">
+  <area shape="rect" coords="195,2,218,24" href="#a_hierarchical" alt="Hierarchical Layout" onClick="highlightDef('id_hierarchical');">
+  <area shape="rect" coords="218,2,241,24" href="#a_flat" alt="Flat Layout" onClick="highlightDef('id_flat');">
+  <area shape="rect" coords="241,2,264,24" href="#a_expand" alt="Expand All" onClick="highlightDef('id_expand');">
+  <area shape="rect" coords="264,2,287,24" href="#a_collapse" alt="Collapse All" onClick="highlightDef('id_collapse');">
+  <area shape="rect" coords="287,2,310,24" href="#a_filter" alt="Filter" onClick="highlightDef('id_filter');">
+  <area shape="rect" coords="9,30,360,506" href="#a_list" alt="Commands List" onClick="highlightDef('id_list');">
+</map>
+</body></html>

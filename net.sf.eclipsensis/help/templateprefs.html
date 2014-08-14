@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+# # Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+  <title>EclipseNSIS - Templates
+Preferences</title>
+  <link rel="stylesheet" href="book.css" charset="ISO-8859-1"
+ type="text/css">
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <script language="javascript" type="text/javascript" src="help.js"></script>
+</head>
+<body>
+<div id="main">
+<a href="editorprefs.html">Previous</a>
+| <a href="overview.html#contents">Contents</a>
+| <a href="tasktagprefs.html">Next</a>
+<hr>
+<h1>Preferences</h1>
+<h2><a name="templates"></a>Templates</h2>
+<p>The Templates preference page is used to manage code
+templates. A template is a convenience for the programmer to quickly
+insert often reoccurring source code patterns.
+There are three types of templates:</p>
+<ul>
+  <li><span style="font-weight: bold;">Built-in</span>:
+Templates which
+are prepackaged along with the plugin.</li>
+  <li><span style="font-weight: bold;">Custom</span>:
+Built-in
+templates which have been modified by the user.</li>
+  <li><span style="font-weight: bold;">User-defined</span>:
+Templates
+which have been created by the user.<br>
+  </li>
+</ul>
+<p>Templates are created and edited using the <a href="#templateeditor">Template
+Editor</a>.
+</p>
+<p style="text-align: center;">
+<img alt="Editor Templates Preferences" src="images/templatepref.gif"
+ ismap="ismap"
+ style="border: medium none ; width: 477px; height: 586px;"
+ usemap="#templatepref"></p>
+  <a name="a_templates"></a><dl id="id_templates"><dt>Templates</dt>
+  <dd>Displays the list of
+templates. Only checked templates are
+enabled for use. To disable/enable a template uncheck/check the
+checkbox associated with it The following buttons allow manipulation
+and configuration of templates. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd></dl>
+  <dl>
+    <a name="a_new1"></a><dl id="id_new1"><dt>New</dt>
+    <dd> Opens a <a href="#templateeditor">dialog</a>
+to create a new
+template. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+    <a name="a_edit3"></a><dl id="id_edit3"><dt>Edit</dt>
+    <dd> Opens a <a href="#templateeditor">dialog</a>
+to edit the
+currently selected template. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd></dl>
+    <a name="a_remove1"></a><dl id="id_remove1"><dt>Remove</dt>
+    <dd>Remove all selected
+templates. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+    <a name="a_restore1"></a><dl id="id_restore1"><dt>Restore
+removed</dt>
+    <dd>Restore any custom
+templates removed during the current
+preferences editing session as long as the preferences have not yet
+been saved using the <span style="font-weight: bold;">Apply</span>
+or <span style="font-weight: bold;">OK</span>
+buttons.. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+    <a name="a_revert1"></a><dl id="id_revert1"><dt>Revert
+to default</dt>
+    <dd>Revert all selected custom
+templates back to their original
+built-in states. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+    <a name="a_import1"></a><dl id="id_import1"><dt>Import</dt>
+    <dd> Imports templates from
+the file system. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+    <a name="a_export1"></a><dl id="id_export1"><dt>Export</dt>
+    <dd>Exports all selected
+templates to the file system. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd></dl>
+  </dl>
+  <a name="a_templatepreview"></a><dl id="id_templatepreview"><dt>Preview</dt>
+  <dd>Preview the pattern of the
+selected template. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a href="preferences.html">Back
+to Preferences</a><br>
+<h3><a name="templateeditor"></a>Template
+Editor</h3>
+<p>The Template Editor dialog is used to create new and edit existing
+code
+templates.</p>
+<p style="text-align: center;">
+<img alt="Editor Template Editor" ismap="ismap"
+ src="images/templatedialog.gif" usemap="#templatedialog"
+ style="border: medium none ; width: 514px; height: 302px;"></p>
+  <a name="a_name1"></a><dl id="id_name1"><dt>Name</dt>
+  <dd>The name of the template. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd></dl>
+  <a name="a_context"></a><dl id="id_context"><dt>Context</dt>
+  <dd> The context determines
+where the template can be used and the
+set of available pre-defined template variables. EclipseNSIS provides
+only one context- <strong>NSIS
+Script</strong>. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+  <a name="a_description1"></a><dl id="id_description1"><dt>Description</dt>
+  <dd>A description of the
+template, which is displayed to the user
+when choosing the template. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd></dl>
+  <a name="a_pattern"></a><dl id="id_pattern"><dt>Pattern</dt>
+  <dd>The template pattern. The
+pattern editor is syntax highlighting
+and provides code completion assistance (press Ctrl-Space). A pattern
+consists of source code with replaceable variables. The format of a
+replaceable variable is %name% where "name" is a variable name. <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+  <a name="a_insertvar"></a><dl id="id_insertvar"><dt>Insert
+Variable</dt>
+  <dd> Displays a list of
+pre-defined context specific variables. The
+following pre-defined variables are available: <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+  <dl>
+    <dt>%cursor%</dt>
+    <dd>Specifies the cursor
+position when the template edit mode is
+left. This is useful when the cursor should jump to another place than
+to the end of the template on leaving template edit mode.</dd>
+    <dt>%date%</dt>
+    <dd>Evaluates to the current
+date.</dd>
+    <dt>%percent%</dt>
+    <dd>Evaluates to the percent
+symbol '%'. Alternatively, two
+percents can be used: '%%'.</dd>
+    <dt>%time%</dt>
+    <dd>Evaluates to the current
+time.</dd>
+    <dt>%year%</dt>
+    <dd>Evaluates to the current
+year.</dd>
+    <dt>%user%</dt>
+    <dd>Evaluates to the user name.</dd>
+    <dt>%line_selection%</dt>
+    <dd>Evaluates to the selected
+line in the editor.</dd>
+    <dt>%word_selection%</dt>
+    <dd>Evaluates to the selected
+word in the editor.</dd>
+    <dt>%register%</dt>
+    <dd>Evaluates to an NSIS
+register, e.g., $0, $
+R0, etc.</dd>
+    <dt>%pathconst%</dt>
+    <dd>Evaluates to an NSIS path
+constant, e.g., $PROGRAMFILES,
+$DESKTOP, etc..</dd>
+    <dt>%pathvar%</dt>
+    <dd>Evaluates to an NSIS path
+variable, e.g., $INSTDIR, $OUTDIR,
+etc.</dd>
+    <dt>%predefine%</dt>
+    <dd>Evaluates to an NSIS
+predefine, e.g., ${__FILE__}, ${__LINE__},
+etc.</dd>
+    <dt>%pagetype%</dt>
+    <dd>Evaluates to an NSIS
+installer page type, e.g., instfiles,
+license, etc.</dd>
+  </dl></dl>
+<a href="preferences.html">Back
+to Preferences</a><br>
+<hr><a href="editorprefs.html">Previous</a>
+| <a href="overview.html#contents">Contents</a>
+| <a href="tasktagprefs.html">Next</a>
+<br>
+<br>
+<p><strong><small>Copyright
+&copy; 2004-2010 Sunil Kamath
+(IcemanK).</small></strong></p>
+<map name="templatepref">
+<area id="templatepreview" onClick="highlightDef('id_templatepreview');"
+ shape="RECT" href="#a_templatepreview" alt="Preview"
+ coords="4,344,472,553">
+<area id="export1" onClick="highlightDef('id_export1');" shape="RECT"
+ href="#a_export1" alt="Export" coords="373,209,473,233">
+<area id="import1" onClick="highlightDef('id_import1');" shape="RECT"
+ href="#a_import1" alt="Import" coords="373,180,473,205">
+<area id="revert1" onClick="highlightDef('id_revert1');" shape="RECT"
+ href="#a_revert1" alt="Revert to default" coords="374,143,473,168">
+<area id="restore1" onClick="highlightDef('id_restore1');" shape="RECT"
+ href="#a_restore1" alt="Restore removed" coords="374,115,473,140">
+<area id="remove1" onClick="highlightDef('id_remove1');" shape="RECT"
+ href="#a_remove1" alt="Remove" coords="374,78,473,103">
+<area id="edit3" onClick="highlightDef('id_edit3');" shape="RECT"
+ href="#a_edit3" alt="Edit" coords="374,50,473,75">
+<area id="new1" onClick="highlightDef('id_new1');" shape="RECT"
+ href="#a_new1" alt="New" coords="374,21,473,46">
+<area id="templates" onClick="highlightDef('id_templates');"
+ shape="RECT" href="#a_templates" alt="Templates" coords="5,23,369,338">
+</map>
+<map name="templatedialog">
+<area id="insertvar" onClick="highlightDef('id_insertvar');"
+ shape="RECT" href="#a_insertvar" alt="Insert Variable"
+ coords="77,179,171,203">
+<area id="pattern" onClick="highlightDef('id_pattern');" shape="RECT"
+ href="#a_pattern" alt="Pattern" coords="14,88,499,175">
+<area id="description1" onClick="highlightDef('id_description1');"
+ shape="RECT" href="#a_description1" alt="Description"
+ coords="14,63,502,83">
+<area id="context" onClick="highlightDef('id_context');" shape="RECT"
+ href="#a_context" alt="Context" coords="367,38,500,59">
+<area id="name1" onClick="highlightDef('id_name1');" shape="RECT"
+ href="#a_name1" alt="Name" coords="14,39,360,58">
+</map>
+</div>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+#     Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+<plugin>
+   <extension
+         point="org.eclipse.core.runtime.products">
+      <product name="%product.name" application="org.eclipse.ui.ide.workbench" description="%product.description">
+          <property name="windowImage" value="%product.window.image"/>
+          <property name="aboutImage" value="%product.about.image"/>
+          <property name="aboutText" value="%about.text"/>
+          <property name="appName" value="%product.name"/>
+      </product>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            default="true"
+            name="%installoptions.design.editor.name"
+            extensions="%ini.extensions"
+            icon="icons/installoptions.gif"
+            class="net.sf.eclipsensis.installoptions.editor.InstallOptionsDesignEditor"
+            contributorClass="net.sf.eclipsensis.installoptions.actions.InstallOptionsDesignActionContributor"
+            id="net.sf.eclipsensis.installoptions.editor.InstallOptionsDesignEditor">
+         <contentTypeBinding
+               contentTypeId="net.sf.eclipsensis.installoptions.installoptionsContentType">
+         </contentTypeBinding>
+      </editor>
+      <editor
+            default="false"
+            name="%installoptions.source.editor.name"
+            extensions="%ini.extensions"
+            icon="icons/installoptionssrc.gif"
+            class="net.sf.eclipsensis.installoptions.editor.InstallOptionsSourceEditor"
+            contributorClass="net.sf.eclipsensis.installoptions.actions.InstallOptionsSourceActionContributor"
+            id="net.sf.eclipsensis.installoptions.editor.InstallOptionsSourceEditor">
+         <contentTypeBinding
+               contentTypeId="net.sf.eclipsensis.installoptions.installoptionsContentType">
+         </contentTypeBinding>
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            name="%installoptions.wizard.name"
+            icon="icons/installoptionswizard.gif"
+            category="net.sf.eclipsensis"
+            class="net.sf.eclipsensis.installoptions.wizard.InstallOptionsWizard"
+            id="net.sf.eclipsensis.installoptions.wizard.InstallOptionsWizard">
+         <description>
+            %installoptions.wizard.description
+         </description>
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+      </wizard>
+   </extension>
+   <extension
+         id="InstallOptionsHelpProducer"
+         name="%help.name"
+         point="org.eclipse.help.contentProducer">
+       <contentProducer>
+          <producer class="net.sf.eclipsensis.help.NSISHelpProducer">
+             <parameter name="pluginId" value="net.sf.eclipsensis.installoptions"/>
+             <parameter name="javascriptOnly" value="true"/>
+          </producer>
+       </contentProducer>
+   </extension>
+   <extension
+        id="InstallOptionsDocumentSetupParticipant"
+        name="%document.setup.participant.name"
+        point="org.eclipse.core.filebuffers.documentSetup">
+        <participant
+            extensions="%ini.extensions"
+            class="net.sf.eclipsensis.installoptions.editor.InstallOptionsDocumentSetupParticipant">
+        </participant>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+         <newWizardShortcut
+               id="net.sf.eclipsensis.installoptions.wizard.InstallOptionsWizard">
+         </newWizardShortcut>
+      </perspectiveExtension>
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <newWizardShortcut
+               id="net.sf.eclipsensis.installoptions.wizard.InstallOptionsWizard">
+         </newWizardShortcut>
+      </perspectiveExtension>
+      <perspectiveExtension
+            targetID="org.eclipse.pde.ui.PDEPerspective">
+         <newWizardShortcut
+               id="net.sf.eclipsensis.installoptions.wizard.InstallOptionsWizard">
+         </newWizardShortcut>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="%installoptions.preference.page.name"
+            category="net.sf.eclipsensis.dialogs.NSISPreferencePage"
+            class="net.sf.eclipsensis.installoptions.dialogs.InstallOptionsPreferencePage"
+            id="net.sf.eclipsensis.installoptions.dialogs.InstallOptionsPreferencePage">
+      </page>
+   </extension>
+   <extension
+         id="InstallOptionsProblem"
+         name="%installoptions.problem.marker.name"
+         point="org.eclipse.core.resources.markers">
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.core.resources.textmarker"/>
+      <persistent value="true" />
+   </extension>
+   <extension
+       point="org.eclipse.ui.editors.annotationTypes">
+       <type
+           name="%installoptions.error.annotation.name"
+           super="org.eclipse.ui.workbench.texteditor.error"
+           markerSeverity="2">
+       </type>
+       <type
+           name="%installoptions.warning.annotation.name"
+           super="org.eclipse.ui.workbench.texteditor.warning"
+           markerSeverity="1">
+       </type>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+         name="%commands.category.name"
+         description="%commands.category.description"
+         id="net.sf.eclipsensis.installoptions.InstallOptionsCategory">
+      </category>
+      <command
+         name="%switch.editor.command.name"
+         description="%switch.editor.command.description"
+         id="net.sf.eclipsensis.installoptions.commands.SwitchEditor"
+         categoryId="net.sf.eclipsensis.installoptions.InstallOptionsCategory"/>
+      <command
+         name="%create.control.command.name"
+         description="%create.control.command.description"
+         id="net.sf.eclipsensis.installoptions.commands.CreateControl"
+         categoryId="net.sf.eclipsensis.installoptions.InstallOptionsCategory"/>
+      <command
+         name="%edit.control.command.name"
+         description="%edit.control.command.description"
+         id="net.sf.eclipsensis.installoptions.commands.EditControl"
+         categoryId="net.sf.eclipsensis.installoptions.InstallOptionsCategory"/>
+      <command
+         name="%delete.control.command.name"
+         description="%delete.control.command.description"
+         id="net.sf.eclipsensis.installoptions.commands.DeleteControl"
+         categoryId="net.sf.eclipsensis.installoptions.InstallOptionsCategory"/>
+      <command
+         name="%delete.control.command.name"
+         description="%delete.control.command.description"
+         id="net.sf.eclipsensis.installoptions.commands.DeleteControl2"
+         categoryId="net.sf.eclipsensis.installoptions.InstallOptionsCategory"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.contexts">
+      <context
+            name="%editing.installoptions.source.name"
+            description="%editing.installoptions.source.description"
+            parentId="org.eclipse.ui.textEditorScope"
+            id="net.sf.eclipsensis.installoptions.InstallOptionsSourceEditorScope">
+      </context>
+      <context
+            name="%installoptions.source.outline.name"
+            description="%installoptions.source.outline.description"
+            parentId="org.eclipse.ui.contexts.window"
+            id="net.sf.eclipsensis.installoptions.InstallOptionsSourceOutlineScope">
+      </context>
+      <context
+            name="%editing.installoptions.design.name"
+            description="%editing.installoptions.design.description"
+            parentId="org.eclipse.ui.contexts.window"
+            id="net.sf.eclipsensis.installoptions.InstallOptionsDesignEditorScope">
+      </context>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+          commandId="net.sf.eclipsensis.installoptions.commands.SwitchEditor"
+          contextId="net.sf.eclipsensis.installoptions.InstallOptionsSourceEditorScope"
+          sequence="%switch.editor.command.keysequence"/>
+      <key
+          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+          commandId="net.sf.eclipsensis.installoptions.commands.CreateControl"
+          contextId="net.sf.eclipsensis.installoptions.InstallOptionsSourceEditorScope"
+          sequence="%create.control.command.keysequence"/>
+      <key
+          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+          commandId="net.sf.eclipsensis.installoptions.commands.CreateControl"
+          contextId="net.sf.eclipsensis.installoptions.InstallOptionsSourceOutlineScope"
+          sequence="%create.control.command.keysequence"/>
+      <key
+          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+          commandId="net.sf.eclipsensis.installoptions.commands.EditControl"
+          contextId="net.sf.eclipsensis.installoptions.InstallOptionsSourceEditorScope"
+          sequence="%edit.control.command.keysequence"/>
+      <key
+          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+          commandId="net.sf.eclipsensis.installoptions.commands.EditControl"
+          contextId="net.sf.eclipsensis.installoptions.InstallOptionsSourceOutlineScope"
+          sequence="%edit.control.command.keysequence"/>
+      <key
+          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+          commandId="net.sf.eclipsensis.installoptions.commands.DeleteControl"
+          contextId="net.sf.eclipsensis.installoptions.InstallOptionsSourceEditorScope"
+          sequence="%delete.control.command.keysequence1"/>
+      <key
+          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+          commandId="net.sf.eclipsensis.installoptions.commands.DeleteControl2"
+          contextId="net.sf.eclipsensis.installoptions.InstallOptionsSourceEditorScope"
+          sequence="%delete.control.command.keysequence2"/>
+      <key
+          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+          commandId="net.sf.eclipsensis.installoptions.commands.DeleteControl"
+          contextId="net.sf.eclipsensis.installoptions.InstallOptionsSourceOutlineScope"
+          sequence="%delete.control.command.keysequence1"/>
+      <key
+          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+          commandId="net.sf.eclipsensis.installoptions.commands.DeleteControl2"
+          contextId="net.sf.eclipsensis.installoptions.InstallOptionsSourceOutlineScope"
+          sequence="%delete.control.command.keysequence2"/>
+      <key
+          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+          commandId="net.sf.eclipsensis.installoptions.commands.DeleteControl2"
+          contextId="net.sf.eclipsensis.installoptions.InstallOptionsSourceOutlineScope"
+          sequence="%delete.control.command.keysequence3"/>
+      <key
+          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+          commandId="net.sf.eclipsensis.installoptions.commands.DeleteControl2"
+          contextId="net.sf.eclipsensis.installoptions.InstallOptionsSourceOutlineScope"
+          sequence="%delete.control.command.keysequence4"/>
+      <key
+          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+          commandId="net.sf.eclipsensis.installoptions.commands.SwitchEditor"
+          contextId="net.sf.eclipsensis.installoptions.InstallOptionsDesignEditorScope"
+          sequence="%switch.editor.command.keysequence"/>
+   </extension>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="toc.xml"
+            primary="true"/>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts file="contexts.xml"/>
+   </extension>
+   <extension
+         id="InstallOptionsBuilder"
+         name="%installoptions.builder.name"
+         point="org.eclipse.core.resources.builders">
+      <builder hasNature="true">
+         <run class="net.sf.eclipsensis.installoptions.builder.InstallOptionsBuilder"/>
+      </builder>
+   </extension>
+   <extension
+         id="InstallOptionsNature"
+         name="%installoptions.nature.name"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run class="net.sf.eclipsensis.installoptions.builder.InstallOptionsNature"/>
+      </runtime>
+      <builder id="net.sf.eclipsensis.installoptions.InstallOptionsBuilder"/>
+   </extension>
+   <extension point="org.eclipse.core.filebuffers.annotationModelCreation">
+       <factory
+         extensions="%ini.extensions"
+         class="net.sf.eclipsensis.installoptions.editor.annotation.InstallOptionsAnnotationModelFactory"/>
+   </extension>
+   <extension
+         id="installOptionsLocalFileHandler"
+         point="net.sf.eclipsensis.helpBrowserLocalFileHandler">
+      <handler
+            class="net.sf.eclipsensis.installoptions.help.InstallOptionsLocalFileHandler"
+            extensions="%ini.extensions"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="net.sf.eclipsensis.installoptions.editor.InstallOptionsDesignEditor"
+            labelProvider="net.sf.eclipsensis.installoptions.properties.labelproviders.InstallOptionsElementLabelProvider"
+            typeMapper="net.sf.eclipsensis.installoptions.properties.tabbed.InstallOptionsElementTypeMapper">
+         <propertyCategory category="net.sf.eclipsensis.installoptions.properties.tabbed.DefaultPropertyCategory"/>
+      </propertyContributor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs contributorId="net.sf.eclipsensis.installoptions.editor.InstallOptionsDesignEditor">
+         <propertyTab
+               category="net.sf.eclipsensis.installoptions.properties.tabbed.DefaultPropertyCategory"
+               id="net.sf.eclipsensis.installoptions.properties.tabbed.DialogPropertyTab"
+               label="%general.tab.label"/>
+         <propertyTab
+               category="net.sf.eclipsensis.installoptions.properties.tabbed.DefaultPropertyCategory"
+               id="net.sf.eclipsensis.installoptions.properties.tabbed.GeneralPropertyTab"
+               label="%general.tab.label"/>
+         <propertyTab
+               afterTab="net.sf.eclipsensis.installoptions.properties.tabbed.GeneralPropertyTab"
+               category="net.sf.eclipsensis.installoptions.properties.tabbed.DefaultPropertyCategory"
+               id="net.sf.eclipsensis.installoptions.properties.tabbed.FilterPropertyTab"
+               label="%filter.tab.label"/>
+         <propertyTab
+               afterTab="net.sf.eclipsensis.installoptions.properties.tabbed.FilterPropertyTab"
+               category="net.sf.eclipsensis.installoptions.properties.tabbed.DefaultPropertyCategory"
+               id="net.sf.eclipsensis.installoptions.properties.tabbed.AdvancedPropertyTab"
+               label="%advanced.tab.label"/>
+      </propertyTabs>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections contributorId="net.sf.eclipsensis.installoptions.editor.InstallOptionsDesignEditor">
+         <propertySection
+               class="net.sf.eclipsensis.installoptions.properties.tabbed.section.DialogPropertySection"
+               id="net.sf.eclipsensis.installoptions.properties.tabbed.DialogPropertySection"
+               tab="net.sf.eclipsensis.installoptions.properties.tabbed.DialogPropertyTab">
+            <input type="net.sf.eclipsensis.installoptions.model.InstallOptionsDialog"/>
+         </propertySection>
+         <propertySection
+               class="net.sf.eclipsensis.installoptions.properties.tabbed.section.GeneralPropertySection"
+               id="net.sf.eclipsensis.installoptions.properties.tabbed.GeneralPropertySection"
+               tab="net.sf.eclipsensis.installoptions.properties.tabbed.GeneralPropertyTab">
+            <input type="net.sf.eclipsensis.installoptions.model.InstallOptionsWidget"/>
+         </propertySection>
+         <propertySection
+               class="net.sf.eclipsensis.installoptions.properties.tabbed.section.FilterPropertySection"
+               id="net.sf.eclipsensis.installoptions.properties.tabbed.FilterPropertySection"
+               tab="net.sf.eclipsensis.installoptions.properties.tabbed.FilterPropertyTab">
+            <input type="net.sf.eclipsensis.installoptions.model.InstallOptionsFileRequest"/>
+         </propertySection>
+         <propertySection
+               class="net.sf.eclipsensis.installoptions.properties.tabbed.section.AdvancedPropertySection"
+               id="net.sf.eclipsensis.installoptions.properties.tabbed.AdvancedPropertySection"
+               tab="net.sf.eclipsensis.installoptions.properties.tabbed.AdvancedPropertyTab">
+            <input type="net.sf.eclipsensis.installoptions.model.InstallOptionsElement"/>
+         </propertySection>
+      </propertySections>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            targetID="#InstallOptionsSourceRulerContext"
+            id="net.sf.eclipsensis.installoptions.editor.QuickFixRulerMenuAction">
+         <action
+               label="%dummy.label"
+               helpContextId="net.sf.eclipsensis.installoptions.quick_fix_action"
+               class="net.sf.eclipsensis.installoptions.actions.QuickFixRulerAction"
+               menubarPath="additions"
+               definitionId="org.eclipse.jdt.ui.edit.text.java.correction.assist.proposals"
+               id="net.sf.eclipsensis.installoptions.editor.QuickFixRulerMenuAction">
+         </action>
+      </viewerContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            targetID="net.sf.eclipsensis.installoptions.editor.InstallOptionsSourceEditor"
+            id="org.eclipse.ui.texteditor.ruler.actions">
+         <action
+               label="%quick.fix.ruler.action.label"
+               class="net.sf.eclipsensis.installoptions.actions.QuickFixRulerAction"
+               actionID="RulerClick"
+               id="net.sf.eclipsensis.installoptions.editor.QuickFixRulerMenuAction">
+         </action>
+      </editorContribution>
+   </extension>
+   <extension point="org.eclipse.ui.ide.markerResolution">
+      <markerResolutionGenerator
+            class="net.sf.eclipsensis.installoptions.editor.annotation.INIProblemResolutionGenerator"
+            markerType="net.sf.eclipsensis.installoptions.InstallOptionsProblem"/>
+   </extension>
+   <extension point="net.sf.eclipsensis.startup.fileAssociations">
+      <association id="net.sf.eclipsensis.installoptions.iniFiles">
+         <fileTypes name="%installoptions.filetypes.name">
+            <fileType name="*.ini"/>
+         </fileTypes>
+         <editors name="%installoptions.editors.name">
+            <editor id="net.sf.eclipsensis.installoptions.editor.InstallOptionsDesignEditor"/>
+            <editor id="net.sf.eclipsensis.installoptions.editor.InstallOptionsSourceEditor"/>
+         </editors>
+         <enablement
+               defaultValue="true"
+               initPreference="CheckEditorAssociation"/>
+      </association>
+   </extension>
+   <extension
+         id="net.sf.eclipsensis.installoptions.modelNodeConverters"
+         point="net.sf.eclipsensis.nodeConverters">
+      <nodeConverter
+            class="net.sf.eclipsensis.installoptions.model.InstallOptionsWidgetNodeConverter">
+         <nameClassMapping
+               class="net.sf.eclipsensis.installoptions.model.InstallOptionsWidget"
+               name="widget">
+         </nameClassMapping>
+      </nodeConverter>
+      <nodeConverter
+            class="net.sf.eclipsensis.util.NodeConvertibleNodeConverter">
+         <nameClassMapping
+               class="net.sf.eclipsensis.installoptions.model.InstallOptionsDialog"
+               name="dialog">
+         </nameClassMapping>
+      </nodeConverter>
+   </extension>
+   <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            base-type="org.eclipse.core.runtime.text"
+            describer="net.sf.eclipsensis.editor.NSISContentDescriber"
+            file-extensions="ini"
+            id="net.sf.eclipsensis.installoptions.installoptionsContentType"
+            name="%installoptions.content.type.name"
+            priority="high">
+      </content-type>
+   </extension>
+</plugin>

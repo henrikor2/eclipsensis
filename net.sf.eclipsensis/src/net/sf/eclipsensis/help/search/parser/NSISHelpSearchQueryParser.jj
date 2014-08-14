@@ -1,0 +1,304 @@
+/*******************************************************************************
+ * Copyright (c) 2004-2009 Sunil Kamath (IcemanK).
+ * All rights reserved.
+ * This program is made available under the terms of the Common Public License
+ * v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+ *
+ * Contributors:
+ *     Sunil Kamath (IcemanK) - initial API and implementation
+ *******************************************************************************
+ * This is a modified version of QueryParser.jj distributed with the Lucene
+ * project. http://lucene.apache.org
+ * The original authors of this file are:
+ * o Brian Goetz
+ * o Peter Halacsy
+ * o Tatu Saloranta
+ *
+ * The Lucene project is licensed under the Apache License, Version 2.0:
+ *******************************************************************************
+ * Copyright 2004 The Apache Software Foundation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *******************************************************************************/
+
+options {
+  STATIC=false;
+  JAVA_UNICODE_ESCAPE=true;
+  JDK_VERSION="1.5";
+}
+
+PARSER_BEGIN(NSISHelpSearchQueryParser)
+
+package net.sf.eclipsensis.help.search.parser;
+
+import java.io.*;
+import java.util.*;
+
+import org.apache.lucene.analysis.Analyzer;
+
+import net.sf.eclipsensis.util.CaseInsensitiveSet;
+
+@SuppressWarnings({"serial","unchecked"})
+public class NSISHelpSearchQueryParser
+{
+    public static final String REGEX_PREFIX = "re:";
+
+    private String mField;
+    private Analyzer mAnalyzer;
+
+    /** Parses a query string, returning a collection of search terms.
+     *  @param query  the query string to be parsed.
+     *  @throws ParseException if the parsing fails
+     */
+    public static Collection<String> parse(String field, Analyzer analyzer, String query) throws ParseException
+    {
+        NSISHelpSearchQueryParser parser = new NSISHelpSearchQueryParser(field, analyzer);
+        return parser.parseQuery(query);
+    }
+
+    public NSISHelpSearchQueryParser(String field, Analyzer analyzer)
+    {
+        this(new StringReader(""));
+        mField = field;
+        mAnalyzer = analyzer;
+    }
+
+    /** Parses a query string, returning a collection of search terms.
+     *  @param query  the query string to be parsed.
+     *  @throws ParseException if the parsing fails
+     */
+    public Collection<String> parseQuery(String query) throws ParseException
+    {
+        ReInit(new StringReader(query));
+        try {
+            Collection<String> result = new CaseInsensitiveSet();
+            parseQuery(result);
+            return result;
+        }
+        catch (TokenMgrError tme) {
+          throw new ParseException(tme.getMessage());
+        }
+    }
+
+    private String discardEscapeChar(String input)
+    {
+        char[] caSource = input.toCharArray();
+        char[] caDest = new char[caSource.length];
+        int j = 0;
+        for (int i = 0; i < caSource.length; i++) {
+          if ((caSource[i] != '\\') || (i > 0 && caSource[i-1] == '\\')) {
+              caDest[j++]=caSource[i];
+          }
+        }
+        return new String(caDest, 0, j);
+    }
+
+    private String wildcardToRegex(String wildcard)
+    {
+        StringBuffer s = new StringBuffer(wildcard.length());
+        s.append(REGEX_PREFIX);
+        for (int i = 0, is = wildcard.length(); i < is; i++) {
+            char c = wildcard.charAt(i);
+            switch(c) {
+                case '*':
+                    s.append("\\w*");
+                    break;
+                case '?':
+                    s.append("\\w");
+                    break;
+                    // escape special regexp-characters
+                case '(': case ')': case '[': case ']': case '$':
+                case '^': case '.': case '{': case '}': case '|':
+                case '\\':
+                    s.append("\\");
+                    s.append(c);
+                    break;
+                default:
+                    s.append(c);
+                    break;
+            }
+        }
+        return(s.toString());
+    }
+}
+
+PARSER_END(NSISHelpSearchQueryParser)
+
+/* ***************** */
+/* Token Definitions */
+/* ***************** */
+
+<*> TOKEN : {
+  <#_NUM_CHAR:   ["0"-"9"] >
+// NOTE: keep this in sync with escape(String) above!
+| <#_ESCAPED_CHAR: "\\" [ "\\", "+", "-", "!", "(", ")", ":", "^",
+                          "[", "]", "\"", "{", "}", "~", "*", "?" ] >
+| <#_TERM_START_CHAR: ( ~[ " ", "\t", "\n", "\r", "+", "-", "!", "(", ")", ":", "^",
+                           "[", "]", "\"", "{", "}", "~", "*", "?" ]
+                       | <_ESCAPED_CHAR> ) >
+| <#_TERM_CHAR: ( <_TERM_START_CHAR> | <_ESCAPED_CHAR> | "-" | "+" ) >
+}
+
+<DEFAULT, RangeIn, RangeEx> SKIP : {
+    " "
+|   "\t"
+|   "\r"
+|   "\n"
+}
+
+<DEFAULT> TOKEN : {
+  <AND:       ("AND" | "&&") >
+| <OR:        ("OR" | "||") >
+| <NOT:       ("NOT" | "!") >
+| <PLUS:      "+" >
+| <MINUS:     "-" >
+| <LPAREN:    "(" >
+| <RPAREN:    ")" >
+| <COLON:     ":" >
+| <CARAT:     "^" > : Boost
+| <QUOTED:     "\"" (~["\""])+ "\"">
+| <TERM:      <_TERM_START_CHAR> (<_TERM_CHAR>)*  >
+| <FUZZY_SLOP:     "~" ( (<_NUM_CHAR>)+ ( "." (<_NUM_CHAR>)+ )? )? >
+| <WILDTERM:  <_TERM_START_CHAR>
+              (<_TERM_CHAR> | ( [ "*", "?" ] ))* >
+| <RANGEIN_START: "[" > : RangeIn
+| <RANGEEX_START: "{" > : RangeEx
+}
+
+<Boost> TOKEN : {
+<NUMBER:    (<_NUM_CHAR>)+ ( "." (<_NUM_CHAR>)+ )? > : DEFAULT
+}
+
+<RangeIn> TOKEN : {
+<RANGEIN_TO: "TO">
+| <RANGEIN_END: "]"> : DEFAULT
+| <RANGEIN_QUOTED: "\"" (~["\""])+ "\"">
+| <RANGEIN_GOOP: (~[ " ", "]" ])+ >
+}
+
+<RangeEx> TOKEN : {
+<RANGEEX_TO: "TO">
+| <RANGEEX_END: "}"> : DEFAULT
+| <RANGEEX_QUOTED: "\"" (~["\""])+ "\"">
+| <RANGEEX_GOOP: (~[ " ", "}" ])+ >
+}
+
+// *   Query  ::= ( Clause )*
+// *   Clause ::= ["+", "-"] [<TERM> ":"] ( <TERM> | "(" Query ")" )
+
+    void Conjunction() : {}
+    {
+        [<AND>|<OR>]
+    }
+
+    void Modifiers() : {}
+    {
+        [<PLUS>|<MINUS>|<NOT>]
+    }
+
+    void parseQuery(Collection<String> result) : {}
+    {
+        Modifiers() Clause(result)
+        (
+            Conjunction() Modifiers() Clause(result)
+        )*
+    }
+
+    void Clause(Collection<String> result) : {}
+    {
+        [LOOKAHEAD(2) <TERM> <COLON> ]
+        (Term(result)|<LPAREN> parseQuery(result) <RPAREN> (<CARAT> <NUMBER>)?)
+    }
+
+    void Term(Collection<String> result) : {
+        Token term, goop1, goop2;
+        boolean wildcard = false;
+    }
+    {
+        (
+            (
+             term=<TERM>
+             | term=<WILDTERM> { wildcard=true; }
+             | term=<NUMBER>
+             )
+             [ <FUZZY_SLOP> ]
+             [ <CARAT> <NUMBER> [ <FUZZY_SLOP> ] ]
+         {
+             String termImage=discardEscapeChar(term.image);
+             if (wildcard) {
+                 result.add(wildcardToRegex(termImage));
+             }
+             else {
+                 result.add(termImage);
+                 Reader reader = new StringReader(termImage);
+                 org.apache.lucene.analysis.TokenStream tStream = mAnalyzer.tokenStream(mField, reader);
+                 org.apache.lucene.analysis.Token tok;
+                 try {
+                     while (null != (tok = tStream.next())) {
+                         result.add(tok.termText());
+                     }
+                     reader.close();
+                 }
+                 catch (IOException ioe) {
+                 }
+             }
+         }
+         | ( <RANGEIN_START> ( goop1=<RANGEIN_GOOP>|goop1=<RANGEIN_QUOTED> )
+             [ <RANGEIN_TO> ] ( goop2=<RANGEIN_GOOP>|goop2=<RANGEIN_QUOTED> )
+             <RANGEIN_END> )
+             [ <CARAT> <NUMBER> ]
+            {
+                if (goop1.kind == RANGEIN_QUOTED) {
+                    goop1.image = goop1.image.substring(1, goop1.image.length()-1);
+                }
+                else {
+                    goop1.image = discardEscapeChar(goop1.image);
+                }
+                if (goop2.kind == RANGEIN_QUOTED) {
+                    goop2.image = goop2.image.substring(1, goop2.image.length()-1);
+                }
+                else {
+                    goop2.image = discardEscapeChar(goop2.image);
+                }
+                result.add(goop1.image);
+                result.add(goop2.image);
+            }
+         | ( <RANGEEX_START> ( goop1=<RANGEEX_GOOP>|goop1=<RANGEEX_QUOTED> )
+             [ <RANGEEX_TO> ] ( goop2=<RANGEEX_GOOP>|goop2=<RANGEEX_QUOTED> )
+             <RANGEEX_END> )
+             [ <CARAT> <NUMBER> ]
+            {
+                if (goop1.kind == RANGEEX_QUOTED) {
+                    goop1.image = goop1.image.substring(1, goop1.image.length()-1);
+                }
+                else {
+                    goop1.image = discardEscapeChar(goop1.image);
+                }
+                if (goop2.kind == RANGEEX_QUOTED) {
+                    goop2.image = goop2.image.substring(1, goop2.image.length()-1);
+                }
+                else {
+                    goop2.image = discardEscapeChar(goop2.image);
+                }
+                result.add(goop1.image);
+                result.add(goop2.image);
+            }
+        | term=<QUOTED>
+         [ <FUZZY_SLOP> ]
+         [ <CARAT> <NUMBER> ]
+         {
+            result.add(term.image.substring(1, term.image.length()-1));
+        }
+    )
+}

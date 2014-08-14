@@ -1,0 +1,528 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+  <title>EclipseNSIS - Editing NSIS Scripts</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="book.css" charset="ISO-8859-1" type="text/css">
+  <script type="text/javascript" language="javascript" src="help.js">
+  </script>
+  <script language="javascript" type="text/javascript" src="nsiscontrib.js"></script>
+  <script type="text/javascript" language="javascript" src="redirect.js">
+  </script>
+  <script type="text/javascript" language="javascript">
+<!--
+var current = 0;
+var foldingImages = new Array();
+foldingImages[0] = new Image();
+foldingImages[0].src = "images/folding1.gif";
+foldingImages[1] = new Image();
+foldingImages[1].src = "images/folding2.gif";
+
+var popupWin;
+
+function openPopup()
+{
+	var width = screen.width - 200;
+	var height = screen.height - 200;
+	popupWin = window.open('bigtest.html','exporthtml','resizable=yes,height='+height+',width='+width+',scrollbars=yes,menubar=no,toolbar=no,status=no,dependent=yes,screenX=100,screenY=100,left=100,top=100');
+}
+//-->
+</script></head>
+<body onLoad="checkHighlight();">
+<div id="main">
+<a href="configuration.html">Previous</a> | <a href="overview.html#contents">Contents</a> | <a href="compiling.html">Next</a>
+<hr>
+<h1>Editing NSIS Scripts</h1>
+<p>EclipseNSIS comes with an editor for working with NSIS scripts. By
+default, the editor is registered to work with files having the .nsi and .nsh
+extensions. The editor offers the following features:</p>
+<ol>
+<li><a href="#editing_commands">Editing Commands</a></li>
+<li><a href="#dragdrop">Drag &amp; Drop</a> </li>
+<li><a href="#rulers">Vertical and Overview Rulers</a></li>
+<li><a href="#menu">Menu and Toolbar</a></li>
+<li><a href="#outline">Code Outline</a></li>
+<li><a href="#code_folding">Code Folding</a></li>
+<li><a href="#tasktags">Task Tags</a></li>
+<li><a href="#integhelp">Integrated Help</a></li>
+</ol>
+<a name="editing_commands"></a><h2>Editing Commands</h2>
+<p>The editor includes the standard commands available with the Eclipse
+Workbench Text editor, including:</p>
+<ul>
+<li><a href="javascript: redirectEclipse('/org.eclipse.platform.doc.user/reference/ref-57.htm#pgfId-1007195');">Find/Replace</a></li>
+<li><a href="javascript: redirectEclipse('/org.eclipse.platform.doc.user/tips/platform_tips.html');">Incremental
+search (next and previous)</a></li>
+<li><a href="javascript: redirectEclipse('/org.eclipse.platform.doc.user/tips/platform_tips.html');">Shortcuts
+for manipulating lines</a></li>
+<li><a href="javascript: redirectEclipse('/org.eclipse.platform.doc.user/tips/platform_tips.html');">Quick
+diff</a></li>
+</ul>
+<p>The EclipseNSIS editor also offers additional editing commands. These can
+be accessed either from the <span style="font-style: italic;">Edit</span> menuitem in the main menu
+bar or by right-clicking in the editor to display the editor popup menu. Most
+commands also provide keyboard shortcuts. Click on the image below for help
+on a particular command.</p>
+<p style="text-align: center;"><img style="border: 0px solid ; width: 249px; height: 278px;" usemap="#editorpopupmenu" ismap="ismap" alt="Editor Popup Menu" src="images/editorpopupmenu.gif"></p>
+<a name="a_command_help"></a>
+<dl id="id_command_help">
+<dt>NSIS Command Help</dt>
+<dd>Provides contextual <a href="#detailedhelp">detailed hover help</a> for the NSIS keyword that was right-clicked upon. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+<strong>Shortcut:</strong> F3
+</dd>
+</dl>
+<a name="a_code_assist"></a>
+<dl id="id_code_assist">
+<dt>Code Assist</dt>
+<dd>Provides a scrollable list of available code completions when
+activated from a valid line of code in the EclipseNSIS editor.
+Completions include both NSIS keywords as well as code templates. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+<strong>Shortcut:</strong> Ctrl+Space
+<p style="text-align: center;"><img src="images/codecompletion.gif" style="border: medium none ; width: 405px; height: 224px;" alt="Code Assist"></p>
+</dd>
+</dl>
+<a name="a_insert_template"></a>
+<dl id="id_insert_template">
+<dt>Insert Template</dt>
+<dd>Provides a scrollable list of available code templates when activated
+from a valid line of code in the EclipseNSIS editor. When a template is
+inserted, the user is prompted to complete any unresolved template
+parameters. See <a href="templateprefs.html">Template Preferences</a>
+for more information about code templates. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+<strong>Shortcut:</strong> Ctrl+T
+<p style="text-align: center;"><img src="images/inserttemplate.gif" style="border: medium none ; width: 361px; height: 202px;" alt="Insert Template"></p>
+</dd>
+</dl>
+<a name="a_tabs_to_spaces"></a>
+<dl id="id_tabs_to_spaces">
+<dt>Convert Tabs to Spaces</dt>
+<dd>Replaces tab characters with spaces in the script. If text is
+selected, then only the selected text is operated on, otherwise all
+text is operated on. To set the width of a tab character in terms of
+spaces see the <a href="javascript:redirectEclipse('/org.eclipse.platform.doc.user/reference/ref-texteditorprefs.htm');">Text Editor
+Preference page</a>. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a name="a_toggle_comment"></a>
+<dl id="id_toggle_comment">
+<dt>Toggle Comment</dt>
+<dd>Uncomments the currently selected lines of code if all of them are
+commented and comments them otherwise. The single line comment character &quot;;&quot; is used to prefix lines to be commented. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+<strong>Shortcut:</strong> Ctrl+/</dd>
+</dl>
+<a name="a_block_comment"></a>
+<dl id="id_block_comment">
+<dt>Add/Remove Block Comment</dt>
+<dd>The Add Block Comment quickly converts a text selection in the EclipseNSIS editor into
+a block comment, i.e., delimited by the NSIS multiline comment markers &quot;/*&quot; and &quot;*/&quot;. Conversely, the Remove
+Block Comment command removes the block comment enclosing the cursor
+position. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+<strong>Shortcuts:</strong> Ctrl+Shift+/ (Add Block Comment) and
+Ctrl+Shift+\ (Remove Block Comment)</dd>
+</dl>
+<a name="a_insert_file_name"></a>
+<dl id="id_insert_file_name">
+<dt>Insert File Name</dt>
+<dd>Pops up a file selection dialog box. If
+a file is selected in this dialog box, the file's name is inserted in
+the code. This is a quick way to add <strong>File</strong> instructions
+to the NSIS script. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+<strong>Shortcut:</strong> Shift+F4</dd>
+</dl>
+<a name="a_insert_folder_name"></a>
+<dl id="id_insert_folder_name">
+<dt>Insert Folder Name</dt>
+<dd>Pops up a folder selection dialog box.
+If a folder is selected in this dialog box, the folder's name is
+inserted in the code. This is a quick way to add <strong>File</strong>
+instructions for folders to the NSIS script. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+<strong>Shortcut:</strong> Shift+F5</dd>
+</dl>
+<a name="a_insert_color"></a>
+<dl id="id_insert_color">
+<dt>Insert Color</dt>
+<dd>Pops up a color selection dialog box. If a
+color is selected in this dialog box, the color's RGB hex value is
+inserted in the code. This is a quick way to add NSIS commands which
+accept a color value, e.g. <strong>BGGradient</strong>, to the NSIS
+script. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+<strong>Shortcut:</strong> Shift+F6</dd>
+</dl>
+<a name="a_insert_regfile"></a>
+<dl id="id_insert_regfile">
+<dt>Insert Registration File</dt>
+<dd>Pops up a file selection dialog box to choose a Windows registration (.REG) file. If a registration file is selected, its contents are inserted into the
+current NSIS script in the form of WriteRegXXXX commands. A .REG file can be
+created by using the Export command in <a href="http://www.microsoft.com/technet/prodtechnol/windowsserver2003/library/DepKit/f7daf28e-e0ef-42e5-91e3-d4b152798c70.mspx">Regedit.exe</a>. Windows shell folder names (e.g., $WINDIR, $SYSDIR, etc) are automatically
+substituted in inserted
+entries.<br>
+<span style="font-weight: bold">Note: REG_MULTI_SZ values will not be inserted since they are not supported by NSIS.</span> <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+<strong>Shortcut:</strong> Shift+F7</dd>
+</dl>
+<a name="a_insert_regkey"></a>
+<dl id="id_insert_regkey">
+<dt>Insert Registry Key</dt>
+<dd>Pops up a dialog to select a Windows registry key. If a registry key is selected in this dialog, its contents are inserted into the
+current NSIS script in the form of WriteRegXXXX commands. Windows shell folder names (e.g., $WINDIR, $SYSDIR, etc) are automatically
+substituted in inserted
+entries.<br>
+<span style="font-weight: bold">Note: REG_MULTI_SZ values will not be inserted since they are not supported by NSIS.</span> <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+<strong>Shortcut:</strong> Shift+F8</dd>
+</dl>
+<a name="a_insert_regval"></a>
+<dl id="id_insert_regval">
+<dt>Insert Registry Value</dt>
+<dd>Pops up a dialog to select a Windows registry value. If a registry value is selected in this dialog, its contents are inserted into the
+current NSIS script in the form of a WriteRegXXXX command. Windows shell folder names (e.g., $WINDIR, $SYSDIR, etc) are automatically
+substituted in the inserted entry.<br>
+<span style="font-weight: bold">Note: REG_MULTI_SZ values will not be inserted since they are not supported by NSIS.</span> <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+<strong>Shortcut:</strong> Shift+F8</dd>
+</dl>
+<a name="dragdrop"></a>
+<h2>Drag and Drop</h2>
+<p>The EclipseNSIS Editor makes it easy to add files and folders to the NSIS script. Files and folders can be simply dragged from
+Windows Explorer or the Desktop and dropped to the desired location in the script. They will then be added to script using
+NSIS <a href="javascript:redirectNSISKeyword('File');">File</a> instructions. Registration files (.REG extension) are processed
+to extract the Registry keys and values, which are then added to the script using the appropriate
+<a href="javascript:redirectNSISSection('4.9.2');">NSIS registry instructions</a>. This behavior can be modified in the <a href="editorprefs.html?id=id_dropextfiles#a_dropextfiles">EclipseNSIS editor preference page</a>. </p>
+<a name="rulers"></a>
+<h2>Vertical and Overview Rulers</h2>
+<p>The vertical ruler is to the left of the editing area in the EclipseNSIS
+editor and is used to show text ranges and line-based annotations (e.g.,
+problems, bookmarks, tasks, etc.) adjacent to their text line.<br>
+The overview ruler is on the right hand side of the editing area, and is used
+to show annotations concerning the entire script. These annotations are
+shown relative to their position in the script and do not move as the user
+scrolls the script source. There usually is a corresponding annotation on
+the vertical ruler when that portion of the script is visible.</p>
+<p style="text-align: center;"><img alt="Vertical and Overview Rulers" src="images/editorrulers.gif" style="border: medium none ; width: 700px; height: 200px;"></p>
+<a name="menu"></a>
+<h2>Menu and Toolbar</h2>
+<p>The EclipseNSIS editor includes a menu on the main menubar as well as a
+toolbar which provide quick access to some EclipseNSIS-related commands.
+Click on the image below for help on a particular command.</p>
+<p style="text-align: center;"><img src="images/editormenu.gif" alt="Editor Menu" usemap="#editormenu" ismap="ismap" style="border: 0px solid ; width: 521px; height: 313px;"></p>
+<a name="a_compile"></a>
+<dl id="id_compile">
+<dt>Compile Script</dt>
+<dd>Compiles the NSIS script currently being edited. If the current file being edited is an NSIS header (*.nsh), the command is disabled unless the header has an <a href="scriptproperties.html#assochdrs">associated</a> NSIS script, in which case the associated NSIS script is compiled. This command is
+disabled when a script is being compiled, even if it is not the current
+script. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+<strong>Shortcut:</strong> Alt+C</dd>
+</dl>
+<a name="a_test"></a>
+<dl id="id_test">
+<dt>Test Installer</dt>
+<dd>Runs the installer generated when the NSIS script currently being
+edited was compiled. This command is only enabled if a valid installer exists. See the <a href="compiling.html">Compiling and Testing</a> section for more details. If the current file being edited is an NSIS header (*.nsh), the command is disabled unless the header has an <a href="scriptproperties.html#assochdrs">associated</a> NSIS script, in which case the installer generated for the associated NSIS script is run. This command is
+disabled when a script is being compiled, even if it is not the current
+script. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+<strong>Shortcut:</strong> Alt+T</dd>
+</dl>
+<a name="a_compile_test"></a>
+<dl id="id_compile_test">
+<dt>Compile Script and Test</dt>
+<dd>Compiles the NSIS script currently being edited and runs the
+installer generated if there were no errors. If the current file being edited is an NSIS header (*.nsh), the command is disabled unless the header has an <a href="scriptproperties.html#assochdrs">associated</a> NSIS script, in which case the associated NSIS script is compiled and tested. This command is disabled
+when a script is being compiled, even if it is not the current script.
+<a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+<strong>Shortcut:</strong> Alt+M</dd>
+</dl>
+<a name="a_cancel"></a>
+<dl id="id_cancel">
+<dt>Cancels Compilation</dt>
+<dd>Cancels NSIS script compilation. This command is enabled only when a
+script is being compiled, even if it is not the current script. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+<strong>Shortcut:</strong> Alt+N</dd>
+</dl>
+<a name="a_clearmarkers"></a>
+<dl id="id_clearmarkers">
+  <dt>Clear Problem Markers</dt>
+  <dd>Clears any problem markers generated the previous time this NSIS script was compiled. This command is enabled only when the script is not being compiled, and if it has existing problem markers. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a><br>
+    <strong>Shortcut:</strong> Alt+R</dd>
+</dl>
+<a name="a_exporthtml"></a>
+<dl id="id_exporthtml">
+<dt>Export as HTML</dt>
+<dd>Export the NSIS script as an HTML file. The exported HTML file includes the same syntax coloring as the script
+as well as line numbering and folding (if they have been enabled). The exported HTML file is compatible with Internet
+Explorer 5.x and above, Netscape 6.x and above as well as Mozilla Firefox 1.x and above. Click <a href="javascript: void(null);" onClick="openPopup();">here</a> for an example. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a name="a_preferences"></a>
+<dl id="id_preferences">
+<dt>Preferences</dt>
+<dd>Opens the Eclipse Workbench Preference Dialog, with the EclipseNSIS
+item pre-selected. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a name="a_wizard"></a>
+<dl id="id_wizard">
+<dt>EclipseNSIS Script Wizard</dt>
+<dd>Opens the EclipseNSIS Script Wizard dialog, which is a GUI for
+generating NSIS scripts. See the <a href="wizard.html">Script
+Wizard</a> section for more details. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a name="a_associated"></a>
+<dl id="id_associated">
+<dt>Open Associated NSIS File(s)</dt>
+<dd>Opens the NSIS file(s) <a href="scriptproperties.html#assochdrs">associated</a> with the current file. Depending upon whether the current file is an NSIS script (*.nsi)
+or an NSIS header (*.nsh), this will open the associated header files (<img src="images/associatedheaders.gif" style="border: none ; width: 16px; height: 16px;" alt="Open Associated NSIS Headers">) or the associated script file (<img src="images/associatedscript.gif" style="border: none ; width: 16px; height: 16px;" alt="Open Associated NSIS Script">), respectively. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a name="a_help"></a>
+<dl id="id_help">
+<dt>EclipseNSIS Help</dt>
+<dd>Opens the Eclipse Platform Help browser, with the EclipseNSIS section displayed. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a name="a_htmlhelp"></a>
+<dl id="id_htmlhelp">
+<dt>NSIS Help</dt>
+<dd>Displays NSIS help. This uses
+either the Eclipse Platform help browser or the <a href="#helpbrowser">EclipseNSIS integrated
+help browser</a>, depending upon the
+preference setting. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a name="a_about"></a>
+<dl id="id_about">
+<dt>About EclipseNSIS</dt>
+<dd>Opens the EclipseNSIS About dialog. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a name="a_update"></a>
+<dl id="id_update">
+<dt>NSIS Update</dt>
+<dd>Runs <a href="update.html#menuitem">NSIS Update</a>. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a name="outline"></a><h2>Code Outline</h2>
+<p>EclipseNSIS includes a code outline view for the currently-active NSIS
+script in the EclipseNSIS editor. The outline view lists structural elements
+in the NSIS script. The structural elements currently supported by the
+outline view are:</p>
+<ul>
+<li>!define</li>
+<li>!if</li>
+<li>!ifdef</li>
+<li>!ifndef</li>
+<li>!ifmacrodef</li>
+<li>!ifnmacrodef</li>
+<li>!include</li>
+<li>!macro</li>
+<li>Function</li>
+<li>Section</li>
+<li>SubSection/SectionGroup</li>
+<li>Page</li>
+<li>PageEx</li>
+<li>Var</li>
+</ul>
+<p style="text-align: center;"><img src="images/outline.gif" alt="Code Outline" border="0" usemap="#codeoutline" ismap="ismap" style="border: medium none ; width: 329px; height: 386px;"></p>
+<a name="a_expand_all2"></a>
+<dl id="id_expand_all2">
+<dt>Expand All</dt>
+<dd>Expand all code outline elements.</dd>
+</dl>
+<a name="a_collapse_all2"></a>
+<dl id="id_collapse_all2">
+<dt>Collapse All</dt>
+<dd>Collapse all code outline elements.</dd>
+</dl>
+<a name="a_filter"></a>
+<dl id="id_filter">
+<dt>Filter</dt>
+<dd>Filter code outline elements. This opens a dialog which can be used to specify code outline elements which should be omitted from the outline display.</dd>
+<p style="text-align: center;"><img src="images/filterdlg.gif" alt="Filter" style="border: medium none ; width: 300px; height: 443px;"></p>
+</dl>
+<a name="code_folding"></a><h2>Code Folding</h2>
+<p>The EclipseNSIS editor supports folding of certain types of code regions. The code regions supported
+are any NSIS keywords which are multi-line in nature, e.g., Function, Section, !macro, etc. Multi-line
+comments are also supported for code folding. Click on the image below for a preview of how folding works
+in the EclipseNSIS editor.</p>
+<div id="div_folding">
+<p style="text-align: center;"><img name="img_folding" alt="Code Folding" src="images/folding1.gif" ismap="ismap" style="border: medium none ; width: 540px; height: 352px;" usemap="#folding1"></p>
+<p>Code folding functions are also available on the <a href="#rulers">vertical ruler</a> context menu and as keyboard shortcuts.</p>
+<p style="text-align: center;"><img src="images/foldingmenu.gif" alt="Folding Context Menu" usemap="#foldingmenu" ismap="ismap" style="border: 0px solid ; width: 452px; height: 57px;"></p>
+<a name="a_toggle_folding"></a>
+<dl id="id_toggle_folding">
+<dt>Toggle Folding</dt>
+<dd>Turn folding on or off in the current NSIS editor.<br>
+<strong>Shortcut:</strong> Ctrl+NumPad /</dd>
+</dl>
+<a name="a_expand_all"></a>
+<dl id="id_expand_all">
+<dt>Expand All</dt>
+<dd>Expand all folded code regions in the current NSIS editor.<br>
+<strong>Shortcut:</strong> Ctrl+NumPad *</dd>
+</dl>
+<dl>
+<dt>Expand</dt>
+<dd>Expand the folded code region at the caret position in the current NSIS editor.<br>
+<strong>Shortcut:</strong> Ctrl+NumPad +</dd>
+</dl>
+<dl>
+<dt>Collapse</dt>
+<dd>Collapse the folded code region at the caret position in the current NSIS editor.<br>
+<strong>Shortcut:</strong> Ctrl+NumPad -</dd>
+</dl>
+<a name="a_collapse_all"></a>
+<dl id="id_collapse_all">
+<dt>Collapse All</dt>
+<dd>Collapse all expanded code regions in the current NSIS editor.<br>
+<strong>Shortcut:</strong> Ctrl+Shift+NumPad /</dd>
+</dl>
+<script type="text/javascript" language="javascript">
+<!--
+if(ie) {
+document.write("<map name='folding1'><area id='folding' nohref='true' OnClick='current = toggleImage(\"img_folding\",current,foldingImages); if(this.blur) this.blur();' onMouseOver='changeCursor(\"div_folding\",\"hand\");' onMouseOut='changeCursor(\"div_folding\",\"auto\");' shape='RECT' alt='Folding' coords='19,113, 28,122'></map>");
+}
+else {
+document.write("<map name='folding1'><area id='folding' href='javascript: current = toggleImage(\"img_folding\",current,foldingImages); if(this.blur) this.blur();' shape='RECT' alt='Folding' coords='19,113, 28,122'></map>");
+}
+//-->
+</script>
+</div>
+<a name="tasktags"></a><h2>Task Tags</h2>
+<p>When a NSIS script is saved in the EclipseNSIS editor, it is automatically scanned for
+any task tags in commented text. Whereever a
+task tag is encountered, the EclipseNSIS editor automatically generates
+an Eclipse Workbench task. These tasks are shown in the editor
+using markers in the <a href="#rulers">vertical and overview rulers</a>, and can also be viewed in the Eclipse Workbench <a href="javascript:redirectEclipse('/org.eclipse.platform.doc.user/concepts/ctskview.htm');">Tasks view</a>.
+The task tags can be configured using the <a href="tasktagprefs.html">Task Tags preference page</a>.</p>
+<a name="integhelp"></a><h2>Integrated Help</h2>
+<p>EclipseNSIS also provides integrated, context sensitive help while working with NSIS scripts. This is available in two forms- <a href="#hoverhelp">hover help</a> and the <a href="#helpbrowser">NSIS Users Manual</a>. </p>
+<br>
+<dl>
+<a name="hoverhelp"></a>
+<dt>Hover Help</dt>
+<dd><p>Hover help is context-sensitive help which is provided in-place in the editor using small pop-up windows. It is available in two flavors:</p>
+  <dl>
+  <a name="quickhelp"></a><dt>Quick Hover Help</dt>
+  <dd>
+    <p>When the mouse hovers over an NSIS keyword, quick hover help for that keyword is displayed. Pressing the <strong>F2</strong> key displays the keyword help in the <a href="#helpbrowser">help browser</a>, and pressing the <strong>F3</strong> key provides <a href="#detailedhelp">detailed hover help</a>.</p>
+    <p style="text-align: center;"><img style="border: 0px solid ; width: 456px; height: 170px;" alt="Hover Help" src="images/hoverhelp.gif"></p></dd>
+<a name="detailedhelp"></a><dt>Detailed Hover Help</dt>
+<dd>
+  <p>Pressing the <strong>F3</strong> key either in the <a href="#quickhelp">quick hover help</a> or when the EclipseNSIS editor caret is in a keyword, displays detailed hover help for the keyword.  Pressing the <strong>F2</strong> key displays the keyword help in the <a href="#helpbrowser">NSIS Users Manual </a>.</p>
+  <p style="text-align: center;"><img style="border: 0px solid ; width: 527px; height: 261px;" alt="Hover Help" src="images/stickyhelp.gif"></p></dd>
+</dl>
+</dd>
+<a name="helpbrowser"></a>
+<dt>NSIS Users Manual </dt>
+<dd>
+  <p>EclipseNSIS provides access to detailed NSIS help in the form of the NSIS Users Manual. This can be accessed in two ways:</p>
+<dl>
+<dt>Eclipse Platform Help Browser</dt><dd>Open the help browser and then navigate to <span style="font-weight: normal; font-style: italic;">EclipseNSIS User Guide&rarr;NSIS Users Manual.</span>
+<p style="text-align: center;"><img src="images/platformnsishelp.gif" alt="Eclipse Platform Help Browser" style="border: 0px solid; width: 766px; height: 470px;"></p>
+</dd>
+<dt>EclipseNSIS NSIS Users Manual Browser
+</dt>
+<dd>Open the Eclipse Workbench Show View dialog and navigate to the
+<span style="font-weight: normal; font-style: italic;">EclipseNSIS&rarr;NSIS Users Manual </span><span style="font-weight: normal;">view</span>. This will open the NSIS Users Manual browser.
+<p style="text-align: center;"><img src="images/nsishelp.gif" alt="EclipseNSIS NSIS Users Manual" usemap="#nsishelp" style="border: 0px solid; width: 786px; height: 394px;"></p>
+</dd>
+<a name="a_showhidenav"></a>
+<dl id="id_showhidenav">
+<dt>Show/Hide Navigation Pane </dt>
+<dd>Show/Hide the NSIS Users Manual <a href="#a_navpane" onClick="highlightDef('id_navpane');">navigation pane</a>..</dd>
+</dl>
+<a name="a_sync"></a>
+<dl id="id_sync">
+<dt>Synchronize Contents </dt>
+<dd>Keep the Contents explorer synchronized with the <a href="#a_browserpane" onClick="highlightDef('id_browserpane');">browser pane</a>.</dd>
+</dl>
+<a name="a_browserbuttons"></a>
+<dl id="id_browserbuttons">
+<dt>Standard Browser Buttons </dt>
+<dd>Standard browser buttons for navigating the NSIS Users Manual browser. The &quot;Home&quot; button returns the <a href="#a_browserpane" onClick="highlightDef('id_browserpane');">browser pane</a> to the NSIS Users Manual contents page. </dd>
+</dl>
+<a name="a_navpane"></a>
+<dl id="id_navpane">
+<dt>Navigation Pane </dt>
+<dd>The navigation pane provides tools to quickly explore or find topics in the NSIS Users Manual. It includes a contents explorer, an alphabetized index and a high performance search engine powered by <a href="http://lucene.apache.org">Apache Lucene</a>. </dd>
+</dl>
+<a name="a_browserpane"></a>
+<dl id="id_browserpane">
+<dt>Browser Pane </dt>
+<dd>The browser pane displays the NSIS Users Manual content. </dd>
+</dl>
+</dl>
+<p> Additionally, detailed help on NSIS keywords can be directly accessed by either:</p>
+<ol type="a">
+<li>Clicking on a keyword in the EclipseNSIS editor and pressing the <strong>F2</strong> key, or</li>
+<li>Pressing the <strong>F2</strong> key in either the <a href="#quickhelp">quick</a> or <a href="#detailedhelp">detailed</a> <a href="#hoverhelp">hover help</a> popups.</li>
+</ol>
+<p>The preferred browser for displaying detailed help can be configured in the <a href="nsisprefs.html?id=id_help#a_help">EclipseNSIS preferences page</a>. Once this has been done,
+    pressing the <strong>F2</strong> key or selecting the <a href="#a_htmlhelp" onClick="highlightDef('id_htmlhelp');">NSIS Help menu or toolbar item</a> will display detailed help in the chosen browser- i.e., either the
+    Eclipse Workbench help or the EclipseNSIS integrated browser.</p>
+</dd>
+</dl>
+<p style="color: red; font-weight: bold">Note: Detailed Hover Help and Help Browser are only available if the NSIS Users Manual help file (NSIS.chm) is installed in the NSIS home directory.</p>
+<hr>
+<a href="configuration.html">Previous</a> | <a href="overview.html#contents">Contents</a> | <a href="compiling.html">Next</a> <br>
+<br>
+<p><strong><small>Copyright &copy; 2004-2010 Sunil Kamath
+(IcemanK).</small></strong></p>
+<map name="editorpopupmenu">
+  <area id="insert_regval" shape="rect" href="#a_insert_regval" alt="Insert Registry Value" onClick="highlightDef('id_insert_regval');" coords="4,254,227,271">
+  <area id="insert_regkey" shape="rect" href="#a_insert_regkey" alt="Insert Registry Key" onClick="highlightDef('id_insert_regkey');" coords="4,234,227,251">
+  <area id="insert_regfile" shape="rect" href="#a_insert_regfile" alt="Insert Registration File" onClick="highlightDef('id_insert_regfile');" coords="4,214,227,231">
+  <area id="insert_color" shape="rect" href="#a_insert_color" alt="Insert Color" onClick="highlightDef('id_insert_color');" coords="4,193,227,210">
+  <area id="insert_folder_name" shape="rect" href="#a_insert_folder_name" alt="Insert Folder Name" onClick="highlightDef('id_insert_folder_name');" coords="4,173,227,190">
+  <area id="insert_file_name" shape="rect" href="#a_insert_file_name" alt="Insert File Name" onClick="highlightDef('id_insert_file_name');" coords="4,153,227,170">
+  <area id="block_comment" shape="rect" href="#a_block_comment" alt="Block Comment" onClick="highlightDef('id_block_comment');" coords="4,107,227,142">
+  <area id="toggle_comment" shape="rect" href="#a_toggle_comment" alt="Toggle Comment" onClick="highlightDef('id_toggle_comment');" coords="4,89,227,106">
+  <area id="tabs_to_spaces" shape="rect" href="#a_tabs_to_spaces" alt="Convert Tabs to Spaces" onClick="highlightDef('id_tabs_to_spaces');" coords="4,71,227,88">
+  <area id="insert_template" shape="rect" href="#a_insert_template" alt="Insert Template" onClick="highlightDef('id_insert_template');" coords="4,45,227,62">
+  <area id="code_assist" shape="rect" href="#a_code_assist" alt="Code Assist" onClick="highlightDef('id_code_assist');" coords="4,27,227,44">
+  <area id="command_help" shape="rect" href="#a_command_help" alt="NSIS Command Help" onClick="highlightDef('id_command_help');" coords="4,9,227,26">
+</map>
+<map name="editormenu">
+  <area id="htmlhelp" shape="rect" href="#a_htmlhelp" alt="NSIS Help" onClick="highlightDef('id_htmlhelp');" coords="457,25,479,49">
+  <area id="help" shape="rect" href="#a_help" alt="EclipseNSIS Help" onClick="highlightDef('id_help');" coords="434,25,456,49">
+  <area id="update" shape="rect" href="#a_update" alt="NSIS Update" onClick="highlightDef('id_update');" coords="488,25,510,49">
+  <area id="wizard" shape="rect" href="#a_wizard" alt="NSIS Script Wizard" onClick="highlightDef('id_wizard');" coords="411,25,433,49">
+  <area id="preferences" shape="rect" href="#a_preferences" alt="EclipseNSIS Preferences" onClick="highlightDef('id_preferences');" coords="388,25,410,49">
+  <area id="exporthtml" shape="rect" href="#a_exporthtml" alt="Export as HTML" onClick="highlightDef('id_exporthtml');" coords="365,25,387,49">
+  <area id="cancel" shape="rect" href="#a_cancel" alt="Cancel Script Compilation" onClick="highlightDef('id_cancel');" coords="342,25,364,49">
+  <area id="compile_test" shape="rect" href="#a_compile_test" alt="Compile Script and Test" onClick="highlightDef('id_compile_test');" coords="319,25,341,49">
+  <area id="test" shape="rect" href="#a_test" alt="Test Installer" onClick="highlightDef('id_test');" coords="296,25,318,49">
+  <area id="compile" shape="rect" href="#a_compile" alt="Compile Script" onClick="highlightDef('id_compile');" coords="273,25,295,49">
+  <area id="compile2" shape="rect" href="#a_compile" alt="Compile Script" onClick="highlightDef('id_compile');" coords="4,23,245,44">
+  <area id="test2" shape="rect" href="#a_test" alt="Test Installer" onClick="highlightDef('id_test');" coords="4,43,245,64">
+  <area id="compile_test2" shape="rect" href="#a_compile_test" alt="Compile Script and Test" onClick="highlightDef('id_compile_test');" coords="4,63,245,84">
+  <area id="cancel2" shape="rect" href="#a_cancel" alt="Cancel Script Compilation" onClick="highlightDef('id_cancel');" coords="4,83,245,104">
+  <area id="clearmarkers" shape="rect" href="#a_clearmarkers" alt="Clear Problem Markers" onClick="highlightDef('id_clearmarkers');" coords="4,103,245,124">
+  <area id="exporthtml2" shape="rect" href="#a_exporthtml" alt="Export as HTML" onClick="highlightDef('id_exporthtml');" coords="4,130,245,151">
+  <area id="preferences2" shape="rect" href="#a_preferences" alt="EclipseNSIS Preferences" onClick="highlightDef('id_preferences');" coords="4,150,245,171">
+  <area id="wizard2" shape="rect" href="#a_wizard" alt="NSIS Script Wizard" onClick="highlightDef('id_wizard');" coords="4,170,245,191">
+  <area id="associated2" shape="rect" href="#a_associated" alt="Open Associated NSIS File(s)" onClick="highlightDef('id_associated');" coords="4,190,245,211">
+  <area id="help2" shape="rect" href="#a_help" alt="EclipseNSIS Help" onClick="highlightDef('id_help');" coords="4,219,245,239">
+  <area id="htmlhelp2" shape="rect" href="#a_htmlhelp" alt="NSIS Help" onClick="highlightDef('id_htmlhelp');" coords="4,238,245,258">
+  <area id="about" shape="rect" href="#a_about" alt="About EclipseNSIS" onClick="highlightDef('id_about');" coords="4,257,245,278">
+  <area id="update2" shape="rect" href="#a_update" alt="NSIS Update" onClick="highlightDef('id_update');" coords="4,285,245,306">
+</map>
+<map name="foldingmenu">
+  <area id="collapse_all" shape="rect" href="#a_collapse_all" alt="Collapse All" onClick="highlightDef('id_collapse_all');" coords="222,38,434,54">
+  <area id="expand_all" shape="rect" href="#a_expand_all" alt="Expand All" onClick="highlightDef('id_expand_all');" coords="222,21,412,37">
+  <area id="toggle_folding" shape="rect" href="#a_toggle_folding" alt="Toggle Folding" onClick="highlightDef('id_toggle_folding');" coords="222,4,412,20">
+</map>
+<map name="nsishelp">
+	<area id="showhidenav" shape="rect" coords="3,31,25,53" href="#a_showhidenav" alt="Show/Hide Navigation Pane" onClick="highlightDef('id_showhidenav');">
+	<area id="sync" shape="rect" coords="26,31,48,53" href="#a_sync" alt="Keep Contents Synchronized with Browser" onClick="highlightDef('id_sync');">
+	<area id="browserbuttons" shape="rect" coords="54,31,180,53" href="#a_browserbuttons" alt="Standard Browser Buttons" onClick="highlightDef('id_browserbuttons');">
+	<area id="navpane" shape="rect" coords="3,59,242,366" href="#a_navpane" alt="Navigation Pane" onClick="highlightDef('id_navpane');">
+	<area id="browserpane" shape="rect" coords="247,59,782,366" href="#a_browserpane" alt="Browser Pane" onClick="highlightDef('id_browserpane');">
+</map>
+<map name="codeoutline">
+	<area id="expand_all2" shape="rect" coords="198,4,215,21" href="#a_expand_all2" alt="Expand All Outline Elements" onClick="highlightDef('id_expand_all2');">
+	<area id="collapse_all2" shape="rect" coords="219,4,236,21" href="#a_collapse_all2" alt="Collapse All Outline Elements" onClick="highlightDef('id_collapse_all2');">
+	<area id="filter" shape="rect" coords="251,4,268,21" href="#a_filter" alt="Filter Outline Elements" onClick="highlightDef('id_filter');">
+</map>
+</div>
+
+</body></html>

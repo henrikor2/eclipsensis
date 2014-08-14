@@ -1,0 +1,1659 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+###############################################################################
+# Copyright (c) 2006-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+#     Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+<commands>
+  <version name="2.45">
+    <add>
+      <command name="!delfile" category="conditional.compilation.category" scope="any">
+        <param name="/nonfatal" type="static" optional="true"/>
+        <param name="file" type="pattern" acceptVar="false" 
+        	errorMessage="local.file.wildcard.param.error"
+        	regexp="([a-z]:)?\\?(((\.?[a-z0-9\$%\'`\-@\{\}~\!#\(\)\&amp;_\^\x20\+\,\=\[\]])+|\.{1,2}+)\\)*(\.?[a-z0-9\*\?\$%\'`\-@\{\}~\!#\(\)\&amp;_\^\x20\+\,\=\[\]])+"/>
+      </command>
+    </add>
+  </version>
+  <version name="2.42">
+    <add>
+      <command name="!searchreplace" category="conditional.compilation.category" scope="any">
+        <param name="/ignorecase" type="static" optional="true"/>
+        <param name="symbol_out" tooltip="symbol_out" type="string" acceptVar="false"/>
+        <param name="source_string" tooltip="source string" type="string" acceptVar="false"/>
+        <param name="searchfor" tooltip="searchfor" type="string" acceptVar="false"/>
+        <param name="replacewith" tooltip="replacewith" type="string" acceptVar="false"/>
+      </command>
+    </add>
+  </version>
+  <version name="2.39">
+    <add>
+      <command name="!define" category="conditional.compilation.category" scope="any">
+        <param type="radio">
+          <param type="group">
+            <param type="radio" optional="true" depends="2">
+              <param name="/date" type="static"/>
+              <param name="/utcdate" type="static"/>
+            </param>
+            <param name="gflag" type="string"/>
+            <param name="value" type="string" allowBlank="true" optional="true"/>
+          </param>
+          <param type="group">
+            <param name="/file" type="static"/>
+            <param name="gflag" type="string"/>
+	        <param name="filename.txt" type="localfile" acceptVar="false">
+	          <filter name="txt.files.filter.name" value="*.txt"/>
+	          <filter name="all.files.filter.name" value="*.*"/>
+	        </param>
+          </param>
+        </param>
+      </command>
+      <command name="!searchparse" category="conditional.compilation.category" scope="any">
+        <param name="/ignorecase" type="static" optional="true"/>
+        <param name="/noerrors" type="static" optional="true"/>
+        <param type="radio">
+          <param name="/file" tooltip="file" prefix="/file " type="localfile" acceptVar="false"/>
+          <param name="source_string" tooltip="source string" type="string" acceptVar="false"/>
+        </param>
+        <param name="substring_start" type="string" acceptVar="false"/>
+        <param type="repeatable" label="output.symbol.repeatable.label">
+          <param type="group">
+            <param name="OUTPUTSYMBOL" type="string" acceptVar="false"/>
+            <param name="substring" type="string" acceptVar="false" optional="true"/>
+          </param>
+        </param>
+      </command>
+    </add>
+  </version>
+  <version name="2.31">
+    <add>
+      <command name="SetRegView" category="misc.instructions.category" scope="section,function,if">
+        <param type="choice" default="0">
+          <choice value="32"/>
+          <choice value="64"/>
+          <choice value="lastused"/>
+        </param>
+      </command>
+    </add>
+  </version>
+  <version name="2.26">
+    <add>
+      <command name="GetDLLVersionLocal" category="general.purpose.instructions.category" scope="section,function,if">
+        <param name="filename" type="localfile" acceptVar="false">
+          <filter name="dll.files.filter.name" value="*.dll"/>
+          <filter name="vxd.files.filter.name" value="*.vxd"/>
+          <filter name="all.files.filter.name" value="*.*"/>
+        </param>
+        <param name="user_var(high dword output)" type="var"/>
+        <param name="user_var(low dword output)" type="var"/>
+      </command>
+      <command name="SetRegView" category="misc.instructions.category" scope="section,function,if">
+        <param type="choice" default="0">
+          <choice value="32"/>
+          <choice value="64"/>
+        </param>
+      </command>
+    </add>
+  </version>
+  <version name="2.25">
+    <add>
+      <command name="!define" category="conditional.compilation.category" scope="any">
+        <param type="radio">
+          <param type="group">
+            <param type="radio" optional="true" depends="2">
+              <param name="/date" type="static"/>
+              <param name="/utcdate" type="static"/>
+            </param>
+            <param name="gflag" type="string"/>
+            <param name="value" type="string" allowBlank="true" optional="true"/>
+          </param>
+          <param type="group">
+            <param name="/math" type="static"/>
+            <param name="gflag" type="string"/>
+            <param name="val1" type="number" acceptVar="false"/>
+            <param name="OP" type="choice">
+              <choice value="+"/>
+              <choice value="-"/>
+              <choice value="*"/>
+              <choice value="&amp;"/>
+              <choice value="|"/>
+              <choice value="^"/>
+              <choice value="/"/>
+              <choice value="%"/>
+            </param>
+            <param name="val2" type="number" acceptVar="false"/>
+          </param>
+        </param>
+      </command>
+    </add>
+  </version>
+  <version name="2.22">
+    <add>
+      <command name="RequestExecutionLevel" category="general.attributes.category" scope="global,if">
+        <param type="choice" default="0">
+          <choice value="none"/>
+          <choice value="user"/>
+          <choice value="highest"/>
+          <choice value="admin"/>
+        </param>
+      </command>
+    </add>
+  </version>
+  <version name="2.21">
+    <add>
+      <command name="RequestExecutionLevel" category="general.attributes.category" scope="global,if">
+        <param type="choice" default="0">
+          <choice value="none"/>
+          <choice value="user"/>
+          <choice value="admin"/>
+        </param>
+      </command>
+    </add>
+  </version>
+  <version name="2.16">
+    <add>
+      <command name="!define" category="conditional.compilation.category" scope="any">
+        <param type="radio">
+          <param type="group">
+            <param type="radio" optional="true" depends="2">
+              <param name="/date" type="static"/>
+              <param name="/utcdate" type="static"/>
+            </param>
+            <param name="gflag" type="string"/>
+            <param name="value" type="string" allowBlank="true" optional="true"/>
+          </param>
+          <param type="group">
+            <param name="/math" type="static"/>
+            <param name="gflag" type="string"/>
+            <param name="val1" type="number" acceptVar="false"/>
+            <param name="OP" type="choice">
+              <choice value="+"/>
+              <choice value="-"/>
+              <choice value="*"/>
+              <choice value="/"/>
+              <choice value="%"/>
+            </param>
+            <param name="val2" type="number" acceptVar="false"/>
+          </param>
+        </param>
+      </command>
+    </add>
+  </version>
+  <version name="2.15">
+    <add>
+      <command name="!define" category="conditional.compilation.category" scope="any">
+        <param type="radio">
+          <param type="group">
+            <param name="/date" type="static" optional="true" depends="2"/>
+            <param name="gflag" type="string"/>
+            <param name="value" type="string" allowBlank="true" optional="true"/>
+          </param>
+          <param type="group">
+            <param name="/math" type="static"/>
+            <param name="gflag" type="string"/>
+            <param name="val1" type="number" acceptVar="false"/>
+            <param name="OP" type="choice">
+              <choice value="+"/>
+              <choice value="-"/>
+              <choice value="*"/>
+              <choice value="/"/>
+              <choice value="%"/>
+            </param>
+            <param name="val2" type="number" acceptVar="false"/>
+          </param>
+        </param>
+      </command>
+      <command name="!else" category="conditional.compilation.category" scope="if">
+        <param optional="true" type="subcommand">
+          <subcommand name="if" command="!if"/>
+          <subcommand name="ifdef" command="!ifdef"/>
+          <subcommand name="ifndef" command="!ifndef"/>
+          <subcommand name="ifmacrodef" command="!ifmacrodef"/>
+          <subcommand name="ifmacrondef" command="!ifmacrondef"/>
+        </param>
+      </command>
+      <command name="!if" category="conditional.compilation.category" terminator="!endif" scope="any">
+        <param name="not" value="!" type="static" optional="true"/>
+        <param name="value" type="number" acceptVar="false"/>
+        <param type="group" optional="true">
+          <param name="op" type="choice">
+            <choice display="equal.to.label" value="=="/>
+            <choice display="not.equal.to.label" value="!="/>
+            <choice display="less.than.or.equal.label" value="&lt;="/>
+            <choice display="less.than.label" value="&lt;"/>
+            <choice display="greater.than.label" value="&gt;"/>
+            <choice display="greater.than.or.equal.label" value="&gt;="/>
+            <choice display="and.label" value="&amp;&amp;"/>
+            <choice display="or.label" value="||"/>
+          </param>
+          <param name="value2" type="number" acceptVar="false"/>
+        </param>
+      </command>
+    </add>
+  </version>
+  <version name="2.13">
+    <add>
+      <command name="StrCmpS" category="flow.control.instructions.category" scope="section,function,if">
+        <param name="str1" type="string" allowBlank="true"/>
+        <param name="str2" type="string" allowBlank="true"/>
+        <param name="jump_if_equal" type="label"/>
+        <param name="jump_if_not_equal" type="label" optional="true"/>
+      </command>
+    </add>
+  </version>
+  <version name="2.12">
+    <add>
+      <command name="!include" category="compiler.utility.commands.category" scope="any">
+        <param name="/NONFATAL" type="static" optional="true"/>
+        <param name="file" type="localfile" acceptVar="false">
+          <filter name="nsh.files.filter.name" value="*.nsh"/>
+          <filter name="all.files.filter.name" value="*.*"/>
+        </param>
+      </command>
+    </add>
+  </version>
+  <version name="2.11">
+    <add>
+      <command name="!appendfile" category="compiler.utility.commands.category" scope="any">
+        <param name="file" type="localfile" acceptVar="false"/>
+        <param name="text" type="string" allowBlank="true"/>
+      </command>
+      <command name="!delfile" category="compiler.utility.commands.category" scope="any">
+        <param name="file" type="pattern" acceptVar="false" 
+        	errorMessage="local.file.wildcard.param.error"
+        	regexp="([a-z]:)?\\?(((\.?[a-z0-9\$%\'`\-@\{\}~\!#\(\)\&amp;_\^\x20\+\,\=\[\]])+|\.{1,2}+)\\)*(\.?[a-z0-9\$%\'`\-@\{\}~\!#\(\)\&amp;_\^\x20\+\,\=\[\]])+"/>
+      </command>
+      <command name="!tempfile" category="compiler.utility.commands.category" scope="any">
+        <param name="symbol" type="string" acceptVar="false"/>
+      </command>
+    </add>
+  </version>
+  <version name="2.09">
+    <add>
+      <command name="Var" category="user.variables.category" scope="any">
+        <param name="/GLOBAL" type="static" optional="true"/>
+        <param name="var_name" type="var.string"/>
+      </command>
+    </add>
+  </version>
+  <version name="2.07">
+    <add>
+      <command name="SetCompressor" category="compiler.flags.category" scope="global,if">
+        <param name="/SOLID" type="static" optional="true"/>
+        <param name="/FINAL" type="static" optional="true"/>
+        <param type="choice" default="0">
+          <choice value="zlib"/>
+          <choice value="bzip2"/>
+          <choice value="lzma"/>
+        </param>
+      </command>
+    </add>
+  </version>
+  <version name="2.05">
+    <add>
+      <command name="SectionGroup" category="section.commands.category" terminator="SectionGroupEnd" scope="global,sectiongroup,if">
+        <param name="/e" type="static" optional="true"/>
+        <param name="section_group_name" type="string"/>
+        <param name="index_output" type="string" optional="true"/>
+      </command>
+    </add>
+    <remove>
+      <command name="SubSection"/>
+    </remove>
+  </version>
+  <version name="2.03">
+    <add>
+      <command name="!define" category="conditional.compilation.category" scope="any">
+        <param name="/date" type="static" optional="true" depends="2"/>
+        <param name="gflag" type="string"/>
+        <param name="value" type="string" allowBlank="true" optional="true"/>
+      </command>
+      <command name="File" category="basic.instructions.category" scope="section,function,if">
+        <param name="/nonfatal" type="static" optional="true"/>
+        <param name="/a" type="static" optional="true"/>
+        <param type="radio">
+          <param type="group">
+            <param name="/r" type="static" optional="true"/>
+            <param type="repeatable" label="files.repeatable.label">
+              <param type="group">
+                <param name="/x" type="static" optional="true"/>
+                <param name="file|wildcard" acceptVar="false" type="localpath">
+                  <filter name="all.files.filter.name" value="*.*"/>
+                </param>
+              </param>
+            </param>
+          </param>
+          <param type="group">
+            <param name="/oname" tooltip="file.dat" prefix="/oname=" type="filename"/>
+            <param name="infile.dat" type="localfile" acceptVar="false"/>
+          </param>
+        </param>
+      </command>
+      <command name="ReserveFile" category="basic.instructions.category" scope="global,if">
+        <param name="/nonfatal" type="static" optional="true"/>
+        <param name="/r" type="static" optional="true"/>
+          <param type="repeatable" label="files.repeatable.label">
+            <param type="group">
+              <param name="/x" type="static" optional="true"/>
+              <param name="file" type="localfile" acceptVar="false">
+                <filter name="all.files.filter.name" value="*.*"/>
+              </param>
+            </param>
+          </param>
+      </command>
+    </add>
+  </version>
+  <version name="2.02">
+    <add>
+      <command name="GetErrorLevel" category="misc.instructions.category" scope="section,function,if">
+        <param name="user_var(error_level_output)" type="var"/>
+      </command>
+      <command name="IntOp" category="integer.support.category" scope="section,function,if">
+        <param name="user_var(output)" type="var"/>
+        <param name="value1" type="number"/>
+        <param name="OP" type="choice">
+          <choice value="+"/>
+          <choice value="-"/>
+          <choice value="*"/>
+          <choice value="/"/>
+          <choice value="%"/>
+          <choice value="|"/>
+          <choice value="&amp;"/>
+          <choice value="^"/>
+          <choice value="&gt;&gt;"/>
+          <choice value="&lt;&lt;"/>
+          <choice value="~"/>
+          <choice value="!"/>
+          <choice value="||"/>
+          <choice value="&amp;&amp;"/>
+        </param>
+        <param name="value2" type="number"/>
+      </command>
+      <command name="SetErrorLevel" category="misc.instructions.category" scope="section,function,if">
+        <param name="error_level" type="number"/>
+      </command>
+    </add>
+  </version>
+  <version name="2.01">
+    <add>
+      <command name="!execute" category="compiler.utility.commands.category" scope="any">
+        <param name="command" type="string"/>
+      </command>
+      <command name="BgFont" category="general.attributes.category" scope="global,if">
+        <param name="font_face" type="string" optional="true"/>
+        <param name="height" type="number" domain="positive" optional="true" depends="0"/>
+        <param name="weight" type="number" domain="positive" optional="true" depends="1"/>
+        <param name="/ITALIC" type="static" optional="true" depends="1"/>
+        <param name="/UNDERLINE" type="static" optional="true" depends="1"/>
+        <param name="/STRIKE" type="static" optional="true" depends="1"/>
+      </command>
+      <command name="ExecShell" category="basic.instructions.category" scope="section,function,if">
+        <param name="action" type="string" allowBlank="true"/>
+        <param name="command" type="string"/>
+        <param name="parameters" type="string" allowBlank="true" optional="true"/>
+        <param type="choice" optional="true" includePrevious="true">
+          <choice value="SW_SHOWNORMAL"/>
+          <choice value="SW_SHOWMAXIMIZED"/>
+          <choice value="SW_SHOWMINIMIZED"/>
+          <choice value="SW_HIDE"/>
+        </param>
+      </command>
+      <command name="RMDir" category="basic.instructions.category" scope="section,function,if">
+        <param name="/r" type="static" optional="true"/>
+        <param name="/REBOOTOK" type="static" optional="true"/>
+        <param name="directory_name" type="pathname"/>
+      </command>
+      <command name="SetOutPath" category="basic.instructions.category" scope="section,function,if">
+        <param name="outpath" type="pathname"/>
+      </command>
+    </add>
+  </version>
+  <version name="2.0">
+    <add>
+      <command name="!AddIncludeDir" category="compiler.utility.commands.category" scope="any">
+        <param name="directory" type="localdir" acceptVar="false"/>
+      </command>
+      <command name="!AddPluginDir" category="compiler.utility.commands.category" scope="any">
+        <param name="new_plugin_directory" type="localdir" acceptVar="false"/>
+      </command>
+      <command name="!cd" category="compiler.utility.commands.category" scope="any">
+        <param name="new_path" type="localdir" acceptVar="false"/>
+      </command>
+      <command name="!define" category="conditional.compilation.category" scope="any">
+        <param name="gflag" type="string"/>
+        <param name="value" type="string" allowBlank="true" optional="true"/>
+      </command>
+      <command name="!echo" category="compiler.utility.commands.category" scope="any">
+        <param name="message" type="string" allowBlank="true"/>
+      </command>
+      <command name="!else" category="conditional.compilation.category" scope="if">
+        <param optional="true" type="subcommand">
+          <subcommand name="ifdef" command="!ifdef"/>
+          <subcommand name="ifndef" command="!ifndef"/>
+          <subcommand name="ifmacrodef" command="!ifmacrodef"/>
+          <subcommand name="ifmacrondef" command="!ifmacrondef"/>
+        </param>
+      </command>
+      <command name="!error" category="compiler.utility.commands.category" scope="any">
+        <param name="message" type="string" allowBlank="true"/>
+      </command>
+      <command name="!ifdef" category="conditional.compilation.category" terminator="!endif" scope="any">
+        <param name="gflag" type="string"/>
+        <param type="repeatable" optional="true" label="condition.repeatable.label">
+          <param type="group">
+            <param name="bcheck" type="choice">
+              <choice display="or.label" value="|"/>
+              <choice display="and.label" value="&amp;"/>
+            </param>
+            <param name="gflag" type="string"/>
+          </param>
+        </param>
+      </command>
+      <command name="!ifndef" category="conditional.compilation.category" terminator="!endif" scope="any">
+        <param name="gflag" type="string"/>
+        <param type="repeatable" optional="true" label="condition.repeatable.label">
+          <param type="group">
+            <param name="bcheck" type="choice">
+              <choice display="or.label" value="|"/>
+              <choice display="and.label" value="&amp;"/>
+            </param>
+            <param name="gflag" type="string"/>
+          </param>
+        </param>
+      </command>
+      <command name="!ifmacrodef" category="conditional.compilation.category" terminator="!endif" scope="any">
+        <param name="gflag" type="string"/>
+        <param type="repeatable" optional="true" label="macro.repeatable.label">
+          <param type="group">
+            <param name="bcheck" type="choice">
+              <choice display="or.label" value="|"/>
+              <choice display="and.label" value="&amp;"/>
+            </param>
+            <param name="gflag" type="string"/>
+          </param>
+        </param>
+      </command>
+      <command name="!ifmacrondef" category="conditional.compilation.category" terminator="!endif" scope="any">
+        <param name="gflag" type="string"/>
+        <param type="repeatable" optional="true" label="macro.repeatable.label">
+          <param type="group">
+            <param name="bcheck" type="choice">
+              <choice display="or.label" value="|"/>
+              <choice display="and.label" value="&amp;"/>
+            </param>
+            <param name="gflag" type="string"/>
+          </param>
+        </param>
+      </command>
+      <command name="!include" category="compiler.utility.commands.category" scope="any">
+        <param name="file" type="localfile" acceptVar="false">
+          <filter name="nsh.files.filter.name" value="*.nsh"/>
+          <filter name="all.files.filter.name" value="*.*"/>
+        </param>
+      </command>
+      <command name="!insertmacro" category="conditional.compilation.category" scope="any">
+        <param name="macro_name" type="string"/>
+        <param type="repeatable" optional="true" label="parameter.repeatable.label">
+          <param name="parameter" type="string"/>
+        </param>
+      </command>
+      <command name="!macro" category="conditional.compilation.category" terminator="!macroend" scope="any">
+        <param name="macro_name" type="string"/>
+        <param type="repeatable" optional="true" label="parameter.repeatable.label">
+          <param name="parameter" type="string" allowBlank="true"/>
+        </param>
+      </command>
+      <command name="!packhdr" category="compiler.utility.commands.category" scope="any">
+        <param name="tempfile" type="localfile" acceptVar="false"/>
+        <param name="command" type="string"/>
+      </command>
+      <command name="!system" category="compiler.utility.commands.category" scope="any">
+        <param name="command" type="string"/>
+        <param type="group" optional="true">
+          <param name="compare" type="choice">
+            <choice display="greater.than.label" value="&gt;"/>
+            <choice display="less.than.label" value="&lt;"/>
+            <choice display="not.equal.to.label" value="&lt;&gt;"/>
+            <choice display="equal.to.label" value="="/>
+          </param>
+          <param name="comparevalue" type="number" acceptVar="false"/>
+        </param>
+      </command>
+      <command name="!undef" category="conditional.compilation.category" scope="any">
+        <param name="gflag" type="string"/>
+      </command>
+      <command name="!verbose" category="compiler.utility.commands.category" scope="any">
+        <param type="radio">
+          <param name="level" type="choice">
+            <choice display="all.label" value="4"/>
+            <choice display="no.script.label" value="3"/>
+            <choice display="no.info.label" value="2"/>
+            <choice display="no.warnings.label" value="1"/>
+            <choice display="none.label" value="0"/>
+          </param>
+          <param name="push" type="static"/>
+          <param name="pop" type="static"/>
+        </param>
+      </command>
+      <command name="!warning" category="compiler.utility.commands.category" scope="any">
+        <param name="message" type="string" allowBlank="true"/>
+      </command>
+      <command name="Abort" category="flow.control.instructions.category" scope="section,function,if">
+        <param name="user_message" type="string" allowBlank="true"/>
+      </command>
+      <command name="AddBrandingImage" category="general.attributes.category" scope="global,if">
+        <param type="choice">
+          <choice value="left"/>
+          <choice value="right"/>
+          <choice value="top"/>
+          <choice value="bottom"/>
+        </param>
+        <param name="width/height" type="number" domain="positive" acceptVar="false"/>
+        <param name="padding" type="number" domain="natural" acceptVar="false" optional="true"/>
+      </command>
+      <command name="AddSize" category="section.commands.category" scope="section,if">
+        <param name="size_kb" type="number" acceptVar="false" domain="natural"/>
+      </command>
+      <command name="AllowRootDirInstall" category="general.attributes.category" scope="global,if">
+        <param type="choice" default="1">
+          <choice value="true"/>
+          <choice value="false"/>
+        </param>
+      </command>
+      <command name="AllowSkipFiles" category="general.attributes.category" scope="any">
+        <param type="choice" default="0">
+          <choice value="on"/>
+          <choice value="off"/>
+        </param>
+      </command>
+      <command name="AutoCloseWindow" category="general.attributes.category" scope="global,if">
+        <param type="choice" default="1">
+          <choice value="true"/>
+          <choice value="false"/>
+        </param>
+      </command>
+      <command name="BGGradient" category="general.attributes.category" scope="global,if">
+        <param type="radio" default="0">
+          <param name="off" type="static"/>
+          <param type="group">
+            <param name="topc" type="rgb" acceptVar="false" allowBlank="true"/>
+            <param name="botc" type="rgb" acceptVar="false" allowBlank="true"/>
+            <param type="radio" optional="true">
+              <param name="textcolor" type="rgb" acceptVar="false" allowBlank="true"/>
+              <param name="notext" type="static"/>
+            </param>
+          </param>
+        </param>
+      </command>
+      <command name="BrandingText" category="general.attributes.category" scope="global,if">
+        <param name="/TRIM" prefix="/TRIM" type="choice">
+          <choice value="LEFT"/>
+          <choice value="RIGHT"/>
+          <choice value="CENTER"/>
+        </param>
+        <param name="text" type="string" allowBlank="true"/>
+      </command>
+      <command name="BringToFront" category="user.interface.instructions.category" scope="section,function,if"/>
+      <command name="CRCCheck" category="general.attributes.category" scope="global,if">
+        <param type="choice" default="0">
+          <choice value="on"/>
+          <choice value="off"/>
+          <choice value="force"/>
+        </param>
+      </command>
+      <command name="Call" category="flow.control.instructions.category" scope="section,function,if">
+        <param name="function/label" type="string"/>
+      </command>
+      <command name="CallInstDLL" category="general.purpose.instructions.category" scope="section,function,if">
+        <param name="dllfile" type="pathname"/>
+        <param name="/NOUNLOAD" type="static" optional="true"/>
+        <param name="function_name" type="string"/>
+      </command>
+      <command name="Caption" category="general.attributes.category" scope="global,pageex,if">
+        <param name="caption" type="string" allowBlank="true"/>
+      </command>
+      <command name="ChangeUI" category="general.attributes.category" scope="global,if">
+        <param name="dialog" type="choice">
+          <choice value="all.label"/>
+          <choice value="IDD_LICENSE"/>
+          <choice value="IDD_DIR"/>
+          <choice value="IDD_SELCOM"/>
+          <choice value="IDD_INST"/>
+          <choice value="IDD_INSTFILES"/>
+          <choice value="IDD_UNINST"/>
+          <choice value="IDD_VERIFY"/>
+          <choice value="IDD_LICENSE_FSRB"/>
+          <choice value="IDD_LICENSE_FSCB"/>
+        </param>
+        <param name="ui_file.exe" type="localfile" acceptVar="false">
+          <filter name="exe.files.filter.name" value="*.exe"/>
+          <filter name="all.files.filter.name" value="*.*"/>
+        </param>
+      </command>
+      <command name="CheckBitmap" category="general.attributes.category" scope="global,if">
+        <param name="bitmap.bmp" type="localfile" acceptVar="false">
+          <filter name="bmp.files.filter.name" value="*.bmp"/>
+          <filter name="all.files.filter.name" value="*.*"/>
+        </param>
+      </command>
+      <command name="ClearErrors" category="flow.control.instructions.category" scope="section,function,if"/>
+      <command name="CompletedText" category="general.attributes.category" scope="global,pageex,if">
+        <param name="text" type="string" allowBlank="true"/>
+      </command>
+      <command name="ComponentText" category="general.attributes.category" scope="global,pageex,if">
+        <param name="text" type="string" allowBlank="true" optional="true"/>
+        <param name="subtext" type="string" allowBlank="true" optional="true" depends="0"/>
+        <param name="subtext2" type="string" allowBlank="true" optional="true" depends="0" includePrevious="true"/>
+      </command>
+      <command name="CopyFiles" category="general.purpose.instructions.category" scope="section,function,if">
+        <param name="/SILENT" type="static" optional="true"/>
+        <param name="/FILESONLY" type="static" optional="true"/>
+        <param name="filespec_on_destsys " type="wildcard"/>
+        <param name="destination_path" type="pathname"/>
+        <param name="size_of_files_in_kb" type="number" domain="positive" optional="true" acceptVar="false"/>
+      </command>
+      <command name="CreateDirectory" category="general.purpose.instructions.category" scope="section,function,if">
+        <param name="path_to_create" type="pathname"/>
+      </command>
+      <command name="CreateFont" category="user.interface.instructions.category" scope="section,function,if">
+        <param name="user_var(handle_output)" type="var"/>
+        <param name="face_name" type="string"/>
+        <param name="height" type="number" domain="positive" optional="true"/>
+        <param name="weight" type="number" domain="positive" optional="true" includePrevious="true"/>
+        <param name="/ITALIC" type="static" optional="true"/>
+        <param name="/UNDERLINE" type="static" optional="true"/>
+        <param name="/STRIKE" type="static" optional="true"/>
+      </command>
+      <command name="CreateShortCut" category="general.purpose.instructions.category" scope="section,function,if">
+        <param name="link.lnk" type="pathname"/>
+        <param name="target.file" type="pathname"/>
+        <param name="parameters" type="string" allowBlank="true" optional="true"/>
+        <param name="icon.file" type="pathname" allowBlank="true" optional="true" depends="2"/>
+        <param name="icon_index" type="number" domain="natural" allowBlank="true" optional="true" depends="3"/>
+        <param name="parameters" type="string" allowBlank="true" optional="true" depends="4"/>
+        <param name="start_options" type="choice" allowBlank="true" optional="true" depends="5">
+          <choice value="SW_SHOWNORMAL"/>
+          <choice value="SW_SHOWMAXIMIZED"/>
+          <choice value="SW_SHOWMINIMIZED"/>
+        </param>
+        <param name="keyboard_shortcut" type="keyboard.shortcut" allowBlank="true" optional="true" depends="6"/>
+        <param name="description" type="string" allowBlank="true" optional="true" depends="7"/>
+      </command>
+      <command name="Delete" category="basic.instructions.category" scope="section,function,if">
+        <param name="/REBOOTOK" type="static" optional="true"/>
+        <param name="file" type="wildcard"/>
+      </command>
+      <command name="DeleteINISec" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="ini_filename" type="pathname"/>
+        <param name="section_name" type="string"/>
+      </command>
+      <command name="DeleteINIStr" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="ini_filename" type="pathname"/>
+        <param name="section_name" type="string"/>
+        <param name="str_name" type="string"/>
+      </command>
+      <command name="DeleteRegKey" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="/ifempty" type="static" optional="true"/>
+        <param name="root_key" type="hkey"/>
+        <param name="subkey" type="string"/>
+      </command>
+      <command name="DeleteRegValue" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="root_key" type="hkey"/>
+        <param name="subkey" type="string"/>
+        <param name="value_name" type="string" allowBlank="true"/>
+      </command>
+      <command name="DetailPrint" category="user.interface.instructions.category" scope="section,function,if">
+        <param name="user_message" type="string" allowBlank="true"/>
+      </command>
+      <command name="DetailsButtonText" category="general.attributes.category" scope="global,pageex,if">
+        <param name="show_details_text" type="string" allowBlank="true"/>
+      </command>
+      <command name="DirText" category="general.attributes.category" scope="global,pageex,if">
+        <param name="text" type="string" allowBlank="true" optional="true"/>
+        <param name="subtext" type="string" allowBlank="true" optional="true" includePrevious="true"/>
+        <param name="browse_button_text" type="string" allowBlank="true" optional="true" includePrevious="true"/>
+        <param name="browse_detail_text" type="string" allowBlank="true" optional="true" includePrevious="true"/>
+      </command>
+      <command name="DirVar" category="general.attributes.category" scope="pageex,if">
+        <param name="user_var(dir input/output)" type="var"/>
+      </command>
+      <command name="DirVerify" category="general.attributes.category" scope="pageex,if">
+        <param type="choice" default="0">
+          <choice value="auto"/>
+          <choice value="leave"/>
+        </param>
+      </command>
+      <command name="EnableWindow" category="user.interface.instructions.category" scope="section,function,if">
+        <param name="hwnd" type="number" domain="positive"/>
+        <param type="choice">
+          <choice display="enabled.label" value="1"/>
+          <choice display="disabled.label" value="0"/>
+        </param>
+      </command>
+      <command name="EnumRegKey" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="user_var(output)" type="var"/>
+        <param name="root_key" type="hkey"/>
+        <param name="subkey" type="string"/>
+        <param name="index" type="number" domain="natural"/>
+      </command>
+      <command name="EnumRegValue" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="user_var(output)" type="var"/>
+        <param name="root_key" type="hkey"/>
+        <param name="subkey" type="string"/>
+        <param name="index" type="number" domain="natural"/>
+      </command>
+      <command name="Exch" category="stack.support.category" scope="section,function,if">
+        <param type="radio" optional="true">
+          <param name="user_var" type="var"/>
+          <param name="stack_index" type="number" domain="positive"/>
+        </param>
+      </command>
+      <command name="Exec" category="basic.instructions.category" scope="section,function,if">
+        <param name="command" type="string"/>
+      </command>
+      <command name="ExecShell" category="basic.instructions.category" scope="section,function,if">
+        <param name="action" type="string" allowBlank="true"/>
+        <param name="command" type="string"/>
+        <param name="parameters" type="string" allowBlank="true" optional="true"/>
+        <param type="choice" optional="true">
+          <choice value="SW_SHOWNORMAL"/>
+          <choice value="SW_SHOWMAXIMIZED"/>
+          <choice value="SW_SHOWMINIMIZED"/>
+        </param>
+      </command>
+      <command name="ExecWait" category="basic.instructions.category" scope="section,function,if">
+        <param name="command" type="string"/>
+        <param name="user_var(exit code)" type="var"/>
+      </command>
+      <command name="ExpandEnvStrings" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="user_var(output)" type="var"/>
+        <param name="string" type="string"/>
+      </command>
+      <command name="File" category="basic.instructions.category" scope="section,function,if">
+        <param name="/nonfatal" type="static" optional="true"/>
+        <param name="/a" type="static" optional="true"/>
+        <param type="radio">
+          <param type="group">
+            <param name="/r" type="static" optional="true"/>
+            <param type="repeatable" label="files.repeatable.label">
+              <param name="file|wildcard" type="localpath" acceptVar="false">
+                <filter name="all.files.filter.name" value="*.*"/>
+              </param>
+            </param>
+          </param>
+          <param type="group">
+            <param name="/oname" tooltip="file.dat" prefix="/oname=" type="string"/>
+            <param name="infile.dat" type="localfile" acceptVar="false"/>
+          </param>
+        </param>
+      </command>
+      <command name="FileBufSize" category="compiler.flags.category" scope="any">
+        <param name="buffer_size_in_mb" type="number" domain="positive" acceptVar="false"/>
+      </command>
+      <command name="FileClose" category="file.instructions.category" scope="section,function,if">
+        <param name="handle" type="var"/>
+      </command>
+      <command name="FileErrorText" category="general.attributes.category" scope="global,if">
+        <param name="text" type="string" optional="true"/>
+        <param name="text without ignore" type="string" optional="true" includePrevious="true"/>
+      </command>
+      <command name="FileOpen" category="file.instructions.category" scope="section,function,if">
+        <param name="user_var(handle output)" type="var"/>
+        <param name="filename" type="localfile"/>
+        <param name="openmode" type="choice">
+          <choice display="read.label" value="r"/>
+          <choice display="write.label" value="w"/>
+          <choice display="append.label" value="a"/>
+        </param>
+      </command>
+      <command name="FileRead" category="file.instructions.category" scope="section,function,if">
+        <param name="handle" type="var"/>
+        <param name="user_var(output)" type="var"/>
+        <param name="maxlen" type="number" domain="positive" optional="true"/>
+      </command>
+      <command name="FileReadByte" category="file.instructions.category" scope="section,function,if">
+        <param name="handle" type="var"/>
+        <param name="user_var(output)" type="var"/>
+      </command>
+      <command name="FileSeek" category="file.instructions.category" scope="section,function,if">
+        <param name="handle" type="var"/>
+        <param name="offset" type="number" domain="natural"/>
+        <param name="mode" type="choice" optional="true" allowBlank="true">
+          <choice value="SET"/>
+          <choice value="CUR"/>
+          <choice value="END"/>
+          <choice value="EOF"/>
+        </param>
+        <param name="user_var(new position)" type="var" optional="true" includePrevious="true"/>
+      </command>
+      <command name="FileWrite" category="file.instructions.category" scope="section,function,if">
+        <param name="handle" type="var"/>
+        <param name="string" type="string"/>
+      </command>
+      <command name="FileWriteByte" category="file.instructions.category" scope="section,function,if">
+        <param name="handle" type="var"/>
+        <param name="string" type="string"/>
+      </command>
+      <command name="FindClose" category="file.instructions.category" scope="section,function,if">
+        <param name="handle" type="var"/>
+      </command>
+      <command name="FindFirst" category="file.instructions.category" scope="section,function,if">
+        <param name="user_var(handle output)" type="var"/>
+        <param name="user_var(filename output)" type="var"/>
+        <param name="filespec" type="wildcard"/>
+      </command>
+      <command name="FindNext" category="file.instructions.category" scope="section,function,if">
+        <param name="handle" type="var"/>
+        <param name="user_var(filename output)" type="var"/>
+      </command>
+      <command name="FindWindow" category="user.interface.instructions.category" scope="section,function,if">
+        <param name="user_var(hwnd output)" type="var"/>
+        <param name="windowclass" type="string" allowBlank="true"/>
+        <param name="windowtitle" type="string" allowBlank="true" optional="true"/>
+        <param name="windowparent" type="string" allowBlank="true" optional="true" includePrevious="true"/>
+        <param name="childafter" type="string" allowBlank="true" optional="true" includePrevious="true"/>
+      </command>
+      <command name="FlushINI" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="ini_filename" type="pathname"/>
+      </command>
+      <command name="Function" category="function.commands.category" terminator="FunctionEnd" scope="global,if">
+        <param name="function_name" type="string"/>
+      </command>
+      <command name="GetCurInstType" category="section.management.category" scope="section,function,if">
+        <param name="user_var" type="var"/>
+      </command>
+      <command name="GetCurrentAddress" category="flow.control.instructions.category" scope="section,function,if">
+        <param name="user_var(output)" type="var"/>
+      </command>
+      <command name="GetDLLVersion" category="general.purpose.instructions.category" scope="section,function,if">
+        <param name="filename" type="pathname"/>
+        <param name="user_var(high dword output)" type="var"/>
+        <param name="user_var(low dword output)" type="var"/>
+      </command>
+      <command name="GetDLLVersionLocal" category="general.purpose.instructions.category" scope="section,function,if">
+        <param name="filename" type="localfile" acceptVar="false">
+          <filter name="dll.files.filter.name" value="*.dll"/>
+          <filter name="all.files.filter.name" value="*.*"/>
+        </param>
+        <param name="user_var(high dword output)" type="var"/>
+        <param name="user_var(low dword output)" type="var"/>
+      </command>
+      <command name="GetDlgItem" category="user.interface.instructions.category" scope="section,function,if">
+        <param name="user_var(output)" type="var"/>
+        <param name="dialog" type="string"/>
+        <param name="item_id" type="string"/>
+      </command>
+      <command name="GetFileTime" category="general.purpose.instructions.category" scope="section,function,if">
+        <param name="filename" type="pathname"/>
+        <param name="user_var(high dword output)" type="var"/>
+        <param name="user_var(low dword output)" type="var"/>
+      </command>
+      <command name="GetFileTimeLocal" category="general.purpose.instructions.category" scope="section,function,if">
+        <param name="filename" type="localfile" acceptVar="false">
+          <filter name="all.files.filter.name" value="*.*"/>
+        </param>
+        <param name="user_var(high dword output)" type="var"/>
+        <param name="user_var(low dword output)" type="var"/>
+      </command>
+      <command name="GetFullPathName" category="general.purpose.instructions.category" scope="section,function,if">
+        <param name="/SHORT" type="static" optional="true"/>
+        <param name="user_var(output)" type="var"/>
+        <param name="path_or_file" type="pathname"/>
+      </command>
+      <command name="GetFunctionAddress" category="flow.control.instructions.category" scope="section,function,if">
+        <param name="user_var(output)" type="var"/>
+        <param name="function_name" type="string"/>
+      </command>
+      <command name="GetInstDirError" category="misc.instructions.category" scope="section,function,if">
+        <param name="user_var(error output)" type="var"/>
+      </command>
+      <command name="GetLabelAddress" category="flow.control.instructions.category" scope="section,function,if">
+        <param name="user_var(output)" type="var"/>
+        <param name="label" type="string"/>
+      </command>
+      <command name="GetTempFileName" category="general.attributes.category" scope="section,function,if">
+        <param name="user_var(output)" type="var"/>
+        <param name="base_dir" type="pathname"/>
+      </command>
+      <command name="Goto" category="flow.control.instructions.category" scope="section,function,if">
+        <param type="radio">
+          <param name="label_to_jump_to" type="label"/>
+          <param name="+offset" prefix="+" type="number" domain="positive"/>
+          <param name="-offset" prefix="-" type="number" domain="positive"/>
+          <param name="user_var(target)" type="var"/>
+        </param>
+      </command>
+      <command name="HideWindow" category="user.interface.instructions.category" scope="section,function,if"/>
+      <command name="Icon" category="general.attributes.category" scope="global,if">
+        <param name="[path\]icon.ico" type="localfile" acceptVar="false">
+          <filter name="ico.files.filter.name" value="*.ico"/>
+          <filter name="all.files.filter.name" value="*.*"/>
+        </param>
+      </command>
+      <command name="IfAbort" category="flow.control.instructions.category" scope="section,function,if">
+        <param name="label_to_goto_if_abort" type="label"/>
+        <param name="label_to_goto_if_no_abort" type="label" optional="true"/>
+      </command>
+      <command name="IfErrors" category="flow.control.instructions.category" scope="section,function,if">
+        <param name="jumpto_iferror" type="label"/>
+        <param name="jumpto_ifnoerror" type="label" optional="true"/>
+      </command>
+      <command name="IfFileExists" category="flow.control.instructions.category" scope="section,function,if">
+        <param name="file_to_check_for" type="pathname"/>
+        <param name="jump_if_present" type="label"/>
+        <param name="jump_otherwise" type="label" optional="true"/>
+      </command>
+      <command name="IfRebootFlag" category="flow.control.instructions.category" scope="section,function,if">
+        <param name="jump_if_set" type="label"/>
+        <param name="jump_if_not_set" type="label" optional="true"/>
+      </command>
+      <command name="IfSilent" category="flow.control.instructions.category" scope="section,function,if">
+        <param name="jump_if_silent" type="label"/>
+        <param name="jump_if_not" type="label" optional="true"/>
+      </command>
+      <command name="InitPluginsDir" category="misc.instructions.category" scope="section,function,if"/>
+      <command name="InstProgressFlags" category="general.attributes.category" scope="global,if">
+        <param name="smooth" type="static" optional="true"/>
+        <param name="colored" type="static" optional="true"/>
+      </command>
+      <command name="InstType" category="general.attributes.category" scope="global,if">
+        <param type="radio">
+          <param name="install_type_name" type="string"/>
+          <param name="/NOCUSTOM" type="static"/>
+          <param name="/CUSTOMSTRING" tooltip="str" prefix="/CUSTOMSTRING=" type="string"/>
+          <param name="/COMPONENTSONLYONCUSTOM" type="static"/>
+        </param>
+      </command>
+      <command name="InstTypeGetText" category="section.management.category" scope="section,function,if">
+        <param name="inst_type_idx" type="number" domain="positive"/>
+        <param name="user_var" type="var"/>
+      </command>
+      <command name="InstTypeSetText" category="section.management.category" scope="section,function,if">
+        <param name="inst_type_idx" type="number" domain="positive"/>
+        <param name="text" type="string" allowBlank="true"/>
+      </command>
+      <command name="InstallButtonText" category="general.attributes.category" scope="global,if">
+        <param name="install button text" type="string" allowBlank="true"/>
+      </command>
+      <command name="InstallColors" category="general.attributes.category" scope="global,if">
+        <param type="radio">
+          <param name="/windows" type="static"/>
+          <param type="group">
+            <param name="foreground_color" type="rgb" acceptVar="false" allowBlank="true"/>
+            <param name="background_color" type="rgb" acceptVar="false" allowBlank="true"/>
+          </param>
+        </param>
+      </command>
+      <command name="InstallDir" category="general.attributes.category" scope="global,if">
+        <param name="definstdir" type="pathname"/>
+      </command>
+      <command name="InstallDirRegKey" category="general.attributes.category" scope="global,if">
+        <param name="root_key" type="hkey"/>
+        <param name="subkey" type="string"/>
+        <param name="key_name" type="string" allowBlank="true"/>
+      </command>
+      <command name="IntCmp" category="flow.control.instructions.category" scope="section,function,if">
+        <param name="val1" type="number"/>
+        <param name="val2" type="number"/>
+        <param name="jump_if_equal" type="label"/>
+        <param name="jump_if_val1_less" type="label" optional="true"/>
+        <param name="jump_if_val1_more" type="label" optional="true" includePrevious="true"/>
+      </command>
+      <command name="IntCmpU" category="flow.control.instructions.category" scope="section,function,if">
+        <param name="val1" type="number"/>
+        <param name="val2" type="number"/>
+        <param name="jump_if_equal" type="label"/>
+        <param name="jump_if_val1_less" type="label" optional="true"/>
+        <param name="jump_if_val1_more" type="label" optional="true" includePrevious="true"/>
+      </command>
+      <command name="IntFmt" category="integer.support.category" scope="section,function,if">
+        <param name="user_var(output)" type="var"/>
+        <param name="format" type="string"/>
+        <param name="numberstring" type="string"/>
+      </command>
+      <command name="IntOp" category="integer.support.category" scope="section,function,if">
+        <param name="user_var(output)" type="var"/>
+        <param name="value1" type="number"/>
+        <param name="OP" type="choice">
+          <choice value="+"/>
+          <choice value="-"/>
+          <choice value="*"/>
+          <choice value="/"/>
+          <choice value="%"/>
+          <choice value="|"/>
+          <choice value="&amp;"/>
+          <choice value="^"/>
+          <choice value="~"/>
+          <choice value="!"/>
+          <choice value="||"/>
+          <choice value="&amp;&amp;"/>
+        </param>
+        <param name="value2" type="number"/>
+      </command>
+      <command name="IsWindow" category="user.interface.instructions.category" scope="section,function,if">
+        <param name="hwnd" type="number" domain="positive"/>
+        <param name="jump_if_window" type="label"/>
+        <param name="jump_if_not_window" type="label" optional="true"/>
+      </command>
+      <command name="LangString" category="multiple.language.instructions.category" scope="global,if">
+        <param name="name" type="string"/>
+        <param name="language_id" type="language" acceptVar="false"/>
+        <param name="string" type="string" allowBlank="true"/>
+      </command>
+      <command name="LicenseBkColor" category="general.attributes.category" scope="global,if">
+        <param type="radio" default="1">
+          <param name="color" type="rgb" acceptVar="false" allowBlank="true"/>
+          <param name="/gray" type="static"/>
+          <param name="/windows" type="static"/>
+        </param>
+      </command>
+      <command name="LicenseData" category="general.attributes.category" scope="global,pageex,if">
+        <param name="licdata.(txt|rtf)" type="localfile" acceptVar="false">
+          <filter name="license.files.filter.name" value="*.rtf;*.txt"/>
+          <filter name="all.files.filter.name" value="*.*"/>
+        </param>
+      </command>
+      <command name="LicenseForceSelection" category="general.attributes.category" scope="global,pageex,if">
+        <param type="radio" default="2">
+          <param type="group">
+            <param name="checkbox" type="static"/>
+            <param name="accept_text" type="string" optional="true"/>
+          </param>
+          <param type="group">
+            <param name="radiobuttons" type="static"/>
+            <param name="accept_text" type="string" optional="true" allowBlank="true"/>
+            <param name="decline_text" type="string" optional="true" allowBlank="true" includePrevious="true"/>
+          </param>
+          <param name="off" type="static"/>
+        </param>
+      </command>
+      <command name="LicenseLangString" category="multiple.language.instructions.category" scope="global,if">
+        <param name="name" type="string"/>
+        <param name="language_id" type="language" acceptVar="false"/>
+        <param name="license_path" type="localfile" acceptVar="false">
+          <filter name="license.files.filter.name" value="*.rtf;*.txt"/>
+          <filter name="all.files.filter.name" value="*.*"/>
+        </param>
+      </command>
+      <command name="LicenseText" category="general.attributes.category" scope="global,pageex,if">
+        <param name="text" type="string"/>
+        <param name="button_text" type="string" optional="true"/>
+      </command>
+      <command name="LoadLanguageFile" category="multiple.language.instructions.category" scope="global,if">
+        <param name="language_file.nlf" type="languagefile" acceptVar="false"/>
+      </command>
+      <command name="LockWindow" category="user.interface.instructions.category" scope="section,function,if">
+        <param type="choice">
+          <choice value="on"/>
+          <choice value="off"/>
+        </param>
+      </command>
+      <command name="LogSet" category="install.logging.instructions" scope="section,function,if">
+        <param type="choice" default="1">
+          <choice value="on"/>
+          <choice value="off"/>
+        </param>
+      </command>
+      <command name="LogText" category="install.logging.instructions" scope="section,function,if">
+        <param name="text" type="string"/>
+      </command>
+      <command name="MessageBox" category="flow.control.instructions.category" scope="section,function,if">
+        <param name="mb_option_list" type="messagebox.options"/>
+        <param name="messagebox_text" type="string" allowBlank="true"/>
+        <param name="/SD return" prefix="/SD " type="choice" optional="true">
+          <choice value="IDABORT"/>
+          <choice value="IDCANCEL"/>
+          <choice value="IDIGNORE"/>
+          <choice value="IDNO"/>
+          <choice value="IDOK"/>
+          <choice value="IDRETRY"/>
+          <choice value="IDYES"/>
+        </param>
+        <param type="group" optional="true">
+          <param name="return_check" type="choice">
+            <choice value="0"/>
+            <choice value="IDABORT"/>
+            <choice value="IDCANCEL"/>
+            <choice value="IDIGNORE"/>
+            <choice value="IDNO"/>
+            <choice value="IDOK"/>
+            <choice value="IDRETRY"/>
+            <choice value="IDYES"/>
+          </param>
+          <param name="jumpto" type="label"/>
+        </param>
+        <param type="group" optional="true" depends="3">
+          <param name="return_check_2" type="choice">
+            <choice value="0"/>
+            <choice value="IDABORT"/>
+            <choice value="IDCANCEL"/>
+            <choice value="IDIGNORE"/>
+            <choice value="IDNO"/>
+            <choice value="IDOK"/>
+            <choice value="IDRETRY"/>
+            <choice value="IDYES"/>
+          </param>
+          <param name="jumpto_2" type="label"/>
+        </param>
+      </command>
+      <command name="MiscButtonText" category="general.attributes.category" scope="global,if">
+        <param name="back button text" type="string" allowBlank="true" optional="true"/>
+        <param name="next button text" type="string" allowBlank="true" optional="true" depends="0"/>
+        <param name="cancel button text" type="string" allowBlank="true" optional="true" depends="0" includePrevious="true"/>
+        <param name="close button text" type="string" allowBlank="true" optional="true" depends="0" includePrevious="true"/>
+      </command>
+      <command name="Name" category="general.attributes.category" scope="global,if">
+        <param name="name" type="string"/>
+        <param name="name_doubled_ampersands" type="string" optional="true"/>
+      </command>
+      <command name="Nop" category="misc.instructions.category" scope="section,function,if"/>
+      <command name="OutFile" category="general.attributes.category" scope="global,if">
+        <param name="[path\]install.exe" type="localsavefile" acceptVar="false">
+          <filter name="exe.files.filter.name" value="*.exe"/>
+          <filter name="all.files.filter.name" value="*.*"/>
+        </param>
+      </command>
+      <command name="Page" category="pages.category" scope="global,if">
+        <param type="radio">
+          <param type="group">
+            <param name="custom" type="static"/>
+            <param name="creator_function" type="string" allowBlank="true" optional="true"/>
+            <param name="leave_function" type="string" allowBlank="true" optional="true" includePrevious="true"/>
+            <param name="caption" type="string" allowBlank="true" optional="true" includePrevious="true"/>
+          </param>
+          <param type="group">
+            <param type="choice">
+              <choice value="license"/>
+              <choice value="components"/>
+              <choice value="directory"/>
+              <choice value="instfiles"/>
+              <choice value="uninstConfirm"/>
+            </param>
+            <param name="pre_function" type="string" allowBlank="true" optional="true"/>
+            <param name="show_function" type="string" allowBlank="true" optional="true" includePrevious="true"/>
+            <param name="leave_function" type="string" allowBlank="true" optional="true" includePrevious="true"/>
+          </param>
+        </param>
+        <param name="/ENABLECANCEL" type="static" optional="true"/>
+      </command>
+      <command name="PageCallbacks" category="pages.category" scope="pageex,if">
+        <param type="radio">
+          <param type="group">
+            <param name="creator_function" type="string" allowBlank="true" optional="true"/>
+            <param name="leave_function" type="string" allowBlank="true" optional="true" includePrevious="true"/>
+          </param>
+          <param type="group">
+            <param name="pre_function" type="string" allowBlank="true" optional="true"/>
+            <param name="show_function" type="string" allowBlank="true" optional="true" includePrevious="true"/>
+            <param name="leave_function" type="string" allowBlank="true" optional="true" includePrevious="true"/>
+          </param>
+        </param>
+      </command>
+      <command name="PageEx" category="pages.category" terminator="PageExEnd" scope="global,if">
+        <param type="choice">
+          <choice value="custom"/>
+          <choice value="license"/>
+          <choice value="components"/>
+          <choice value="directory"/>
+          <choice value="instfiles"/>
+          <choice value="uninstConfirm"/>
+          <choice value="un.custom"/>
+          <choice value="un.license"/>
+          <choice value="un.components"/>
+          <choice value="un.directory"/>
+          <choice value="un.instfiles"/>
+          <choice value="un.uninstConfirm"/>
+        </param>
+      </command>
+      <command name="Pop" category="stack.support.category" scope="section,function,if">
+        <param name="user_var(out)" type="var"/>
+      </command>
+      <command name="Push" category="stack.support.category" scope="section,function,if">
+        <param name="string" type="string" allowBlank="true"/>
+      </command>
+      <command name="Quit" category="flow.control.instructions.category" scope="section,function,if"/>
+      <command name="RMDir" category="basic.instructions.category" scope="section,function,if">
+        <param type="radio" optional="true">
+          <param name="/r" type="static"/>
+          <param name="/REBOOTOK" type="static"/>
+        </param>
+        <param name="directory_name" type="pathname"/>
+      </command>
+      <command name="ReadEnvStr" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="user_var(output)" type="var"/>
+        <param name="name" type="string"/>
+      </command>
+      <command name="ReadINIStr" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="user_var(output)" type="var"/>
+        <param name="ini_filename" type="pathname"/>
+        <param name="section_name" type="string"/>
+        <param name="entry_name" type="string"/>
+      </command>
+      <command name="ReadRegDWORD" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="user_var(output)" type="var"/>
+        <param name="root_key" type="hkey"/>
+        <param name="subkey" type="string"/>
+        <param name="name" type="string" allowBlank="true"/>
+      </command>
+      <command name="ReadRegStr" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="user_var(output)" type="var"/>
+        <param name="root_key" type="hkey"/>
+        <param name="subkey" type="string"/>
+        <param name="name" type="string" allowBlank="true"/>
+      </command>
+      <command name="Reboot" category="reboot.instructions" scope="section,function,if"/>
+      <command name="RegDLL" category="general.purpose.instructions.category" scope="section,function,if">
+        <param name="dllfile" type="pathname"/>
+        <param name="entrypoint_name" type="string" optional="true"/>
+      </command>
+      <command name="Rename" category="basic.instructions.category" scope="section,function,if">
+        <param name="/REBOOTOK" type="static" optional="true"/>
+        <param name="source_file" type="pathname"/>
+        <param name="dest_file" type="pathname"/>
+      </command>
+      <command name="ReserveFile" category="basic.instructions.category" scope="any">
+        <param name="/nonfatal" type="static" optional="true"/>
+        <param name="/r" type="static" optional="true"/>
+        <param type="repeatable" optional="true" label="files.repeatable.label">
+          <param name="file" type="localfile" acceptVar="false">
+            <filter name="all.files.filter.name" value="*.*"/>
+          </param>
+        </param>
+      </command>
+      <command name="Return" category="flow.control.instructions.category" scope="section,function,if"/>
+      <command name="SearchPath" category="general.purpose.instructions.category" scope="section,function,if">
+        <param name="user_var(output)" type="var"/>
+        <param name="filename" type="filename"/>
+      </command>
+      <command name="Section" category="section.commands.category" terminator="SectionEnd" scope="global,sectiongroup,if">
+        <param name="/o" type="static" optional="true"/>
+        <param name="section_name" type="string" allowBlank="true" optional="true"/>
+        <param name="section index output" type="string" optional="true"/>
+      </command>
+      <command name="SectionGetFlags" category="section.management.category" scope="section,function,if">
+        <param name="section_index" type="number" domain="natural"/>
+        <param name="user_var(output)" type="var"/>
+      </command>
+      <command name="SectionGetInstTypes" category="section.management.category" scope="section,function,if">
+        <param name="section_index" type="number" domain="natural"/>
+        <param name="user_var(output)" type="var"/>
+      </command>
+      <command name="SectionGetSize" category="section.management.category" scope="section,function,if">
+        <param name="section_index" type="number" domain="natural"/>
+        <param name="user_var" type="var"/>
+      </command>
+      <command name="SectionGetText" category="section.management.category" scope="section,function,if">
+        <param name="section_index" type="number" domain="natural"/>
+        <param name="user_var(output)" type="var"/>
+      </command>
+      <command name="SectionIn" category="section.commands.category" scope="section,if">
+        <param type="repeatable" label="insttype.repeatable.label">
+          <param name="insttype_index" type="number" domain="positive" acceptVar="false"/>
+        </param>
+        <param name="RO" type="static" optional="true"/>
+      </command>
+      <command name="SectionSetFlags" category="section.management.category" scope="section,function,if">
+        <param name="section_index" type="number" domain="natural"/>
+        <param name="section_flags" type="number" domain="natural"/>
+      </command>
+      <command name="SectionSetInstTypes" category="section.management.category" scope="section,function,if">
+        <param name="section_index" type="number" domain="natural"/>
+        <param name="inst_types" type="number" domain="natural"/>
+      </command>
+      <command name="SectionSetSize" category="section.management.category" scope="section,function,if">
+        <param name="section_index" type="number" domain="natural"/>
+        <param name="new_size" type="number" domain="natural"/>
+      </command>
+      <command name="SectionSetText" category="section.management.category" scope="section,function,if">
+        <param name="section_index" type="number" domain="natural"/>
+        <param name="section_text" type="string" allowBlank="true"/>
+      </command>
+      <command name="SendMessage" category="user.interface.instructions.category" scope="section,function,if">
+        <param name="HWND" type="number" domain="positive"/>
+        <param name="wparam" type="number"/>
+        <param name="lparam" type="number"/>
+        <param type="radio">
+          <param name="user_var(return value)" type="var"/>
+          <param name="/TIMEOUT" tooltip="time_in_ms" prefix="/TIMEOUT=" type="number" domain="natural"/>
+        </param>
+      </command>
+      <command name="SetAutoClose" category="user.interface.instructions.category" scope="section,function,if">
+        <param type="choice">
+          <choice value="true"/>
+          <choice value="false"/>
+        </param>
+      </command>
+      <command name="SetBrandingImage" category="user.interface.instructions.category" scope="section,function,if">
+        <param name="/IMGID" tooltip="item_id_in_dialog" prefix="/IMGID=" type="number" domain="positive" optional="true" acceptVar="false"/>
+        <param name="/RESIZETOFIT" type="static" optional="true"/>
+        <param name="path_to_bitmap_file.bmp" type="localfile" acceptVar="false">
+          <filter name="bmp.files.filter.name" value="*.bmp"/>
+          <filter name="all.files.filter.name" value="*.*"/>
+        </param>
+      </command>
+      <command name="SetCompress" category="compiler.flags.category" scope="any">
+        <param type="choice" default="0">
+          <choice value="auto"/>
+          <choice value="force"/>
+          <choice value="off"/>
+        </param>
+      </command>
+      <command name="SetCompressionLevel" category="compiler.flags.category" scope="any">
+        <param name="level_0-9" type="choice">
+          <choice value="0"/>
+          <choice value="1"/>
+          <choice value="2"/>
+          <choice value="3"/>
+          <choice value="4"/>
+          <choice value="5"/>
+          <choice value="6"/>
+          <choice value="7"/>
+          <choice value="8"/>
+          <choice value="9"/>
+        </param>
+      </command>
+      <command name="SetCompressor" category="compiler.flags.category" scope="global,if">
+        <param name="/FINAL" type="static" optional="true"/>
+        <param type="choice" default="0">
+          <choice value="zlib"/>
+          <choice value="bzip2"/>
+          <choice value="lzma"/>
+        </param>
+      </command>
+      <command name="SetCompressorDictSize" category="compiler.flags.category" scope="any">
+        <param name="dict_size_mb" type="number" domain="positive" acceptVar="false"/>
+      </command>
+      <command name="SetCtlColors" category="user.interface.instructions.category" scope="section,function,if">
+        <param name="hwnd" type="number" domain="positive"/>
+        <param name="/BRANDING" type="static" optional="true"/>
+        <param name="text_color" type="rgb" acceptVar="false" allowBlank="true" optional="true"/>
+        <param type="radio" optional="true" includePrevious="true">
+          <param name="transparent" type="static"/>
+          <param name="bg_color" type="rgb" acceptVar="false" allowBlank="true"/>
+        </param>
+      </command>
+      <command name="SetCurInstType" category="section.management.category" scope="section,function,if">
+        <param name="inst_type_idx" type="number" domain="natural"/>
+      </command>
+      <command name="SetDatablockOptimize" category="compiler.flags.category" scope="any">
+        <param type="choice" default="0">
+          <choice value="on"/>
+          <choice value="off"/>
+        </param>
+      </command>
+      <command name="SetDateSave" category="compiler.flags.category" scope="any">
+        <param type="choice" default="0">
+          <choice value="on"/>
+          <choice value="off"/>
+        </param>
+      </command>
+      <command name="SetDetailsPrint" category="user.interface.instructions.category" scope="section,function,if">
+        <param type="choice">
+          <choice value="none"/>
+          <choice value="listonly"/>
+          <choice value="textonly"/>
+          <choice value="both"/>
+          <choice value="lastused"/>
+        </param>
+      </command>
+      <command name="SetDetailsView" category="user.interface.instructions.category" scope="section,function,if">
+        <param type="choice">
+          <choice value="show"/>
+          <choice value="hide"/>
+        </param>
+      </command>
+      <command name="SetErrors" category="flow.control.instructions.category" scope="section,function,if"/>
+      <command name="SetFileAttributes" category="general.purpose.instructions.category" scope="section,function,if">
+        <param name="filename" type="pathname"/>
+        <param type="multi.choice">
+          <choice value="NORMAL"/>
+          <choice value="ARCHIVE"/>
+          <choice value="HIDDEN"/>
+          <choice value="OFFLINE"/>
+          <choice value="READONLY"/>
+          <choice value="SYSTEM"/>
+          <choice value="TEMPORARY"/>
+        </param>
+      </command>
+      <command name="SetFont" category="general.attributes.category" scope="global,if">
+        <param name="/LANG" tooltip="lang_id" prefix="/LANG=" type="language" optional="true"/>
+        <param name="font_face_name" type="string"/>
+        <param name="font_size" type="number" domain="positive"/>
+      </command>
+      <command name="SetOutPath" category="basic.instructions.category" scope="section,function,if">
+        <param name="outpath" type="pathname"/>
+      </command>
+      <command name="SetOverwrite" category="compiler.flags.category" scope="any">
+        <param type="choice" default="0">
+          <choice value="on"/>
+          <choice value="off"/>
+          <choice value="try"/>
+          <choice value="ifnewer"/>
+          <choice value="ifdiff"/>
+          <choice value="lastused"/>
+        </param>
+      </command>
+      <command name="SetPluginUnload" category="compiler.flags.category" scope="any">
+        <param type="choice" default="0">
+          <choice value="manual"/>
+          <choice value="alwaysoff"/>
+        </param>
+      </command>
+      <command name="SetRebootFlag" category="reboot.instructions" scope="section,function,if">
+        <param type="choice">
+          <choice value="true"/>
+          <choice value="false"/>
+        </param>
+      </command>
+      <command name="SetShellVarContext" category="misc.instructions.category" scope="section,function,if">
+        <param type="choice" default="0">
+          <choice value="current"/>
+          <choice value="all"/>
+        </param>
+      </command>
+      <command name="SetSilent" category="user.interface.instructions.category" scope="section,function,if">
+        <param type="choice">
+          <choice value="silent"/>
+          <choice value="normal"/>
+        </param>
+      </command>
+      <command name="ShowInstDetails" category="general.attributes.category" scope="global,if">
+        <param type="choice" default="0">
+          <choice value="hide"/>
+          <choice value="show"/>
+          <choice value="nevershow"/>
+        </param>
+      </command>
+      <command name="ShowUninstDetails" category="general.attributes.category" scope="global,if">
+        <param type="choice" default="0">
+          <choice value="hide"/>
+          <choice value="show"/>
+          <choice value="nevershow"/>
+        </param>
+      </command>
+      <command name="ShowWindow" category="user.interface.instructions.category" scope="section,function,if">
+        <param name="hwnd" type="number" domain="positive"/>
+        <param type="choice">
+          <choice display="SW_HIDE" value="0"/>
+          <choice display="SW_SHOWNORMAL" value="1"/>
+          <choice display="SW_NORMAL" value="1"/>
+          <choice display="SW_SHOWMINIMIZED" value="2"/>
+          <choice display="SW_SHOWMAXIMIZED" value="3"/>
+          <choice display="SW_MAXIMIZE" value="3"/>
+          <choice display="SW_SHOWNOACTIVATE" value="4"/>
+          <choice display="SW_SHOW" value="5"/>
+          <choice display="SW_MINIMIZE" value="6"/>
+          <choice display="SW_SHOWMINNOACTIVE" value="7"/>
+          <choice display="SW_SHOWNA" value="8"/>
+          <choice display="SW_RESTORE" value="9"/>
+          <choice display="SW_SHOWDEFAULT" value="10"/>
+          <choice display="SW_FORCEMINIMIZE" value="11"/>
+          <choice display="SW_MAX" value="11"/>
+        </param>
+      </command>
+      <command name="SilentInstall" category="general.attributes.category" scope="global,if">
+        <param type="choice" default="0">
+          <choice value="normal"/>
+          <choice value="silent"/>
+          <choice value="silentlog"/>
+        </param>
+      </command>
+      <command name="SilentUnInstall" category="general.attributes.category" scope="global,if">
+        <param type="choice" default="0">
+          <choice value="normal"/>
+          <choice value="silent"/>
+        </param>
+      </command>
+      <command name="Sleep" category="misc.instructions.category" scope="section,function,if">
+        <param name="sleeptime_in_ms" type="number" domain="natural"/>
+      </command>
+      <command name="SpaceTexts" category="general.attributes.category" scope="global,if">
+        <param name="req text" type="string" allowBlank="true" optional="true"/>
+        <param name="avail text" type="string" allowBlank="true" optional="true" depends="0"/>
+      </command>
+      <command name="StrCmp" category="flow.control.instructions.category" scope="section,function,if">
+        <param name="str1" type="string" allowBlank="true"/>
+        <param name="str2" type="string" allowBlank="true"/>
+        <param name="jump_if_equal" type="label"/>
+        <param name="jump_if_not_equal" type="label" optional="true"/>
+      </command>
+      <command name="StrCpy" category="string.manipulation.instructions.category" scope="section,function,if">
+        <param name="user_var(destination)" type="var"/>
+        <param name="str" type="string" allowBlank="true"/>
+        <param name="maxlen" type="number" optional="true"/>
+        <param name="start_offset" type="number" optional="true" includePrevious="true"/>
+      </command>
+      <command name="StrLen" category="string.manipulation.instructions.category" scope="section,function,if">
+        <param name="user_var(length output)" type="var"/>
+        <param name="str" type="string" allowBlank="true"/>
+      </command>
+      <command name="SubCaption" category="general.attributes.category" scope="global,if">
+        <param name="page_number" type="choice">
+          <choice display="license.label" value="0"/>
+          <choice display="options.label" value="1"/>
+          <choice display="directory.label" value="2"/>
+          <choice display="installing.label" value="3"/>
+          <choice display="completed.label" value="4"/>
+        </param>
+        <param name="subcaption" type="string" allowBlank="true"/>
+      </command>
+      <command name="SubSection" category="section.commands.category" terminator="SubSectionEnd" scope="global,sectiongroup,if">
+        <param name="/e" type="static" optional="true"/>
+        <param name="sub_section_name" type="string"/>
+        <param name="index_output" type="string" optional="true"/>
+      </command>
+      <command name="UnRegDLL" category="general.purpose.instructions.category" scope="section,function,if">
+        <param name="dllfile" type="pathname"/>
+      </command>
+      <command name="UninstPage" category="pages.category" scope="global,if">
+        <param type="radio">
+          <param type="group">
+            <param name="custom" type="static"/>
+            <param name="creator_function" type="string" allowBlank="true" optional="true"/>
+            <param name="leave_function" type="string" allowBlank="true" optional="true" includePrevious="true"/>
+            <param name="caption" type="string" allowBlank="true" optional="true" includePrevious="true"/>
+          </param>
+          <param type="group">
+            <param type="choice">
+              <choice value="license"/>
+              <choice value="components"/>
+              <choice value="directory"/>
+              <choice value="instfiles"/>
+              <choice value="uninstConfirm"/>
+            </param>
+            <param name="pre_function" type="string" allowBlank="true" optional="true"/>
+            <param name="show_function" type="string" allowBlank="true" optional="true" includePrevious="true"/>
+            <param name="leave_function" type="string" allowBlank="true" optional="true" includePrevious="true"/>
+          </param>
+        </param>
+        <param name="/ENABLECANCEL" type="static" optional="true"/>
+      </command>
+      <command name="UninstallButtonText" category="general.attributes.category" scope="global,if">
+        <param name="text" type="string" allowBlank="true"/>
+      </command>
+      <command name="UninstallCaption" category="general.attributes.category" scope="global,if">
+        <param name="caption" type="string" allowBlank="true"/>
+      </command>
+      <command name="UninstallIcon" category="general.attributes.category" scope="global,if">
+        <param name="[path\]icon.ico" type="localfile" acceptVar="false">
+          <filter name="ico.files.filter.name" value="*.ico"/>
+          <filter name="all.files.filter.name" value="*.*"/>
+        </param>
+      </command>
+      <command name="UninstallSubCaption" category="general.attributes.category" scope="global,if">
+        <param name="page_number" type="choice">
+          <choice display="confirmation.label" value="0"/>
+          <choice display="uninstalling.label" value="1"/>
+          <choice display="completed.label" value="2"/>
+        </param>
+        <param name="subcaption" type="string" allowBlank="true"/>
+      </command>
+      <command name="UninstallText" category="general.attributes.category" scope="global,pageex,if">
+        <param name="text" type="string" allowBlank="true"/>
+        <param name="subtext" type="string" allowBlank="true" optional="true"/>
+      </command>
+      <command name="VIAddVersionKey" category="version.information.category" scope="global,if">
+        <param name="/LANG" tooltip="lang_id" prefix="/LANG=" type="language" optional="true"/>
+        <param name="keyname" type="string"/>
+        <param name="value" type="string" allowBlank="true"/>
+      </command>
+      <command name="VIProductVersion" category="version.information.category" scope="global,if">
+        <param name="version_string_X.X.X.X" type="version.string"/>
+      </command>
+      <command name="Var" category="user.variables.category" scope="any">
+        <param name="var_name" type="var.string" acceptVar="false"/>
+      </command>
+      <command name="WindowIcon" category="general.attributes.category" scope="global,if">
+        <param type="choice" default="0">
+          <choice value="on"/>
+          <choice value="off"/>
+        </param>
+      </command>
+      <command name="WriteINIStr" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="ini_filename" type="pathname"/>
+        <param name="section_name" type="string"/>
+        <param name="entry_name" type="string"/>
+        <param name="value" type="string" allowBlank="true"/>
+      </command>
+      <command name="WriteRegBin" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="root_key" type="hkey"/>
+        <param name="subkey" type="string"/>
+        <param name="key_name" type="string" allowBlank="true"/>
+        <param name="valuedata" type="hex.string" acceptVar="false" acceptSymbol="false"/>
+      </command>
+      <command name="WriteRegDWORD" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="root_key" type="hkey"/>
+        <param name="subkey" type="string"/>
+        <param name="key_name" type="string" allowBlank="true"/>
+        <param name="value" type="number" domain="natural"/>
+      </command>
+      <command name="WriteRegExpandStr" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="root_key" type="hkey"/>
+        <param name="subkey" type="string"/>
+        <param name="key_name" type="string" allowBlank="true"/>
+        <param name="value" type="string" allowBlank="true"/>
+      </command>
+      <command name="WriteRegStr" category="reg.ini.file.instructions.category" scope="section,function,if">
+        <param name="root_key" type="hkey"/>
+        <param name="subkey" type="string"/>
+        <param name="key_name" type="string" allowBlank="true"/>
+        <param name="value" type="string" allowBlank="true"/>
+      </command>
+      <command name="WriteUninstaller" category="uninstaller.instructions.category" scope="section,function,if">
+        <param name="[Path\]exename.exe" type="pathname"/>
+      </command>
+      <command name="XPStyle" category="general.attributes.category" scope="global,if">
+        <param type="choice" default="1">
+          <choice value="on"/>
+          <choice value="off"/>
+        </param>
+      </command>
+    </add>
+  </version>
+</commands>

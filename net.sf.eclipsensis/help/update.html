@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+  <title>EclipseNSIS - NSIS Update</title>
+
+
+  <link rel="stylesheet" href="book.css" charset="ISO-8859-1" type="text/css">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+  <meta http-equiv="Content-Style-Type" content="text/css">
+
+  <script language="javascript" type="text/javascript" src="help.js"></script>
+  <script type="text/javascript" language="javascript" src="redirect.js"></script>
+</head>
+<body>
+<div id="main">
+<a href="wizcomplete.html">Previous</a> | <a href="overview.html#contents">Contents</a> | <a href="preferences.html">Next</a>
+<hr>
+<h1>NSIS Update </h1>
+<p>NSIS Update is a feature of EclipseNSIS that can be used to find,
+download and install the latest NSIS software. It can be invoked in several ways:</p>
+<ul>
+<li><a href="#menuitem">Menu item/Toolbar button</a></li>
+<li><a href="#wizard">Wizard</a></li>
+<li><a href="#scheduler">Scheduler</a></li>
+</ul>
+<p>If an update is successfully installed, EclipseNSIS will detect the new NSIS installation and update the <a href="nsisprefs.html?id=id_nsishome#a_nsishome">NSIS home</a> to point to it. NSIS Update behavior can be customized on its <a href="updateprefs.html">preference page</a>.</p>
+<a name="notes"></a>Please note the following items:
+<ol>
+  <li><span style="font-weight: bold">NSIS Update does not update EclipseNSIS itself. To update EclipseNSIS (and other installed features in Eclipse) use either the
+  <a href="javascript:redirectEclipse('/org.eclipse.platform.doc.user/tasks/tasks-129.htm');">Eclipse Software Updates and Add-ons</a> utility
+  or the classic <a href="javascript:redirectEclipse('/org.eclipse.platform.doc.user/tasks/tasks-36.htm');">Eclipse Update Manager</a>.</span></li>
+  <li><span style="font-weight: bold">NSIS Update does not update CVS or nightly builds of NSIS. If the configured NSIS home points to a CVS or nightly build, then it must be manually updated either by recompiling the source code or by downloading a new nightly build.</span></li>
+  <li><span style="font-weight: bold">Users with Windows Vista or later operating systems may see a dialog similar to the one below when installing an update. Simply click the <span style="font-style: italic; font-weight: normal">Allow</span> button to continue.</span></li>
+</ol>
+<p style="text-align: center;"><img src="images/vistaupdate.gif" alt="Installing NSIS update on Windows Vista" style="border: 0px solid ; width: 460px; height: 369px;"></p>
+<a name="menuitem"></a>
+<h2>Menu Item/Toolbar Button</h2>
+<p>NSIS Update is available as <a href="editing.html?id=id_update#a_update">menu item</a> in the EclipseNSIS menu and a <a href="editing.html?id=id_update#a_update">button</a> on the EclipseNSIS toolbar,
+displayed whenever the EclipseNSIS editor is open. This provides convenient, single-click access to NSIS Update.
+The action performed is equivalent to the <a href="schedulerprefs.html#defaultaction">default update action</a> in the NSIS Update preferences page.</p>
+<a name="wizard"></a><h2>Wizard</h2>
+<p>The NSIS Update Wizard is available from the <span style="font-style:italic">Help&rarr;NSIS Update Wizard </span> menu item. The user can specify the NSIS Update action and other update options before it runs. The NSIS Update action and options are identical to those described in the <a href="updateprefs.html">NSIS Update</a> and <a href="schedulerprefs.html">Automatic NSIS Updates </a> preference pages. </p>
+<p style="text-align: center;"><img src="images/updatewizard.gif" alt="NSIS Update Wizard" border="0" usemap="#Map" style="border: 0px solid ; width: 438px; height: 376px;"></p>
+<a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+<a name="scheduler"></a><h2>Scheduler</h2>
+<p>NSIS Update is able to search for updates to NSIS on a periodic basis without user assistance.
+The way this search is performed is configurable by the user on the <a href="schedulerprefs.html">Automatic NSIS Updates</a> preference page. Users can configure the update schedule and the action to be performed.</p>
+<br>
+<hr><a href="wizcomplete.html">Previous</a> | <a href="overview.html#contents">Contents</a> | <a href="preferences.html">Next</a>
+<p><strong><small>Copyright &copy; 2004-2010 Sunil Kamath (IcemanK).</small></strong></p>
+</div>
+<map name="Map">
+  <area shape="rect" coords="22,112,331,169" href="schedulerprefs.html?id=id_action#a_action">
+  <area shape="rect" coords="22,202,179,215" href="updateprefs.html?id=id_ignorepreview#a_ignorepreview">
+</map>
+</body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+  <title>EclipseNSIS - Script Properties</title>
+
+
+  <link rel="stylesheet" href="book.css" charset="ISO-8859-1" type="text/css">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+  <meta http-equiv="Content-Style-Type" content="text/css">
+
+  <script language="javascript" type="text/javascript" src="help.js"></script>
+  <script language="javascript" type="text/javascript" src="nsiscontrib.js"></script>
+  <script language="javascript" type="text/javascript" src="redirect.js"></script></head>
+
+<body>
+<div id="main">
+<a href="properties.html">Previous</a> | <a href="overview.html#contents">Contents</a> | <a href="headerproperties.html">Next</a>
+<hr>
+<h1>Script Properties</h1>
+<p>The EclipseNSIS Script
+Properties page is displayed for projects, folders or an NSIS script files (*.nsi). While the <a href="nsisprefs.html">EclipseNSIS Preferences Page</a>
+is used to set global options while compiling an NSIS script, the Script Properties page, on the other hand, is used to
+set custom script compilation options at the resource level, i.e., for projects, folders and files. The
+compilation options for any resource can be defaulted to those of its parent resource. The compilation options
+for a project resource can be defaulted to the global compilation options. The major portion of the
+Properties page is identical in behavior to the <a href="nsisprefs.html">EclipseNSIS Preferences Page</a>.
+The primary difference is the Associated Headers tab, which is available only for NSIS script files (*.nsi).</p>
+<p style="text-align: center;"><img src="images/properties.gif" alt="EclipseNSIS Script Properties page" usemap="#properties" ismap="ismap" style="border: none; width: 452px; height: 508px;"></p>
+<a name="a_global"></a><dl id="id_global">
+  <dt>Use
+parent NSIS options</dt>
+  <dd>Use the appropriate parent resource options. In the case of a file, this would be the parent folder options.
+In the case of a folder, this would be parent folder or project options.</dd>
+</dl>
+<a name="assochdrs"></a><h2>Associated Headers</h2>
+<p>The Associated Headers property page is used to associate NSIS header files (*.nsh) with an NSIS script file (*.nsi).
+The advantage of this is the ability to use EclipseNSIS <a href="compiling.html#direct_compile">direct compilation</a> menu items and toolbar buttons while editing a header file. That is, if any of the compile commands are invoked while a header file is being edited, EclipseNSIS will automatically use the associated script file instead of the header file. The only restrictions with associating header files and script files are:
+<ul>
+<li>The header files and the script file must reside in the Eclipse workspace, i.e., they must be members of projects in the Eclipse workspace.</li>
+<li>A header file may be only associated with a single script file, while a script file may have several header files associated with it.</li>
+</ul></p>
+<p style="text-align: center;"><img src="images/assochdrprops.gif" alt="Associated Headers Properties page" width="452" height="508" usemap="#assochdrprops" ismap="ismap" style="border: none; width: 452px; height: 508px;"></p>
+<a name="a_headers"></a><dl id="id_headers">
+  <dt>Associated Headers</dt>
+  <dd>The NSIS header files (*.nsh) associated with the selected NSIS script file (*.nsi).</dd>
+</dl>
+<a name="a_add"></a><dl id="id_add">
+  <dt>Associate Header</dt>
+  <dd>Associate an NSIS header file with the NSIS script file.</dd>
+</dl>
+<a name="a_delete"></a><dl id="id_delete">
+  <dt>Disassociate Header</dt>
+  <dd>Disassociate the selected NSIS header file(s) from the NSIS script file.</dd>
+</dl>
+<a name="a_reassoc"></a><dl id="id_reassoc">
+  <dt>Show Warning for Already Associated Header</dt>
+  <dd>If this option is selected, a warning and confirmation message is shown when associating a header which is
+already associated with another NSIS script.</dd>
+</dl>
+<hr><a href="properties.html">Previous</a> | <a href="overview.html#contents">Contents</a> | <a href="headerproperties.html">Next</a>
+<br>
+<br>
+<p><strong><small>Copyright
+&copy; 2004-2010 Sunil Kamath (IcemanK).</small></strong></p>
+<map name="assochdrprops">
+<area id="headers" shape="rect" href="#a_headers" alt="Associated Headers" onClick="highlightDef('id_headers');" coords="21,68,405,435">
+<area id="add" shape="rect" href="#a_add" alt="Add Header" onClick="highlightDef('id_add');" coords="411,68,437,93">
+<area id="delete" shape="rect" href="#a_delete" alt="Delete Header" onClick="highlightDef('id_delete');" coords="411,100,437,124">
+<area id="reassoc" shape="rect" href="#a_reassoc" alt="Show Warning" onClick="highlightDef('id_reassoc');" coords="20,440,406,467">
+</map>
+<map name="properties">
+  <area shape="RECT" href="nsisprefs.html#general" coords="19,80,439,461">
+  <area shape="rect" coords="17,26,63,43" href="nsisprefs.html#general">
+  <area shape="rect" coords="65,26,152,43" href="nsisprefs.html#symbols">
+  <area shape="rect" coords="154,25,259,43" href="#assochdrs">
+  <area id="global" shape="RECT" href="#a_global" alt="Use global NSIS options" onClick="highlightDef('id_global');" coords="18,54,190,69">
+</map>
+</div>
+
+</body></html>

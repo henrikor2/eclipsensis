@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+#     Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+<toc label="EclipseNSIS User Guide" topic="help/overview.html">
+    <topic label="Installation" href="help/installation.html"/>
+    <topic label="Configuration" href="help/configuration.html"/>
+    <topic label="Editing NSIS Scripts" href="help/editing.html"/>
+    <topic label="Compiling and Testing" href="help/compiling.html"/>
+    <topic label="Console" href="help/console.html"/>
+    <topic label="Command Wizard" href="help/cmdwizard.html"/>
+    <topic label="Script Wizard" href="help/wizard.html">
+        <topic label="Welcome" href="help/wizwelcome.html"/>
+        <topic label="General Information" href="help/wizgeneral.html"/>
+        <topic label="Installer Attributes" href="help/wizattrib.html"/>
+        <topic label="Installer Presentation" href="help/wizpresentation.html"/>
+        <topic label="Installer Contents" href="help/wizcontents.html"/>
+        <topic label="Wizard Completion" href="help/wizcomplete.html"/>
+    </topic>
+    <topic label="NSIS Update" href="help/update.html"/>
+    <topic label="Preferences" href="help/preferences.html">
+        <topic label="EclipseNSIS" href="help/nsisprefs.html"/>
+        <topic label="Editor" href="help/editorprefs.html"/>
+        <topic label="Templates" href="help/templateprefs.html"/>
+        <topic label="Task Tags" href="help/tasktagprefs.html"/>
+        <topic label="Script Templates" href="help/scrtmpltprefs.html"/>
+        <topic label="NSIS Update" href="help/updateprefs.html"/>
+        <topic label="Automatic NSIS Updates" href="help/schedulerprefs.html"/>
+        <topic label="Colors and Fonts" href="help/colorsfontsprefs.html"/>
+    </topic>
+    <topic label="Properties" href="help/properties.html">
+        <topic label="Script Properties" href="help/scriptproperties.html"/>
+        <topic label="Header Properties" href="help/headerproperties.html"/>
+    </topic>
+    <topic label="License &amp; Copyright" href="help/license.html"/>
+    <topic label="Useful Links" href="help/links.html"/>
+    <topic label="NSIS Users Manual" href="help/NSIS/Docs/Contents.html"/>
+</toc>

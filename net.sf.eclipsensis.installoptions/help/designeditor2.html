@@ -1,0 +1,342 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+  <title>EclipseNSIS InstallOptions Editor - Design Editor</title>
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+  <meta http-equiv="Content-Style-Type" content="text/css">
+
+  <link rel="stylesheet" href="book.css" charset="ISO-8859-1" type="text/css">
+
+  <script type="text/javascript" language="javascript" src="help.js">
+  </script>
+  <script language="javascript" type="text/javascript" src="nsiscontrib.js"></script>
+  <script type="text/javascript" language="javascript" src="redirect.js">
+  </script>
+  <style type="text/css">
+table.dialogs {
+border-width: 1px 1px 1px 1px;
+border-spacing: 0px 0px;
+border-style: outset outset outset outset;
+border-collapse: collapse;
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+}
+table.dialogs th {
+border-width: 1px 1px 1px 1px;
+padding: 5px 5px 5px 5px;
+border-style: inset inset inset inset;
+-moz-border-radius: 0px 0px 0px 0px;
+text-align: left;
+}
+table.dialogs tr {
+vertical-align: top;
+}
+table.dialogs td {
+border-width: 1px 1px 1px 1px;
+padding: 5px 5px 5px 5px;
+border-style: inset inset inset inset;
+-moz-border-radius: 0px 0px 0px 0px;
+text-align: left;
+}
+  </style>
+  <script type="text/javascript" language="javascript">
+<!--
+var images1 = new Array();
+images1[0] = new Image();
+images1[0].src = "images/properties1.gif";
+images1[1] = new Image();
+images1[1].src = "images/properties1cl.gif";
+
+var images2 = new Array();
+images2[0] = new Image();
+images2[0].src = "images/properties2.gif";
+images2[1] = new Image();
+images2[1].src = "images/properties2cl.gif";
+
+function setImage(img, images, index, id)
+{
+    document.images[img].src = images[index].src;
+	if(id.blur) id.blur();
+}
+//-->
+  </script>
+</head>
+<body>
+<div id="main">
+<a href="designeditor.html">Previous</a> | <a href="overview.html#contents">Contents</a> | <a href="sourceeditor.html">Next</a>
+<hr>
+<a name="controls"></a>
+<h2>Creating and Modifying InstallOptions Controls</h2>
+<p>InstallOptions controls can be created on the design editor canvas in several ways:</p>
+<ul>
+<li><span style="font-weight: bold;">From the palette Controls Drawer</span> - By either a) clicking on a control in the palette drawer
+and then clicking on the desired location on the canvas (click and drag the mouse to set the control size), b) directly
+dragging a control from the palette drawer to the desired location on the canvas.</li>
+<li><span style="font-weight: bold;">From the palette Templates Drawer</span> - By either a) clicking on a template in the palette drawer and then clicking on the desired location on the canvas (click and drag the mouse to set the size), b) directly dragging a template from the palette to the desired location on the canvas.</li>
+<li><span style="font-weight: bold;">From the Clipboard</span>
+- Select one or more existing controls in either the current or a
+different InstallOptions script, and copy them using the menu <span style="font-style: italic;">Copy</span> command or by pressing <span style="font-weight: bold;">Ctrl+C</span>. The copied controls can then be pasted using the menu <span style="font-style: italic;">Paste</span> command or by pressing <span style="font-weight: bold;">Ctrl+V</span>.</li>
+<li><span style="font-weight: bold;">Clone Existing Controls</span> - Select one or more existing controls in the current InstallOptions script. Then, while pressing the&nbsp;<span style="font-weight: bold;">Ctrl</span>
+key, drag the selected controls to the desired location on the canvas.
+Copies of the selected controls will be created at this location.</li>
+</ul>
+<p>Once created, the settings of the controls can be modified using the <a href="#properties">Properties view</a>. Some settings can be updated directly on the design editor canvas using <a href="#direct_edit">Direct and Extended edit</a>.
+Additionally, one or more selected controls can be enabled or disabled
+directly from the right-click popup context menu. This is equivalent to
+removing or adding the DISABLED flag, respectively.</p>
+<dl>
+<dt><a name="properties"></a>Properties View</dt>
+<dd><p>The <a href="javascript:redirectEclipse('/org.eclipse.platform.doc.user/concepts/cpropview.htm');">Eclipse Properties view</a> displays
+setting names and values for the selected control on the design
+editor canvas. If no control is selected, the settings for the
+InstallOptions dialog itself are displayed. If the Properties view is
+not open in the current perspective, it is opened and activated. If it
+is opened, but inactive, it is activated.</p>
+<div id="div_properties1">
+<p style="text-align: center;"><img src="images/properties1.gif" alt="Dialog Settings" name="img_properties1" usemap="#properties1" style="border: medium none ; width: 681px; height: 318px;" title="Dialog Settings"><br>
+InstallOptions Dialog Settings</p>
+<script type="text/javascript" language="javascript">
+<!--
+if(ie) {
+document.write("<map name='properties1'><area id='tab1' nohref='true' OnClick='setImage(\"img_properties1\", images1, 0, this);' onMouseOver='changeCursor(\"div_properties1\",\"hand\");' onMouseOut='changeCursor(\"div_properties1\",\"auto\");' shape='RECT' alt='InstallOptions Dialog General Settings' coords='5,36,72,56'><area id='tab1cl' nohref='true' OnClick='setImage(\"img_properties1\", images1, 1, this);' onMouseOver='changeCursor(\"div_properties1\",\"hand\");' onMouseOut='changeCursor(\"div_properties1\",\"auto\");' shape='RECT' alt='InstallOptions Dialog Settings Classic format' coords='5,57,72,77'></map>");
+}
+else {
+document.write("<map name='properties1'><area id='tab1' href='javascript: setImage(\"img_properties1\", images1, 0, this);' onMouseOver='window.status=\"\";return true;' shape='RECT' alt='InstallOptions Dialog General Settings' coords='5,36,72,56'><area id='tab1cl' href='javascript: setImage(\"img_properties1\", images1, 1, this);' onMouseOver='window.status=\"\";return true;' shape='RECT' alt='InstallOptions Dialog Settings Classic format' coords='5,57,72,77'></map>");
+}
+//-->
+</script>
+</div>
+<div id="div_properties2">
+<p style="text-align: center;"><img src="images/properties2.gif" alt="Control Settings" name="img_properties2" usemap="#properties2" style="border: medium none ; width: 681px; height: 318px;" title="Control Settings"><br>
+Sample Control Settings</p>
+<script type="text/javascript" language="javascript">
+<!--
+if(ie) {
+document.write("<map name='properties2'><area id='tab2' nohref='true' OnClick='setImage(\"img_properties2\", images2, 0, this);' onMouseOver='changeCursor(\"div_properties2\",\"hand\");' onMouseOut='changeCursor(\"div_properties2\",\"auto\");' shape='RECT' alt='InstallOptions Dialog General Settings' coords='5,36,72,56'><area id='tab2cl' nohref='true' OnClick='setImage(\"img_properties2\", images2, 1, this);' onMouseOver='changeCursor(\"div_properties2\",\"hand\");' onMouseOut='changeCursor(\"div_properties2\",\"auto\");' shape='RECT' alt='InstallOptions Dialog Settings Classic format' coords='5,57,72,77'></map>");
+}
+else {
+document.write("<map name='properties2'><area id='tab2' href='javascript: setImage(\"img_properties2\", images2, 0, this);' onMouseOver='window.status=\"\";return true;' shape='RECT' alt='InstallOptions Dialog General Settings' coords='5,36,72,56'><area id='tab2cl' href='javascript: setImage(\"img_properties2\", images2, 1, this);' onMouseOver='window.status=\"\";return true;' shape='RECT' alt='InstallOptions Dialog Settings Classic format' coords='5,57,72,77'></map>");
+}
+//-->
+</script>
+</div>
+
+<p>Beginning with InstallOptions 0.9.5, the settings editor is form based. The classic (or tabular) settings editor can still be accessed by clicking on the &quot;Classic&quot; tab in the Properties view (click on the images above to preview the classic tab).</p>
+<dl>
+<dt>Form Based</dt>
+<dd>In the form based settings editor, the various settings are logically grouped and can be directly modified.
+Settings which are modified using checkboxes, radio buttons and combo boxes are immediately applied,
+while settings which are modified using text boxes are applied either when text box loses focus or
+when the Enter key is pressed (Ctrl+Enter for multiline text boxes).</dd>
+<dt>Classic (or Tabular)</dt>
+<dd>In the classic (or tabular) settings editor, if a setting is user
+editable, then clicking on the setting value in the Properties view
+enables the user to edit the value. In most cases, the value is
+modifiable directly in the Properties view- either by editing its text
+or by selecting a value from a dropdown list. In some cases, however,
+the value can only be edited in a separate popup dialog. These cases are described
+below:
+  <div style="text-align: center;"><table class="dialogs" cellpadding="2" cellspacing="2">
+<thead>
+<tr>
+<th style="width: 10%;">Control</th>
+<th style="width: 10%;">Setting</th>
+<th style="width: 80%;">Dialog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FileRequest</td>
+<td>Filter</td>
+<td>
+<div style="text-align: center;"><img style="width: 406px; height: 434px; text-align: center;" alt="FileRequest Filter Dialog" title="FileRequest Filter Dialog" src="images/filterdialog.gif"><br>
+</div>
+This
+dialog is used to define a set of one or more filters for the
+FileRequest control. Each filter consists of one or more file patterns.
+These patterns are in the form of standard Microsoft file name
+wildcards. The summary section in the dialog lists the filters
+currently defined. This list may be used to create, delete or reorder
+filters. A filter may be edited by clicking on it in the summary table,
+which loads the filter into the detail section. The patterns may be
+edited in the detail section by directly clicking on them and entering
+the desired pattern text in-place.
+</td>
+</tr>
+<tr>
+<td>All</td>
+<td>Flags</td>
+<td><div style="text-align: center;"><img style="width: 317px; height: 245px;" alt="Flags Dialog" title="Flags Dialog" src="images/flagsdialog.gif">
+</div>This dialog is used to choose
+the flags to apply to the selected control. Only the flags which are
+valid for the selected control will be available in this dialog.
+</td>
+</tr>
+<tr>
+<td>DropList<br>
+Combobox<br>
+Listbox</td>
+<td>ListItems</td>
+<td><div style="text-align: center;"><img style="width: 278px; height: 245px;" alt="ListItems Dialog" title="ListItems Dialog" src="images/listitemsdialog.gif"></div>This
+dialog is used to specify a list of items for the selected control.
+Items may be added, deleted or rearranged in this dialog. An item can
+be edited be clicking on it and typing the desired text in-place.</td>
+</tr>
+<tr>
+<td>Listbox</td>
+<td>State</td>
+<td><div style="text-align: center;"><img style="width: 250px; height: 245px;" alt="Listbox State Dialog" title="Listbox State Dialog" src="images/selectlistdialog.gif"></div>This
+dialog is used to choose the selected items for the Listbox control. If
+either the MULTISELECT or EXTENDEDSELCT flags are specified,
+then this dialog allows multiple selections, otherwise only a single
+selection is allowed.
+</td>
+</tr>
+<tr>
+<td>Label</td><td>Text</td>
+<td rowspan="2"><div style="text-align: center;"><img style="width: 304px; height: 153px;" alt="Multiline Dialog" title="Multiline Dialog" src="images/multilinedialog.gif"></div>
+This dialog is used to enter multiline text for controls which support it. In case of Text controls, this dialog is only
+available if the MULTILINE flag has been specified.
+</td>
+</tr>
+<tr>
+<td>Text</td><td>State</td>
+</tr>
+<tr>
+<td>Link</td>
+<td>TxtColor</td>
+<td>The standard Windows color selection dialog is displayed.</td>
+</tr>
+</tbody>
+</table></div></dd>
+</dl>
+<a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+<br>
+<dt><a name="direct_edit"></a>Direct and Extended Edit</dt>
+<dd><p>The
+design editor permits the editing of some settings in-place on the
+canvas. These are accomplished using the Direct edit and Extended edit
+features. Direct edit is enabled when a single mouse click is performed
+on a selected control. Extended edit is enabled when a double click is
+performed on a control- whether it is selected or not. These features
+are also available from the right-click popup context menu on the
+canvas when a single control is selected. The table below
+lists settings which may be edited using Direct edit or Extended edit.</p>
+<div style="text-align: center;">
+<table style="text-align: left;" class="dialogs" cellpadding="2" cellspacing="2">
+<thead>
+<tr>
+<th style="width: 30%;">Control</th>
+<th style="width: 35%;">Direct Edit Setting</th>
+<th style="width: 35%;">Extended Edit Setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Label</td>
+<td>Text</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>State</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Password</td>
+<td>State</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Combobox</td>
+<td>State</td>
+<td>ListItems</td>
+</tr>
+<tr>
+<td>DropList</td><td>State</td><td>ListItems</td></tr>
+<tr>
+<td>Listbox</td><td>State</td><td>ListItems</td></tr>
+<tr>
+<td>CheckBox</td>
+<td>Text</td>
+<td>State</td>
+</tr>
+<tr>
+<td>RadioButton</td>
+<td>Text</td>
+<td>State</td>
+</tr>
+<tr>
+<td>FileRequest</td>
+<td>State</td>
+<td>Filter</td>
+</tr>
+<tr>
+<td>DirRequest</td>
+<td>State</td>
+<td>--</td>
+</tr>
+<tr>
+<td>GroupBox</td><td>Text</td><td>--</td></tr>
+<tr>
+<td>Link</td>
+<td>Text</td>
+<td>TxtColor</td>
+</tr>
+<tr>
+<td>Button</td>
+<td>Text</td>
+<td>--</td>
+</tr>
+</tbody>
+</table></div>
+<a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a name="outline"></a><h2>Outline and Overview</h2>
+<p>The design editor includes an outline view for the InstallOptions
+script currently being edited. It offers two depictions:</p>
+<ul>
+<li><img style="width: 16px; height: 16px;" alt="Outline List" title="Outline List" src="images/outline_icon.gif"> - A list of controls in the
+script. In this view, controls can be deleted or rearranged. Selecting
+one or more controls in this view also selects them on the design
+editor canvas.</li>
+<li><img style="width: 16px; height: 16px;" alt="Outline Overview" title="Outline Overview" src="images/overview_icon.gif"> - An overview which shows a thumbnail image of the design editor canvas.</li>
+</ul>
+<div style="text-align: center;"><table style="text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="text-align: center;"><img style="width: 316px; height: 248px;" alt="Outline List" title="Outline List" src="images/outline.gif"><br>
+Outline List</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: center;"><img style="width: 316px; height: 248px;" alt="Outline Overview" title="Outline Overview" src="images/overview.gif"><br>
+Outline Overview</td>
+</tr>
+</tbody>
+</table></div>
+<a href="javascript:history.go(-1)">&larr;&nbsp;Back</a>
+<hr>
+<a href="designeditor.html">Previous</a> | <a href="overview.html#contents">Contents</a> | <a href="sourceeditor.html">Next</a> <br>
+<br>
+<p><strong><small>Copyright &copy; 2004-2010 Sunil Kamath
+(IcemanK).</small></strong></p>
+<map name="designeditor">
+<area id="canvas" shape="RECT" href="#a_canvas" alt="Canvas" onClick="highlightDef('id_canvas');" coords="18,41, 482,472">
+<area id="palette" shape="RECT" href="#a_palette" alt="Palette" onClick="highlightDef('id_palette');" coords="485,23, 627,471">
+<area id="rulers" shape="POLY" href="#a_rulers" alt="Ruler" onClick="highlightDef('id_rulers');" coords="2,472, 16,472, 16,39, 481,39, 481,25, 18,25, 17,41, 2,41, 2,472">
+</map>
+</div>
+</body></html>

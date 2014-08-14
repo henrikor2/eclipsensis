@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!--
+###############################################################################
+# Copyright (c) 2005-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+#     Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+<plugin>
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            targetID="net.sf.eclipsensis.editor.NSISEditor"
+            id="net.sf.eclipsensis.update.editorContribution">
+         <action
+               toolbarPath="net.sf.eclipsensis.Group2"
+               label="%update.action.name"
+               tooltip="%update.action.tooltip"
+               class="net.sf.eclipsensis.update.actions.NSISUpdateAction"
+               icon="icons/update.gif"
+               disabledIcon="icons/update_d.gif"
+               menubarPath="net.sf.eclipsensis.Menu/net.sf.eclipsensis.Group4"
+               id="net.sf.eclipsensis.actions.NSISUpdateAction">
+         </action>
+      </editorContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="net.sf.eclipsensis.dialogs.NSISPreferencePage"
+            class="net.sf.eclipsensis.update.preferences.UpdatePreferencePage"
+            id="net.sf.eclipsensis.update.preferences.UpdatePreferencePage"
+            name="%preference.page.name"/>
+      <page
+            category="net.sf.eclipsensis.update.preferences.UpdatePreferencePage"
+            class="net.sf.eclipsensis.update.preferences.SchedulerPreferencePage"
+            id="net.sf.eclipsensis.update.preferences.SchedulerPreferencePage"
+            name="%scheduler.preference.page.name"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="net.sf.eclipsensis.update.preferences.UpdatePreferenceInitializer"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup class="net.sf.eclipsensis.update.scheduler.Scheduler"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="net.sf.eclipsensis.update.actionSet"
+            label="%nsis.update.action.set.name"
+            visible="true">
+         <action
+               class="net.sf.eclipsensis.update.actions.NSISUpdateWizardAction"
+               icon="icons/update.gif"
+               id="net.sf.eclipsensis.update.actions.NSISUpdateWizardAction"
+               label="%nsis.update.wizard.action.label"
+               menubarPath="help/group.updates">
+         </action>
+      </actionSet>
+   </extension>
+   <extension point="net.sf.eclipsensis.nsisConfigWizard"
+       id="nsisUpdateConfigWizards">
+      <wizard
+         id="net.sf.eclipsensis.update.wizard.NSISUpdateWizard"
+         name="%update.wizard.name"
+         icon="icons/update.gif"
+         canFinishEarly="true"
+         class="net.sf.eclipsensis.update.wizard.NSISUpdateWizard">
+         <description>
+             %update.wizard.description
+         </description>
+     </wizard>
+   </extension>
+   <extension
+         id="net.sf.eclipsensis.update.updateNodeConverters"
+         point="net.sf.eclipsensis.nodeConverters">
+      <nodeConverter
+            class="net.sf.eclipsensis.util.NodeConvertibleNodeConverter">
+         <nameClassMapping
+               class="net.sf.eclipsensis.update.net.DownloadSite"
+               name="downloadsite">
+         </nameClassMapping>
+      </nodeConverter>
+   </extension>
+</plugin>

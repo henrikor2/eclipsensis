@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="net.sf.eclipsensis">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="net.sf.eclipsensis" id="nsisConfigWizard" name="NSIS Configuration Wizard"/>
+      </appInfo>
+      <documentation>
+         This extension point is used to register NSIS configuration wizard extensions. NSIS configuration wizards appear as choices within the main NSIS Configuration Wizard, and are used to configure EclipseNSIS with the location of NSIS software.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="wizard" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A fully qualified identifier of the target extension point.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The identifier of the extension instance.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  An optional translatable name of the extension instance.
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="wizard">
+      <annotation>
+         <appInfo>
+            <meta.element labelAttribute="name" icon="icon"/>
+         </appInfo>
+         <documentation>
+            An NSIS Configuration Wizard extension.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="description" minOccurs="0" maxOccurs="1"/>
+         </sequence>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A unique name that can be used to identify this wizard.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A translatable name of the wizard that will be used in the main NSIS Configuration Wizard dialog.
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  A relative path of an icon that will be used together with the name to represent the wizard as one of the choices in the main NSIS Configuration Wizard dialog box.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="resource"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A fully qualified name of the Java class implementing &lt;samp&gt;net.sf.eclipsensis.config.INSISConfigWizard&lt;/samp&gt;.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="net.sf.eclipsensis.config.NSISConfigWizard"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="canFinishEarly" type="boolean">
+            <annotation>
+               <documentation>
+                  Indication of whether the wizard is capable of finishing without ever showing pages to the user.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="description" type="string">
+      <annotation>
+         <appInfo>
+            <meta.element translatable="true"/>
+         </appInfo>
+         <documentation>
+            An optional subelement whose body contains a short text describing what the wizard will do when started.
+         </documentation>
+      </annotation>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         0.9.4
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         Following is an example of NSIS configuration wizard definition:
+&lt;p&gt;
+&lt;pre&gt;
+&lt;extension point=&quot;net.sf.eclipsensis.nsisConfigWizard&quot;
+    id=&quot;net.sf.eclipsensis.config.nsisConfigWizards&quot;&gt;
+  &lt;wizard
+      id=&quot;net.sf.eclipsensis.config.manual.NSISManualConfigWizard&quot;
+      name=&quot;NSIS Manual Configuration Wizard&quot;
+      icon=&quot;icons/manualconfig.gif&quot;
+      class=&quot;net.sf.eclipsensis.config.manual.NSISManualConfigWizard&quot;&gt;
+      &lt;description&gt;
+          Configure NSIS by manually specifying location of MakeNSIS.exe
+      &lt;/description&gt;
+  &lt;/wizard&gt;
+&lt;/extension&gt;
+&lt;/pre&gt;
+&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         The value of the class attribute must represent a class that implements &lt;samp&gt;net.sf.eclipsensis.config.INSISConfigWizard&lt;/samp&gt;. If the wizard is created from within the main NSIS Configuration Wizard it will be inserted into the existing wizard.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         The EclipseNSIS plugin includes a supplied implementation to manually configure NSIS (&lt;samp&gt;net.sf.eclipsensis.config.NSISManualConfigWizard&lt;/samp&gt;).
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+All rights reserved.
+This program is made available under the terms of the Common Public License
+v1.0 which is available at &lt;a href=&quot;http://www.eclipse.org/legal/cpl-v10.html&quot;&gt;http://www.eclipse.org/legal/cpl-v10.html&lt;/a&gt;
+      </documentation>
+   </annotation>
+
+</schema>

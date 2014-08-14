@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+  <title>EclipseNSIS - EclipseNSIS Preferences</title>
+  <link rel="stylesheet" href="book.css" charset="ISO-8859-1"
+ type="text/css">
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <script language="javascript" type="text/javascript" src="help.js"></script>
+</head>
+<body onLoad="checkHighlight();">
+<div id="main">
+<a href="preferences.html">Previous</a>
+| <a href="overview.html#contents">Contents
+</a>| <a href="editorprefs.html">Next</a>
+<hr>
+<h1>Preferences</h1>
+<h2><a name="nsis"></a>EclipseNSIS</h2>
+<p>These preferences are used to
+set global settings for NSIS scripts,
+including
+command
+line options for the MakeNSIS compiler. These options are applied
+during script compilation, unless overridden on the script level (see
+the <a href="properties.html">Properties</a>
+section).<br>
+The EclipseNSIS Preferences page has two tabs:</p>
+<ul>
+  <li><a href="#general">General</a></li>
+  <li><a href="#symbols">Defined Symbols</a></li>
+</ul>
+<h3><a name="general"></a>General</h3>
+<p style="text-align: center;"><img src="images/preferences1.gif"
+ alt="EclipseNSIS Preferences General Tab"
+ usemap="#preferences1"
+ ismap="ismap"
+ style="border: medium none ; width: 467px; height: 569px;"></p>
+  <a name="a_nsishome"></a><dl id="id_nsishome"><dt>NSIS
+Home</dt>
+  <dd>Location of NSIS
+software installation. This
+is the folder where
+MakeNSIS.exe can be found. In case there are multiple NSIS
+installations, e.g. in a development environment, the drop-down combo
+remembers the locations you specified, so that they are available for
+quick NSIS home selection.&nbsp;<a href="javascript:history.go(-1)">&larr;
+Back</a> </dd>
+  </dl>
+  <a name="a_autoconsole"></a><dl id="id_autoconsole"><dt>Automatically
+open NSIS
+console</dt>
+  <dd>Automatically open the
+<a href="console.html">EclipseNSIS console</a> when compiling a script.
+If the console is already open, it is brought to the front. There are four settings available:
+  <ul>
+    <li><strong>Always</strong> - the console is automatically opened and brought to the front whenever a script is compiled. This means that
+    even if the console view tab is moved to the back in the view site, it will be brought to the front whenever
+    any compilation output is generated.</li>
+    <li><strong>Errors and warnings</strong> - the console is automatically opened and brought to the front if any errors or warnings are encountered
+    while compiling a script.</li>
+    <li><strong>Errors only</strong> - the console is automatically opened and brought to the front only if any errors are encountered
+    while compiling a script.</li>
+    <li><strong>Never</strong> - the console is never automatically opened and/or brought to the front. It will have to be manually opened
+    if compilation output is to be viewed.</li>
+  </ul>
+    <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a>
+  </dd></dl>
+  <a name="a_help"></a><dl id="id_help"><dt>Use
+Eclipse Platform help browser</dt>
+  <dd>Use the Eclipse Platform
+help browser to display NSIS help. If
+this option is unchecked, then the <a href="editing.html#helpbrowser">EclipseNSIS integrated help browser</a> is used. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd></dl>
+  <a name="a_notify"></a><dl id="id_notify"><dt>Notify when MakeNSIS.exe has been modified or deleted</dt>
+  <dd>EclipseNSIS monitors the status of the MakeNSIS.exe executable in the chosen NSIS home. If this executable
+  is modified, EclipseNSIS needs to reconfigure itself. If EclipseNSIS cannot find a valid MakeNSIS.exe in the current configured NSIS home, it attempts to find an
+  alternate NSIS home by iterating through all previously used NSIS homes in order of last use until it finds
+  a valid NSIS home.<br>
+  If this option is checked, EclipseNSIS issues
+  visual notifications in the form of a message box alert and a progress dialog, otherwise it is done silently,
+  and a notification is only issued if an alternate NSIS home cannot be found. <a href="javascript:history.go(-1)">&larr;Back</a></dd>
+  </dl>
+  <a name="a_beforecompile"></a><dl id="id_beforecompile"><dt>Before compiling save options</dt>
+  <dd>This option specifies the action that EclipseNSIS takes when a compile request is made with modified files open in editors. The
+  options available are:
+  <ul>
+  <li>Confirm before saving current/selected NSIS file</li>
+  <li>Confirm before saving <a href="scriptproperties.html#assochdrs">associated</a> NSIS files</li>
+  <li>Confirm before saving all open NSIS files</li>
+  <li>Automatically save current/selected NSIS file</li>
+  <li>Automatically save <a href="scriptproperties.html#assochdrs">associated</a> NSIS files</li>
+  <li>Automatically save all open NSIS files</li>
+  </ul>
+  <a href="javascript:history.go(-1)">&larr;Back</a></dd>
+  </dl>
+  <a name="a_hdrinfo"></a><dl id="id_hdrinfo"><dt>Print
+NSIS header info</dt>
+  <dd>Prints out information on
+what options were used to compile
+MakeNSIS was compiled with. Equivalent to the /HDRINFO compiler option.
+    <a href="javascript:history.go(-1)">&larr;
+Back</a></dd></dl>
+  <a name="a_license"></a><dl id="id_license"><dt>Print
+NSIS license</dt>
+  <dd>Displays a keen license
+page. Equivalent to the /LICENSE compiler
+option. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd></dl>
+  <a name="a_noconfig"></a><dl id="id_noconfig"><dt>Do
+not include default NSIS
+config</dt>
+  <dd>Disables inclusion of
+${NSISDIR}\nsisconf.nsh.
+Without this parameter, installer defaults are set from nsisconf.nsh..
+Equivalent to the /NOCONFIG compiler option. <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+  <a name="a_nocd"></a><dl id="id_nocd"><dt>Don't
+change directory</dt>
+  <dd>Disables the current
+directory change to that of the .nsi file.
+Equivalent to the /NOCD compiler option. <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+  <a name="a_verbosity"></a><dl id="id_verbosity"><dt>Verbosity</dt>
+  <dd>Sets the verbosity of the
+compiler output. Equivalent to the /V
+compiler option. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+  <a name="a_compressor"></a><dl id="id_compressor"><dt>Compressor</dt>
+  <dd>Sets the default compressor
+for NSIS scripts. This overrides any
+compressor settings in the script. When the Best compressor option is
+selected, all compressors are tried, and the one with the best
+compression is used for creating the installer. The "Solid" checkbox appears if the
+specified version of MakeNSIS.exe supports the <strong>SetCompressor /SOLID</strong> option.
+The Solid checkbox is enabled only if a compressor is selected explicitly. <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+  <a name="a_priority"></a><dl id="id_priority">
+    <dt>Process Priority</dt>
+    <dd>Sets the  compiler process priority.  Equivalent to the /P compiler option.This setting
+  is only available if the specified version of MakeNSIS.exe supports this option (MakeNSIS 2.24 or better). <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+  </dl>
+  <a name="a_warnPriority"></a><dl id="id_warnPriority">
+    <dt>Show warning when High or Realtime process priority is selected</dt>
+    <dd>If the  compiler <a href="#a_priority" onClick="highlightDef('id_priority');">process priority</a> is set to High or Realtime, severe performance degradation may occur.  If this setting is selected, then EclipseNSIS will display a warning and confirmation if the process priority is set to High or Realtime, whether it is in the EclipseNSIS preferences, the <a href="properties.html">script properties</a> for a resource or even in the <a href="compiling.html#config_general">launch</a> or <a href="compiling.html#config_general2">project builder</a> configuration settings..This setting
+  is only available if the specified version of MakeNSIS.exe supports setting the compiler process priority (MakeNSIS 2.24 or better). <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+  </dl>
+  <a name="a_instructions"></a><dl id="id_instructions"><dt>Instructions</dt>
+  <dd>Instructions for the
+MakeNSIS compiler to execute prior to
+compiling the script. Equivalent to the /X compiler option. The
+following buttons allow the manipulation and configuration of
+instructions. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+  <dl>
+    <a name="a_add1"></a><dl id="id_add1"><dt>Add</dt>
+    <dd>Add a new instruction. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd></dl>
+    <a name="a_edit1"></a><dl id="id_edit1"><dt>Edit</dt>
+    <dd>Edit the selected
+instruction. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+    <a name="a_delete1"></a><dl id="id_delete1"><dt>Delete</dt>
+    <dd>Delete the selected
+instruction(s). <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+    <a name="a_up1"></a><dl id="id_up1"><dt>Up</dt>
+    <dd>Move the selected
+instruction(s) up in the execution sequence. <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+    <a name="a_down1"></a><dl id="id_down1"><dt>Down</dt>
+    <dd>Move the selected
+instruction(s) down in the execution
+sequence. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+  </dl>
+<a href="preferences.html">Back
+to Preferences</a><br>
+<h3><a name="symbols"></a>Defined
+Symbols</h3>
+<p style="text-align: center;"><img
+ alt="EclipseNSIS Preferences Symbols Tab" src="images/preferences2.gif"
+ ismap="ismap"
+ style="border: medium none ; width: 425px; height: 508px;"
+ usemap="#preferences2"></p>
+  <a name="a_symbols"></a><dl id="id_symbols"><dt>Defined
+Symbols</dt>
+  <dd>Symbols to be defined by the
+MakeNSIS compiler prior to
+compiling the script. Equivalent to the /D compiler option. The
+following buttons allow the manipulation and configuration of symbol
+definitions. <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+  <dl>
+    <a name="a_add2"></a><dl id="id_add2"><dt>Add</dt>
+    <dd>Add a new symbol. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd></dl>
+    <a name="a_edit2"></a><dl id="id_edit2"><dt>Edit</dt>
+    <dd>Edit the selected symbol. <a href="javascript:history.go(-1)">&larr;
+Back</a></dd></dl>
+    <a name="a_delete2"></a><dl id="id_delete2"><dt>Delete</dt>
+    <dd>Delete the selected
+symbol(s). <a href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+    <a name="a_up2"></a><dl id="id_up2"><dt>Up</dt>
+    <dd>Move the selected
+symbol(s) up in the define sequence. <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+    <a name="a_down2"></a><dl id="id_down2"><dt>Down</dt>
+    <dd>Move the selected
+symbol(s) down in the define sequence. <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd></dl>
+  </dl>
+<a href="preferences.html">Back
+to Preferences</a><br>
+<hr><a href="preferences.html">Previous</a>
+| <a href="overview.html#contents">Contents</a>
+| <a href="editorprefs.html">Next</a><br>
+<br>
+<p><strong><small>Copyright
+&copy; 2004-2010 Sunil Kamath
+(IcemanK).</small></strong></p>
+<map name="preferences1">
+<area id="edit1" onClick="highlightDef('id_edit1');" shape="RECT"
+ href="#a_edit1" alt="Edit" coords="423,404,453,428">
+<area id="add1" onClick="highlightDef('id_add1');" shape="RECT"
+ href="#a_add1" alt="Add" coords="423,373,453,397">
+<area id="delete1" onClick="highlightDef('id_delete1');" shape="RECT"
+ href="#a_delete1" alt="Delete" coords="423,435,453,459">
+<area id="up1" onClick="highlightDef('id_up1');" shape="RECT"
+ href="#a_up1" alt="Move up" coords="423,466,453,490">
+<area id="down1" onClick="highlightDef('id_down1');" shape="RECT"
+ href="#a_down1" alt="Move down" coords="423,497,453,521">
+<area id="instructions" onClick="highlightDef('id_instructions');"
+ shape="RECT" href="#a_instructions" alt="Instructions"
+ coords="20,352,420,521">
+<area id="priority" onClick="highlightDef('id_priority');"
+ shape="RECT" href="#a_priority" alt="Compiler process priority"
+ coords="28,293,329,315">
+<area id="warnPriority" onClick="highlightDef('id_warnPriority');"
+ shape="RECT" href="#a_warnPriority" alt="High/Realtime process priority warning"
+ coords="49,321,374,335">
+<area id="nocd" onClick="highlightDef('id_nocd');"
+ shape="RECT" href="#a_nocd" alt="Don't change directory"
+ coords="210,222,338,236">
+<area id="verbosity" onClick="highlightDef('id_verbosity');"
+ shape="RECT" href="#a_verbosity" alt="Compiler verbosity"
+ coords="28,241,329,263">
+<area id="license" onClick="highlightDef('id_license');" shape="RECT"
+ href="#a_license" alt="Print license" coords="211,201,313,215">
+<area id="compressor" onClick="highlightDef('id_compressor');" shape="RECT"
+ href="#a_compressor" alt="Compressor settings" coords="28,267,372,289">
+<area id="noconfig" onClick="highlightDef('id_noconfig');" shape="RECT"
+ href="#a_noconfig" alt="Exclude NSIS config" coords="28,221,203,235">
+<area id="hdrinfo" onClick="highlightDef('id_hdrinfo');" shape="RECT"
+ href="#a_hdrinfo" alt="Print header info" coords="29,201,154,215">
+<area id="notify" onClick="highlightDef('id_notify');" shape="RECT"
+ href="#a_notify" alt="Notify when MakeNSIS.exe has changed" coords="20,129,312,145">
+<area id="help" onClick="highlightDef('id_help');" shape="RECT"
+ href="#a_help" alt="Use Eclipse Platform Help" coords="20,109,322,124">
+<area id="autoconsole" onClick="highlightDef('id_autoconsole');"
+ shape="RECT" href="#a_autoconsole" alt="Auto-open Console"
+ coords="20,83,454,105">
+<area id="nsishome" onClick="highlightDef('id_nsishome');" shape="RECT"
+ href="#a_nsishome" alt="NSIS Home" coords="20,55,452,78">
+<area id="beforecompile" onClick="highlightDef('id_beforecompile');"
+ shape="rect" href="#a_beforecompile" alt="Before Compiling Save" coords="20,151,423,172">
+</map>
+<map name="preferences2">
+<area id="add2" onClick="highlightDef('id_add2');" shape="RECT"
+ href="#a_add2" alt="Add" coords="385,68, 410,92">
+<area id="edit2" onClick="highlightDef('id_edit2');" shape="RECT"
+ href="#a_edit2" alt="Edit" coords="385,99, 410,123">
+<area id="delete2" onClick="highlightDef('id_delete2');" shape="RECT"
+ href="#a_delete2" alt="Delete" coords="385,130, 410,154">
+<area id="down2" onClick="highlightDef('id_down2');" shape="RECT"
+ href="#a_down2" alt="Down" coords="385,192, 410,216">
+<area id="up2" onClick="highlightDef('id_up2');" shape="RECT"
+ href="#a_up2" alt="Up" coords="385,161, 410,185">
+<area id="symbols" onClick="highlightDef('id_symbols');" shape="RECT"
+ href="#a_symbols" alt="Defined Symbols" coords="16,68, 374,467">
+</map>
+</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+#Thu Sep 18 10:39:49 EDT 2008
+CLEAR_CONSOLE=true
+JAVACC_OPTIONS=
+JJDOC_OPTIONS=
+JJTREE_OPTIONS=
+JJ_NATURE=false
+JTB_OPTIONS=
+RUNTIME_JAR=C\:\\javacc-4.1\\bin\\lib\\javacc.jar
+SHOW_CONSOLE=true
+SUPPRESS_WARNINGS=false
+eclipse.preferences.version=1

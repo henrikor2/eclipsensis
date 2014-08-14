@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+  <title>EclipseNSIS - NSIS Update Preferences</title>
+  <link rel="stylesheet" href="book.css" charset="ISO-8859-1"
+ type="text/css">
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <script language="javascript" type="text/javascript" src="help.js"></script>
+</head>
+<body onLoad="checkHighlight();">
+<div id="main">
+<a href="scrtmpltprefs.html">Previous</a>
+| <a href="overview.html#contents">Contents</a>
+| <a href="schedulerprefs.html">Next</a>
+<hr>
+<h1>Preferences</h1>
+<h2><a name="update"></a>NSIS Update</h2>
+<p>These preferences are used to configure <a href="update.html">NSIS Update</a> behavior.</p>
+<p style="font-weight:bold; color: #FF0000">Please see the important <a href="update.html#notes">notes</a> regarding NSIS Update.</p>
+<br>
+<p style="text-align: center;"><img src="images/updatepref.gif" alt="NSIS Update Preferences" usemap="#updatepref" ismap="ismap" style="border: medium none ; width: 477px; height: 586px;"></p>
+  <a name="a_sites"></a>
+  <dl id="id_sites">
+    <dt>Sites</dt>
+    <dd>These are the sites to which NSIS Update connects to find and download updates. <span style="color: red"><strong>These values should NOT be modified manually unless it is certain that the new values are correct</strong></span>.
+      <dl>
+  <dt>NSIS Update Site </dt>
+  <dd>This is the site which is checked to see if updates are available..</dd>
+  <dt>Sourceforge Mirror </dt>
+  <dd>Since the NSIS project is hosted by <a href="http://sourceforge.net">SourceForge</a>, updates can only be downloaded from SourceForge mirrors. The recommended setting is to allow SourceForge to auto-select the mirror to use. However, if desired, the user may select the preferred SourceForge mirror to be used. This can be done by either manually entering the SourceForge mirror site or by choosing it by clicking on the browse button. The mirror site may be a host name or an IP address, however it should not include protocol, port or path information. e.g.,<strong> belnet.dl.sourceforge.net</strong> is valid, but <strong>http://belnet.de.sourceforge.net:80/nsis-2.22-setup.exe</strong> is invalid.<br><br>
+    If NSIS Update is unable to download from either the auto-selected or the user-selected mirror for any reason, it will prompt the user to choose a different SourceForge mirror. The new mirror can also be saved as the preferred mirror if desired.</dd>
+  <p style="text-align: center;"><img src="images/downloadsites.gif" alt="Choose Download Site" style="border: medium none ; width: 413px; height: 441px;"></p>
+  </dl>
+    <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+  </dl>
+  <a name="a_ignorepreview" id="a_ignorepreview"></a>
+  <dl id="id_ignorepreview">
+    <dt>Ignore NSIS Preview Updates</dt>
+    <dd>If this option is selected, NSIS preview updates will not be considered for download and install. The default behavior is to accept any available NSIS update, whether it is a release or a preview. <a
+ href="javascript:history.go(-1)">&larr;&nbsp;Back</a></dd>
+</dl>
+<a href="preferences.html">Back
+to Preferences</a><br>
+<hr><a href="scrtmpltprefs.html">Previous</a>
+| <a href="overview.html#contents">Contents</a>
+| <a href="schedulerprefs.html">Next</a><br>
+<br>
+<p><strong><small>Copyright
+&copy; 2004-2010 Sunil Kamath
+(IcemanK).</small></strong></p>
+<MAP NAME="updatepref">
+     <AREA ID="ignorepreview" SHAPE="RECT" HREF="#a_ignorepreview" ALT="Ignore Preview Releases" OnClick="highlightDef('id_ignorepreview');" COORDS="12,183,175,200">
+     <AREA ID="action" SHAPE="RECT" HREF="#a_sites" ALT="Update sites" OnClick="highlightDef('id_sites');" COORDS="5,23,472,161">
+</MAP>
+</div>
+</body>
+</html>

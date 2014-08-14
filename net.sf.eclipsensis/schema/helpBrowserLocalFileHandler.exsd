@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="net.sf.eclipsensis">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="net.sf.eclipsensis" id="helpBrowserLocalFileHandler" name="Help Browser Local File Handler"/>
+      </appInfo>
+      <documentation>
+         This extension is used to plug in handlers for local files referenced in help browser pages.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="handler" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A fully qualified identifier of the target extension point.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  An optional identifier of the extension instance.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  An optional translatable name of the extension instance.
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="handler">
+      <complexType>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  An optional identifier of the handler.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  A translatable name that will be used for presenting this handler in the UI.
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="extensions" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A comma-separated list of file extensions supported by this handler.
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A fully qualified name of the Java class that implements &lt;samp&gt;net.sf.eclipsensis.help.IHelpBrowserLocalFileHandler&lt;/samp&gt; interface.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="net.sf.eclipsensis.help.IHelpBrowserLocalFileHandler"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         0.9.4
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;p&gt;
+   &lt;pre&gt;
+      &lt;extension point=&quot;net.sf.eclipsensis.helpBrowserLocalFileHandler&quot;
+         id=&quot;myLocalFileHandler&quot;&gt;
+         &lt;parser
+            extensions=&quot;foo,bar&quot;
+            class=&quot;com.example.xyz.MyLocalFileHandler&quot;&gt;
+         &lt;/parser&gt;
+      &lt;/extension&gt;
+   &lt;/pre&gt;
+&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         Plug-ins that want to extend this extension point must implement &lt;samp&gt;net.ef.eclipsensis.help.IHelpBrowserLocalFileHandler&lt;/samp&gt; interface.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         The EclipseNSIS plugin includes a supplied implementation (&lt;samp&gt;net.sf.eclipsensis.help.HelpBrowserLocalFileHandler&lt;/samp&gt;).
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+All rights reserved.
+This program is made available under the terms of the Common Public License
+v1.0 which is available at &lt;a href=&quot;http://www.eclipse.org/legal/cpl-v10.html&quot;&gt;http://www.eclipse.org/legal/cpl-v10.html&lt;/a&gt;
+      </documentation>
+   </annotation>
+
+</schema>

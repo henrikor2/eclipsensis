@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+# 
+# Contributors:
+#     Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+<toc label="EclipseNSIS InstallOptions Editor User Guide" topic="help/overview.html">
+    <topic label="Installation" href="help/installation.html"/>
+    <topic label="Editing InstallOptions Scripts" href="help/editing.html">
+        <topic label="Design Editor" href="help/designeditor.html"/>
+        <topic label="Source Editor" href="help/sourceeditor.html"/>
+    </topic>
+    <topic label="InstallOptions Script Wizard" href="help/wizard.html"/>
+    <topic label="Preferences" href="help/preferences.html"/>
+    <topic label="License &amp; Copyright" href="help/license.html"/>
+</toc>

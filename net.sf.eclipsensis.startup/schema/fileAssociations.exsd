@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="net.sf.eclipsensis.startup">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="net.sf.eclipsensis.startup" id="fileAssociations" name="File Associations"/>
+      </appInfo>
+      <documentation>
+         This extension is used to register file associations to be validated upon startup.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="association" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A fully qualified identifier of the target extension point.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  An optional identifier of the extension instance.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  An optional translatable name of the extension instance.
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="association">
+      <annotation>
+         <documentation>
+            An association of a file type to one of a list of editors.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="enablement" minOccurs="0" maxOccurs="1"/>
+            <element ref="fileTypes"/>
+            <element ref="editors"/>
+         </sequence>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="fileTypes">
+      <annotation>
+         <documentation>
+            Set of file type(s) for the association.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="fileType" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Name for the set of file type(s).
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="fileType">
+      <annotation>
+         <documentation>
+            A file type for the association.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The file type (can be a wildcard).
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="editors">
+      <annotation>
+         <documentation>
+            Set of editors that may be associated with the file type(s).
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="editor" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Name for the set of editors.
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="editor">
+      <annotation>
+         <documentation>
+            An editor that can be associated with the file type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of the editor.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="enablement">
+      <complexType>
+         <attribute name="initPreference" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="defaultValue" type="boolean" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         0.9.5
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;p&gt;
+   &lt;pre&gt;
+      &lt;extension point=&quot;net.sf.eclipsensis.startup.fileAssociations&quot;&gt;
+         &lt;association id=&quot;net.sf.eclipsensis.nsisFiles&quot;&gt;
+            &lt;enablement defaultValue=&quot;true&quot;/&gt;
+            &lt;fileTypes name=&quot;NSIS source files&quot;&gt;
+            &lt;fileType name=&quot;*.nsi&quot;/&gt;
+            &lt;fileType name=&quot;*.nsh&quot;/&gt;
+         &lt;/fileTypes&gt;
+         &lt;editors name=&quot;EclipseNSIS editor&quot;&gt;
+               &lt;editor id=&quot;net.sf.eclipsensis.editor.NSISEditor&quot;/&gt;
+            &lt;/editors&gt;
+         &lt;/association&gt;
+      &lt;/extension&gt;
+   &lt;/pre&gt;
+&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+All rights reserved.
+This program is made available under the terms of the Common Public License
+v1.0 which is available at &lt;a href=&quot;http://www.eclipse.org/legal/cpl-v10.html&quot;&gt;http://www.eclipse.org/legal/cpl-v10.html&lt;/a&gt;
+      </documentation>
+   </annotation>
+
+</schema>

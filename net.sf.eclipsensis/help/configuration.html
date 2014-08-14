@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<!--
+###############################################################################
+# Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+# All rights reserved.
+# This program is made available under the terms of the Common Public License
+# v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+#
+# Contributors:
+# Sunil Kamath (IcemanK) - initial API and implementation
+###############################################################################
+-->
+  <title>EclipseNSIS - Configuration</title>
+  <link rel="stylesheet" href="book.css" charset="ISO-8859-1"
+ type="text/css">
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <script language="javascript" type="text/javascript" src="help.js"></script>
+</head>
+<body>
+<div id="main">
+<a href="installation.html">Previous</a>
+| <a href="overview.html#contents">Contents</a>
+| <a href="editing.html">Next</a>
+<hr>
+<h1>Configuration
+</h1>
+<p>Every time that EclipseNSIS is started, it verifies that it is configured with a valid NSIS installation. 
+If it is not correctly configured, it attempts to self-configure. It does this by reading the Windows registry to determine the
+installation location of the NSIS software.<br>
+On the rare occasion that it cannot self-configure, the NSIS Configuration Wizard will be launched to configure EclipseNSIS with an NSIS installation.<br>
+</p>
+<p style="text-align: center;"><img
+ src="images/configuration.gif" alt="NSIS Configuration Wizard" border="0" usemap="#configwiz" style="width: 484px; height: 376px;"></p>
+<p>Currently, the NSIS Configuration Wizard supports two configuration methods:</p>
+<ul>
+  <li><a href="#manualcfgwiz">Manual Configuration</a></li>
+  <li><a href="#update">NSIS Update</a></li>
+</ul>
+<dl>
+<a name="manualcfgwiz"></a><dt>Manual Configuration</dt>
+<dd>This invokes the Manual Configuration Wizard. This wizard is used to configure EclipseNSIS by manually specifying the location of the NSIS installation. <br>
+<p style="text-align: center;"><img
+ src="images/manualcfgwizard.gif" alt="NSIS Manual Configuration Wizard" border="0" usemap="#manualcfg" style="width: 484px; height: 376px;"></p>
+ <a name="a_nsishome"></a><dl id="id_nsishome"><dt>NSIS
+Home</dt>
+  <dd>Location of NSIS
+software installation. This
+is the folder where
+MakeNSIS.exe can be found.</dd>
+</dl></dd>
+ <a name="update"></a><dt>NSIS Update</dt>
+<dd>This invokes the <a href="update.html#wizard">NSIS Update Wizard</a>. This wizard is used to configure EclipseNSIS by using <a href="update.html">NSIS Update</a> to download and install NSIS software.</dd>
+</dl>
+<p>If the configuration is canceled or is unsuccessful, most of the EclipseNSIS functionality will be disabled. As long as EclipseNSIS is not configured, the NSIS Configuration Wizard can be accessed by using the <span style="font-style:italic">EclipseNSIS&rarr;NSIS Configuration Wizard</span> menuitem which is visible when the EclipseNSIS editor is open. Once configured, the NSIS Configuration Wizard will no longer be available. The behavior of EclipseNSIS can then be further customized using the <a href="preferences.html">Preferences</a>
+dialog.<br>
+</p>
+<hr><a href="installation.html">Previous</a>
+| <a href="overview.html#contents">Contents</a>
+| <a href="editing.html">Next</a>
+<br>
+<br>
+<p><strong><small>Copyright
+&copy; 2004-2010 Sunil Kamath (IcemanK).</small></strong></p>
+<map name="configwiz">
+<area shape="rect" coords="27,188,150,207" href="#manualcfgwiz">
+<area shape="rect" coords="27,207,108,223" href="#update">
+</map>
+<map name="manualcfg">
+<area id="nsishome" onclick="highlightDef('id_nsishome');" href="#a_nsishome" alt="NSIS Home" shape="rect" coords="6,94,477,117">
+</map>
+</div>
+</body>
+</html>
