@@ -20,6 +20,7 @@ import net.sf.eclipsensis.util.*;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.*;
+import org.apache.lucene.store.SimpleFSDirectory;
 import org.eclipse.core.runtime.*;
 import org.eclipse.core.runtime.jobs.Job;
 
@@ -81,33 +82,20 @@ public class NSISHelpSearcher implements INSISHelpSearchConstants
                 }
                 Query query = null;
                 try {
-                    mSearcher = new IndexSearcher(mIndexer.getIndexLocation().getAbsolutePath());
+                    mSearcher = new IndexSearcher(new SimpleFSDirectory(mIndexer.getIndexLocation()));
                     if(checkCanceled(monitor)) {
                         return Status.CANCEL_STATUS;
                     }
-                    QueryParser parser = new QueryParser(mField==null?INDEX_FIELD_CONTENTS:mField, mIndexer.getAnalyzer());
+					QueryParser parser = new QueryParser(
+							org.apache.lucene.util.Version.LUCENE_35,
+							mField == null ? INDEX_FIELD_CONTENTS : mField,
+							mIndexer.getAnalyzer());
                     query = parser.parse(mRequester.getSearchText());
                     if(checkCanceled(monitor)) {
                         return Status.CANCEL_STATUS;
                     }
                     Filter filter = mRequester.getFilter();
-                    HitCollector collector = new HitCollector() {
-                        @Override
-                        public void collect(int doc, float score)
-                        {
-                            checkCanceled(monitor);
-                            if(!monitor.isCanceled()) {
-                                mHits.add(new HitDoc(score, doc));
-                            }
-                            else {
-                                try {
-                                    mSearcher.close();
-                                }
-                                catch (IOException e) {
-                                }
-                            }
-                        }
-                    };
+                    Collector collector = TopScoreDocCollector.create(10, true);
                     mHits = new ArrayList<HitDoc>();
                     if(filter != null) {
                         mSearcher.search(query, filter, collector);

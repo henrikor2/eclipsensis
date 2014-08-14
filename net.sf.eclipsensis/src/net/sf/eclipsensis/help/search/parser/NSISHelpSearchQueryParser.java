@@ -263,6 +263,9 @@ public class NSISHelpSearchQueryParser implements NSISHelpSearchQueryParserConst
              }
              else {
                  result.add(termImage);
+                 /* 
+                  * Comment out the whole section, idk how to fix this:
+                  * 
                  Reader reader = new StringReader(termImage);
                  org.apache.lucene.analysis.TokenStream tStream = mAnalyzer.tokenStream(mField, reader);
                  org.apache.lucene.analysis.Token tok;
@@ -274,6 +277,7 @@ public class NSISHelpSearchQueryParser implements NSISHelpSearchQueryParserConst
                  }
                  catch (IOException ioe) {
                  }
+                 */
              }
       break;
     case RANGEIN_START:

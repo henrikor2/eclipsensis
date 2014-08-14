@@ -1822,7 +1822,7 @@ public class NSISHTMLHelp extends ViewPart implements INSISConstants
         {
             if (mSearchPrevious && mQuery != null)
             {
-                return new QueryFilter(mQuery);
+                return new QueryWrapperFilter(mQuery);
             }
             else
             {

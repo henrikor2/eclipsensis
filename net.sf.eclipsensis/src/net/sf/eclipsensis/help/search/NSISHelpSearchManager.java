@@ -16,6 +16,7 @@ import net.sf.eclipsensis.*;
 import net.sf.eclipsensis.util.IOUtility;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.util.Version;
 import org.eclipse.core.runtime.FileLocator;
 
 public class NSISHelpSearchManager implements INSISHelpSearchConstants
@@ -27,8 +28,12 @@ public class NSISHelpSearchManager implements INSISHelpSearchConstants
     public NSISHelpSearchManager(File documentRoot)
     {
         File helpLocation = new File(EclipseNSISPlugin.getPluginStateLocation(),INSISConstants.PLUGIN_HELP_LOCATION_PREFIX);
-        mStandardIndexer = new NSISHelpIndexer(new File(helpLocation, STANDARD_INDEX_LOCATION),documentRoot, new StandardAnalyzer());
-        mStemmedIndexer = new NSISHelpIndexer(new File(helpLocation, STEMMED_INDEX_LOCATION),documentRoot, new StemmingAnalyzer());
+		mStandardIndexer = new NSISHelpIndexer(new File(helpLocation,
+				STANDARD_INDEX_LOCATION), documentRoot, new StandardAnalyzer(
+				Version.LUCENE_35));
+		mStemmedIndexer = new NSISHelpIndexer(new File(helpLocation,
+				STEMMED_INDEX_LOCATION), documentRoot, new StandardAnalyzer(
+				Version.LUCENE_35));
         try {
             URL url = FileLocator.toFileURL(getClass().getResource("search_syntax.htm")); //$NON-NLS-1$
             try {
