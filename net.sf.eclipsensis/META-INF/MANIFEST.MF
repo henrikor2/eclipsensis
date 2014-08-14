@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: net.sf.eclipsensis; singleton:=true
-Bundle-Version: 0.9.8.1
+Bundle-Version: 0.9.9.9
 Bundle-Activator: net.sf.eclipsensis.EclipseNSISPlugin
 Bundle-Vendor: %plugin.vendor
 Bundle-Localization: plugin

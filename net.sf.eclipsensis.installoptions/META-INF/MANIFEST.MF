@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-Name: %plugin.name
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: net.sf.eclipsensis.installoptions; singleton:=true
-Bundle-Version: 0.9.8
+Bundle-Version: 0.9.9
 Bundle-Activator: net.sf.eclipsensis.installoptions.InstallOptionsPlugin
 Bundle-Vendor: %plugin.vendor
 Bundle-Localization: plugin
